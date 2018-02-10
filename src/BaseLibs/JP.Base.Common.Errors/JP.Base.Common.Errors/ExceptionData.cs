@@ -13,6 +13,7 @@ namespace JP.Base.Common.Errors
         public ExceptionData(Exception ex, bool isUnhandledException)
         {
             IsUnhandledException = isUnhandledException;
+            CurrenException = ex;
             ParseExceptionData(ex);
         }
 
