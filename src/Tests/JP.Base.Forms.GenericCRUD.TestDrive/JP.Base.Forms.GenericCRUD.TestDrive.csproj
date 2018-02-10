@@ -1,19 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{36645B1F-A702-4577-87A8-25BDB833515B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{32196599-21C8-4176-BBC4-E95F013EC64D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.Forms.GenericCRUD</RootNamespace>
-    <AssemblyName>JP.Base.Forms.GenericCRUD</AssemblyName>
+    <RootNamespace>TD.Forms.GenericABM.FormTestDrive</RootNamespace>
+    <AssemblyName>TD.Forms.GenericABM.FormTestDrive</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <StartupObject>
-    </StartupObject>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
@@ -57,32 +55,68 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EventHandlers\Events.cs" />
-    <Compile Include="Forms\CRUDForm.cs">
+    <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\CRUDForm.Designer.cs">
-      <DependentUpon>CRUDForm.cs</DependentUpon>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\ICRUDForm.cs" />
+    <Compile Include="ItemDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemDetails.Designer.cs">
+      <DependentUpon>ItemDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemsList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemsList.Designer.cs">
+      <DependentUpon>ItemsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Forms\CRUDForm.resx">
-      <DependentUpon>CRUDForm.cs</DependentUpon>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemDetails.resx">
+      <DependentUpon>ItemDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemsList.resx">
+      <DependentUpon>ItemsList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="UsersList.resx">
+      <DependentUpon>UsersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserDetails.resx">
+      <DependentUpon>UserDetails.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -92,53 +126,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="User.cs" />
+    <Compile Include="UserDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserDetails.Designer.cs">
+      <DependentUpon>UserDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UsersList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UsersList.Designer.cs">
+      <DependentUpon>UsersList.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Add.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Cancel.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Datos_Cargados.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Delete.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Editar.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Grabar.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Grabar2.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Search.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Search_16x16-32.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Search2.gif" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\JP.Base.Common.Forms\JP.Base.Common.Forms.csproj">
-      <Project>{59C2E34F-2031-4F90-85F1-94A93453FCA7}</Project>
-      <Name>JP.Base.Common.Forms</Name>
-    </ProjectReference>
-    <ProjectReference Include="Dependencies\NJFLib.Controls.CollapsibleSplitter\NJFLib.Controls.CollapsibleSplitter.csproj">
-      <Project>{ea459706-3de6-4bc1-bda8-866d564ab5af}</Project>
-      <Name>NJFLib.Controls.CollapsibleSplitter</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
       <Visible>False</Visible>
       <ProductName>.NET Framework 3.5 SP1</ProductName>
@@ -146,20 +148,16 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="images\font-awesome_4-7-0_list_256_0_000000_none.png" />
-    <Content Include="images\font-awesome_4-7-0_plus_16_0_000000_none.png" />
-    <Content Include="images\font-awesome_4-7-0_save_16_0_000000_none.png" />
-    <Content Include="images\font-awesome_4-7-0_search_16_0_000000_none.png" />
-    <Content Include="images\foundation-icon-fonts_2015-02-16_page-search_16_0_000000_none.png" />
-    <Content Include="images\icomoon-free_2014-12-23_cross_16_0_000000_none.png" />
-    <Content Include="images\material-icons_3-0-1_mode-edit_16_0_000000_none.png" />
-    <Content Include="images\typicons_2-0-7_cancel-outline_16_0_000000_none.png" />
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Forms.GenericCRUD\Dependencies\NJFLib.Controls.CollapsibleSplitter\NJFLib.Controls.CollapsibleSplitter.csproj">
+      <Project>{EA459706-3DE6-4BC1-BDA8-866D564AB5AF}</Project>
+      <Name>NJFLib.Controls.CollapsibleSplitter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Forms.GenericCRUD\JP.Base.Forms.GenericCRUD.csproj">
+      <Project>{36645B1F-A702-4577-87A8-25BDB833515B}</Project>
+      <Name>JP.Base.Forms.GenericCRUD</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName)==Release echo F|xcopy /F /R /Y "$(TargetDir)$(TargetName).dll"  "$(ProjectDir)..\..\..\published\$(TargetName).dll" 2&gt;nul 1&gt;nul
-	if $(ConfigurationName)==Release echo F|xcopy /F /R /Y "$(TargetDir)$(TargetName).pdb"  "$(ProjectDir)..\..\..\published\$(TargetName).pdb" 2&gt;nul 1&gt;nul	</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

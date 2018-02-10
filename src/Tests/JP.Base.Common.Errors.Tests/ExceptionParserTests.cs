@@ -3,13 +3,10 @@ using JP.Base.Common.Errors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace TD.Base.Logging.ErrorLogging.Tests
+namespace TD.Base.Errors.Common.Tests
 {
-    /// <summary>
-    /// Summary description for UnitTest1
-    /// </summary>
     [TestClass]
-    public class ExceptionDataTests : BaseContextualTest
+    public class ExceptionDataTests
     {
         [TestMethod]
         public void ExceptionData_CreateExceptionData_ShouldCreateAValidExceptionData()
