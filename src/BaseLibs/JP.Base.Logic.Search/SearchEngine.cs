@@ -21,7 +21,7 @@ namespace JP.Base.Logic.Search
         }
 
         /// <summary>
-        ///Main method, you start your filtering/sorting with this
+        /// Main method, you start your filtering/sorting with this
         /// </summary>
         public IQueryable<EntityType> GetSearchQuery()
         {
