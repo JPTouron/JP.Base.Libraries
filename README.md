@@ -29,3 +29,4 @@ GNU v3, pretty much use it as you need, just rememeber to give credit ;-)
 - Windows Forms Collapsible Splitter Control for .Net | (c)Copyright 2002-2003 NJF (furty74@yahoo.com). All rights reserved.
 - MVP base classes | Steven James Gray, 2009 | https://www.codeproject.com/Articles/42991/Model-View-Presenter-via-ASP-NET
 - Managed Code Error Reporting | cjbarth, 2009 | https://www.codeproject.com/articles/33171/managed-code-error-reporting
+> A good article about EF6 (which led to the creation of the IBaseUnitOfWork implementation) can be found here: http://mehdi.me/ambient-dbcontext-in-ef6/
