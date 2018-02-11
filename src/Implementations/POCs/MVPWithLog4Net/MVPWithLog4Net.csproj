@@ -34,10 +34,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="JP.Base.MVP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\BaseLibs\JP.Base.MVP\bin\Debug\JP.Base.MVP.dll</HintPath>
-    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
@@ -79,6 +75,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.MVP\JP.Base.MVP.csproj">
+      <Project>{3CE5D2DF-8BD1-4E16-9285-6C4AB690F00C}</Project>
+      <Name>JP.Base.MVP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\JP.Base.MVP.Implementation\JP.Base.MVP.Implementation.csproj">
       <Project>{5368297E-8B07-43DC-8B38-0FE6076FF7F5}</Project>
       <Name>JP.Base.MVP.Implementation</Name>
