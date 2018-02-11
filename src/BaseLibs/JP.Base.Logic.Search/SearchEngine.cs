@@ -23,9 +23,9 @@ namespace JP.Base.Logic.Search
         /// <summary>
         ///Main method, you start your filtering/sorting with this
         /// </summary>
-        public IQueryable<EntityType> PerformSearch()
+        public IQueryable<EntityType> GetSearchQuery()
         {
-            var results = VerifySearchDataAndExecuteSearch(sortAndFilter);
+            var results = VerifySearchDataAssembleSearchQuery(sortAndFilter);
 
             return results;
         }
@@ -111,7 +111,7 @@ namespace JP.Base.Logic.Search
         /// <summary>
         /// initiates the search, and refreshes the values to the parameter sortAndFilter
         /// </summary>
-        protected IQueryable<EntityType> VerifySearchDataAndExecuteSearch(SortAndFilterData sortAndfilter)
+        protected IQueryable<EntityType> VerifySearchDataAssembleSearchQuery(SortAndFilterData sortAndfilter)
         {
             SetSearchValues(sortAndfilter);
 
