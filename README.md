@@ -27,4 +27,5 @@ GNU v3, pretty much use it as you need, just rememeber to give credit ;-)
 
 # Code contributions
 - Windows Forms Collapsible Splitter Control for .Net | (c)Copyright 2002-2003 NJF (furty74@yahoo.com). All rights reserved.
+- MVP Base classes | Steven James Gray, 2009 | https://www.codeproject.com/Articles/42991/Model-View-Presenter-via-ASP-NET
 
