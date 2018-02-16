@@ -1,12 +1,12 @@
-﻿using System;
+﻿using JP.Base.Common.Exceptions.Parsing;
+using JP.Base.Errors.Logging.Support;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using JP.Base.Common.Exceptions.Parsing;
-using JP.Base.Errors.Logging.Support;
 
 namespace JP.Base.Errors.Logging
 {
@@ -75,6 +75,15 @@ namespace JP.Base.Errors.Logging
             //errorParser = new ErrorParser(currentError.CurrentException);
         }
 
+        ~ErrorLogger()
+        {
+            Dispose(false);
+        }
+
+        public delegate void DatabaseLogEventHandler(string logInformation);
+
+        public static event DatabaseLogEventHandler OnWrittenToDatabase;
+
         public EventLog EventLog
         {
             get; private set;
@@ -134,10 +143,6 @@ namespace JP.Base.Errors.Logging
         {
             get; private set;
         }
-
-        public delegate void DatabaseLogEventHandler(string logInformation);
-
-        public static event DatabaseLogEventHandler OnWrittenToDatabase;
 
         public void Dispose()
         {
@@ -506,7 +511,9 @@ namespace JP.Base.Errors.Logging
             }
             catch (Exception ex)
             {
-                sReturn = "No se pudo guardar el Mini Dump: " + Environment.NewLine + Common.Exceptions.Parsing.ExceptionExtensions.ExceptionToString(ex);
+                var exData = new ExceptionData(ex);
+
+                sReturn = "No se pudo guardar el Mini Dump: " + Environment.NewLine + exData.ToString();
                 MiniDumpPath = "Dump File not created";
             }
 
@@ -525,15 +532,11 @@ namespace JP.Base.Errors.Logging
             }
             catch (Exception ex)
             {
-                result = "Could not take screen shot, the following error occurred: " + Environment.NewLine + Common.Exceptions.Parsing.ExceptionExtensions.ExceptionToString(ex);
+                var exData = new ExceptionData(ex);
+                result = "Could not take screen shot, the following error occurred: " + Environment.NewLine + exData.ToString();
                 screenShotPath = "Screen shot not taken";
             }
             return result;
-        }
-
-        ~ErrorLogger()
-        {
-            Dispose(false);
         }
     }
 }
