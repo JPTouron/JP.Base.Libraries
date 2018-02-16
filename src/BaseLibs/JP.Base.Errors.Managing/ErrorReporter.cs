@@ -101,19 +101,19 @@ namespace JP.Base.Errors.Managing
         {
             this.lblStatus.Text = string.Empty;
             this.lblInformation.Text = string.Empty;
-            this.Text = this.Text + " " + this.currentError.CurrenException.GetType().ToString();
+            this.Text = this.Text + " " + this.currentError.CurrentException.GetType().ToString();
             StringBuilder errorInformation = new StringBuilder();
-            errorInformation.Append(this.currentError.ExceptionText);
-            errorInformation.Append(this.currentError.EnvironmentInfo);
-            errorInformation.Append(this.currentError.AssemblyInfo);
+            errorInformation.Append(this.currentError.ExceptionToString());
+            errorInformation.Append(this.currentError.SysInfoToString());
+            errorInformation.Append(this.currentError.GetAssemblyInfo());
             errorInformation.AppendLine(ERROR_LOCATION_MSG);
-            foreach (ExceptionLocationData Locations in this.currentError.ErrorLocations)
+            foreach (ExceptionLocationData Locations in this.currentError.GetErrorLocations())
             {
                 errorInformation.AppendLine(string.Format("{0} {1}", FILE_LABEL_MSG, Locations.FileName));
                 errorInformation.AppendLine(string.Format("{0} {1}", METHOD_LABEL_MSG, Locations.Method));
                 errorInformation.AppendLine(string.Format("{0} {1}", LINE_LABEL_MSG, Locations.Line));
             }
-            errorInformation.Append(this.currentError.StackTrace);
+            errorInformation.Append(this.currentError.GetEnhancedStackTrace());
 
             if (!string.IsNullOrEmpty(savedLogFileName))
             {

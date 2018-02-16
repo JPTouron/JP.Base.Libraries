@@ -9,7 +9,7 @@ namespace JP.Base.Common.Exceptions.Parsing
         /// </summary>
         public static string ExceptionToString(this Exception ex)
         {
-            return new ExceptionParser(ex).ExceptionToString(ex);
+            return new ExceptionData(ex).ExceptionToString();
         }
     }
 }

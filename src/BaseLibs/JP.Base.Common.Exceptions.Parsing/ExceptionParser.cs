@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JP.Base.Common.Exceptions.Parsing.Support;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Diagnostics;
@@ -6,11 +7,10 @@ using System.Globalization;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using JP.Base.Common.Exceptions.Parsing.Support;
 
 namespace JP.Base.Common.Exceptions.Parsing
 {
-    internal class ExceptionParser
+    public class ExceptionData
     {
         private const string ROOT_HTTP_EXCEPTION = "System.Web.HttpUnhandledException";
 
@@ -21,9 +21,10 @@ namespace JP.Base.Common.Exceptions.Parsing
         /// </summary>
         /// <param name="ex">the exception you want to parse, you should set it, unless you plan to set it on every call to the public methods of this class</param>
         /// <param name="assembly">the assembly in which the exception happened, this is not required, it is the executing assembly by default</param>
-        public ExceptionParser(Exception ex, Assembly assembly = null)
+        public ExceptionData(Exception ex, bool isUnhandledException = false, Assembly assembly = null)
         {
             CurrentException = ex;
+            IsUnhandledException = isUnhandledException;
             CurrentAssembly = assembly ?? Assembly.GetExecutingAssembly();
         }
 
@@ -36,6 +37,8 @@ namespace JP.Base.Common.Exceptions.Parsing
         {
             get; private set;
         }
+
+        public bool IsUnhandledException { get; private set; }
 
         /// <summary>
         /// translate exception object to string, with additional system info

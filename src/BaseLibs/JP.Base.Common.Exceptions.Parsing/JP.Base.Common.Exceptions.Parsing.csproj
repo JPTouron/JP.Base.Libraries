@@ -48,9 +48,7 @@
   <ItemGroup>
     <Compile Include="ExceptionExtensions.cs" />
     <Compile Include="ExceptionLocationData.cs" />
-    <Compile Include="ExceptionData.cs" />
-    <Compile Include="ExceptionParser.cs">
-    </Compile>
+    <Compile Include="ExceptionParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\AppContext.cs" />
   </ItemGroup>

@@ -72,7 +72,7 @@ namespace JP.Base.Errors.Logging
             currentError = exception;
             disposed = false;
 
-            //errorParser = new ErrorParser(currentError.CurrenException);
+            //errorParser = new ErrorParser(currentError.CurrentException);
         }
 
         public EventLog EventLog
@@ -299,7 +299,7 @@ namespace JP.Base.Errors.Logging
             //    using (MailMessage msg = new MailMessage())
             //    {
             //        msg.From = new MailAddress(from);
-            //        msg.Subject = subjectPrefix + _exceptionType; // "ERROR: " + _exceptionType;
+            //        msg.Subject = subjectPrefix + _GetExceptionType(); // "ERROR: " + _GetExceptionType();
             //        msg.Body = _exceptionText;
             //        msg.BodyEncoding = System.Text.Encoding.UTF8;
             //        msg.IsBodyHtml = false;
@@ -383,7 +383,7 @@ namespace JP.Base.Errors.Logging
         private string CreateLogContent()
         {
             StringBuilder sb = new StringBuilder();
-            List<ExceptionLocationData> _ErrorLocations = null;
+            List<ExceptionLocationData> _GetErrorLocations = null;
 
             sb.AppendLine(">>>> INICIO DE LOG >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             sb.AppendLine(string.Empty);
@@ -428,20 +428,20 @@ namespace JP.Base.Errors.Logging
             sb.AppendLine("A continuacion se muestra la informacion recopilada por el sistema de errores:");
             sb.AppendLine(new String('_', 50));
             sb.AppendLine(string.Empty);
-            sb.Append(currentError.ExceptionText);
+            sb.Append(currentError.ExceptionToString());
 
-            sb.AppendLine(currentError.EnvironmentInfo);
-            sb.AppendLine(currentError.AssemblyInfo);
+            sb.AppendLine(currentError.SysInfoToString());
+            sb.AppendLine(currentError.GetAssemblyInfo());
 
-            _ErrorLocations = currentError.ErrorLocations;
+            _GetErrorLocations = currentError.GetErrorLocations();
 
-            if (_ErrorLocations != null)
+            if (_GetErrorLocations != null)
             {
-                if (_ErrorLocations.Count > 0)
+                if (_GetErrorLocations.Count > 0)
                 {
                     sb.AppendLine("[Ubicaciones de los errores]");
 
-                    foreach (ExceptionLocationData ErrLocation in _ErrorLocations)
+                    foreach (ExceptionLocationData ErrLocation in _GetErrorLocations)
                     {
                         sb.Append("Archivo: ");
                         sb.Append(ErrLocation.FileName);
@@ -459,7 +459,7 @@ namespace JP.Base.Errors.Logging
 
             sb.AppendLine(string.Empty);
             sb.AppendLine("[Stack Trace Information]");
-            sb.AppendLine(currentError.CurrenException.StackTrace);
+            sb.AppendLine(currentError.GetEnhancedStackTrace());
             sb.AppendLine(string.Empty);
 
             sb.AppendLine("<<<< FIN DE LOG <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");

@@ -42,31 +42,31 @@ namespace TD.Base.Logging.ErrorLogging.Tests
             }
             catch (Exception ex)
             {
-                obj3 = new ExceptionData(ex);
-                obj3.IsUnhandledException = true;
+                obj3 = new ExceptionData(ex,true);
+                
             }
 
             obj.Should().NotBeNull(null, null);
             obj.IsUnhandledException.Should().BeFalse(null, null);
-            obj.AssemblyInfo.Should().NotBeNullOrEmpty(null, null);
-            obj.CurrenException.Should().BeOfType<Exception>(null, null);
-            obj.CurrenException.Message.Should().Be("This is a Test", null, null);
-            obj.EnvironmentInfo.Should().NotBeNullOrEmpty(null, null);
-            obj.ErrorLocations.Count.Should().BeGreaterThan(0, null, null);
-            obj.ExceptionText.Should().NotBeNullOrEmpty(null, null);
-            obj.ExceptionType.Should().Be("Exception Type:           " + obj.CurrenException.GetType().FullName, null, null);
-            obj.StackTrace.Should().NotBeNullOrEmpty(null, null);
+            obj.GetAssemblyInfo().Should().NotBeNullOrEmpty(null, null);
+            obj.CurrentException.Should().BeOfType<Exception>(null, null);
+            obj.CurrentException.Message.Should().Be("This is a Test", null, null);
+            obj.SysInfoToString().Should().NotBeNullOrEmpty(null, null);
+            obj.GetErrorLocations().Count.Should().BeGreaterThan(0, null, null);
+            obj.ExceptionToString().Should().NotBeNullOrEmpty(null, null);
+            obj.GetExceptionType().Should().Be("Exception Type:           " + obj.CurrentException.GetType().FullName, null, null);
+            obj.GetEnhancedStackTrace().Should().NotBeNullOrEmpty(null, null);
 
             obj2.Should().NotBeNull(null, null);
             obj2.IsUnhandledException.Should().BeTrue(null, null);
-            obj2.AssemblyInfo.Should().NotBeNullOrEmpty(null, null);
-            obj2.CurrenException.Should().BeOfType<OutOfMemoryException>(null, null);
-            obj2.CurrenException.Message.Should().Be("This is 2 a Test", null, null);
-            obj2.EnvironmentInfo.Should().NotBeNullOrEmpty(null, null);
-            obj2.ErrorLocations.Count.Should().BeGreaterThan(0, null, null);
-            obj2.ExceptionText.Should().NotBeNullOrEmpty(null, null);
-            obj2.ExceptionType.Should().Be("Exception Type:           " + obj2.CurrenException.GetType().FullName, null, null);
-            obj.StackTrace.Should().NotBeNullOrEmpty(null, null);
+            obj2.GetAssemblyInfo().Should().NotBeNullOrEmpty(null, null);
+            obj2.CurrentException.Should().BeOfType<OutOfMemoryException>(null, null);
+            obj2.CurrentException.Message.Should().Be("This is 2 a Test", null, null);
+            obj2.SysInfoToString().Should().NotBeNullOrEmpty(null, null);
+            obj2.GetErrorLocations().Count.Should().BeGreaterThan(0, null, null);
+            obj2.ExceptionToString().Should().NotBeNullOrEmpty(null, null);
+            obj2.GetExceptionType().Should().Be("Exception Type:           " + obj2.CurrentException.GetType().FullName, null, null);
+            obj.GetEnhancedStackTrace().Should().NotBeNullOrEmpty(null, null);
 
             obj3.IsUnhandledException.Should().BeTrue(null, null);
         }
