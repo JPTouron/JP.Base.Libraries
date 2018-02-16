@@ -1,4 +1,4 @@
-# JP.Base.Libraries
+# JP.Base.Libraries [![Build status](https://ci.appveyor.com/api/projects/status/mahneeiq7ka3vc6p?svg=true)](https://ci.appveyor.com/project/JPTouron/jp-base-libraries)
 
 Basic libraries to assist on n-layer design an programming projects and also on mvp styled projects and winforms.
 
