@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using JP.Base.Common.EmailSending;
-using JP.Base.Common.Errors;
+using JP.Base.Common.Exceptions.Parsing;
 using JP.Base.Common.Extensions.Strings;
 using JP.Base.Errors.Logging;
 using JP.Base.Errors.Managing.Support;

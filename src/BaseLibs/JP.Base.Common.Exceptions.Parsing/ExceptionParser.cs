@@ -6,9 +6,9 @@ using System.Globalization;
 using System.Net;
 using System.Reflection;
 using System.Text;
-using JP.Base.Common.Errors.Support;
+using JP.Base.Common.Exceptions.Parsing.Support;
 
-namespace JP.Base.Common.Errors
+namespace JP.Base.Common.Exceptions.Parsing
 {
     internal class ExceptionParser
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JP.Base.Common.Errors.Support
+namespace JP.Base.Common.Exceptions.Parsing.Support
 {
     internal static class AppContext
     {

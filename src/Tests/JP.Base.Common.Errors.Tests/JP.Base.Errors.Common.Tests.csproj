@@ -71,13 +71,13 @@
     <Compile Include="Support\FileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Common.Errors\JP.Base.Common.Errors\JP.Base.Common.Errors.csproj">
-      <Project>{BF448196-7505-4035-A792-A104EF47B313}</Project>
-      <Name>JP.Base.Common.Errors</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Common.Exceptions.Parsing\JP.Base.Common.Exceptions.Parsing.csproj">
+      <Project>{BF448196-7505-4035-A792-A104EF47B313}</Project>
+      <Name>JP.Base.Common.Exceptions.Parsing</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

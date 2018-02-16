@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Text;
-using JP.Base.Common.Errors;
+using JP.Base.Common.Exceptions.Parsing;
 using JP.Base.Errors.Logging.Support;
 
 namespace JP.Base.Errors.Logging
@@ -506,7 +506,7 @@ namespace JP.Base.Errors.Logging
             }
             catch (Exception ex)
             {
-                sReturn = "No se pudo guardar el Mini Dump: " + Environment.NewLine + Common.Errors.ExceptionExtensions.ExceptionToString(ex);
+                sReturn = "No se pudo guardar el Mini Dump: " + Environment.NewLine + Common.Exceptions.Parsing.ExceptionExtensions.ExceptionToString(ex);
                 MiniDumpPath = "Dump File not created";
             }
 
@@ -525,7 +525,7 @@ namespace JP.Base.Errors.Logging
             }
             catch (Exception ex)
             {
-                result = "Could not take screen shot, the following error occurred: " + Environment.NewLine + Common.Errors.ExceptionExtensions.ExceptionToString(ex);
+                result = "Could not take screen shot, the following error occurred: " + Environment.NewLine + Common.Exceptions.Parsing.ExceptionExtensions.ExceptionToString(ex);
                 screenShotPath = "Screen shot not taken";
             }
             return result;

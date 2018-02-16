@@ -52,18 +52,15 @@
     <Compile Include="Support\ConfigReader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JP.Base.Common.Errors\JP.Base.Common.Errors\JP.Base.Common.Errors.csproj">
+    <ProjectReference Include="..\JP.Base.Common.Exceptions.Parsing\JP.Base.Common.Exceptions.Parsing.csproj">
       <Project>{BF448196-7505-4035-A792-A104EF47B313}</Project>
-      <Name>JP.Base.Common.Errors</Name>
+      <Name>JP.Base.Common.Exceptions.Parsing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

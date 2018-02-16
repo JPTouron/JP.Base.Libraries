@@ -8,8 +8,8 @@
     <ProjectGuid>{BF448196-7505-4035-A792-A104EF47B313}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.Common.Errors</RootNamespace>
-    <AssemblyName>JP.Base.Common.Errors</AssemblyName>
+    <RootNamespace>JP.Base.Common.Exceptions.Parsing</RootNamespace>
+    <AssemblyName>JP.Base.Common.Exceptions.Parsing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>false</SignAssembly>

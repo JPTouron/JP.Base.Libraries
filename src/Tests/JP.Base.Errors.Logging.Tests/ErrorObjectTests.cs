@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using JP.Base.Common.Errors;
+using JP.Base.Common.Exceptions.Parsing;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JP.Base.Common.Errors
+namespace JP.Base.Common.Exceptions.Parsing
 {
     public class ExceptionData
     {

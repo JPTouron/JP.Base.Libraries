@@ -1,5 +1,5 @@
 ﻿using System;
-using JP.Base.Common.Errors;
+using JP.Base.Common.Exceptions.Parsing;
 
 namespace JP.Base.Errors.Logging
 {

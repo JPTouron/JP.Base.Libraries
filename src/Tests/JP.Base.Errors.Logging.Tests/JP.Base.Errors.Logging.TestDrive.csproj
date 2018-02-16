@@ -70,9 +70,9 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Common.Errors\JP.Base.Common.Errors\JP.Base.Common.Errors.csproj">
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Common.Exceptions.Parsing\JP.Base.Common.Exceptions.Parsing.csproj">
       <Project>{BF448196-7505-4035-A792-A104EF47B313}</Project>
-      <Name>JP.Base.Common.Errors</Name>
+      <Name>JP.Base.Common.Exceptions.Parsing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

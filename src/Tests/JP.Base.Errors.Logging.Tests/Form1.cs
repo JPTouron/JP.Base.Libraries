@@ -1,4 +1,4 @@
-﻿using JP.Base.Common.Errors;
+﻿using JP.Base.Common.Exceptions.Parsing;
 using System;
 using System.Windows.Forms;
 

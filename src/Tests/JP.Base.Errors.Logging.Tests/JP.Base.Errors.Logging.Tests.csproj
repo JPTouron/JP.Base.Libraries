@@ -71,9 +71,9 @@
     <Compile Include="Support\FileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Common.Errors\JP.Base.Common.Errors\JP.Base.Common.Errors.csproj">
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Common.Exceptions.Parsing\JP.Base.Common.Exceptions.Parsing.csproj">
       <Project>{BF448196-7505-4035-A792-A104EF47B313}</Project>
-      <Name>JP.Base.Common.Errors</Name>
+      <Name>JP.Base.Common.Exceptions.Parsing</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Errors.Logging\JP.Base.Errors.Logging.csproj">
       <Project>{851185BD-AC5B-4A76-A8C1-F127104ADAAF}</Project>

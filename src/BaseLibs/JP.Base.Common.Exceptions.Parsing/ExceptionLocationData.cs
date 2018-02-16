@@ -1,4 +1,4 @@
-﻿namespace JP.Base.Common.Errors
+﻿namespace JP.Base.Common.Exceptions.Parsing
 {
     /// <summary>
     /// Representa una ubicacion de error con Nro de Linea, Nombre de Metodo, y Archivo del error

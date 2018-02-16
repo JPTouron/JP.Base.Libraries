@@ -76,9 +76,6 @@
     <Compile Include="UnHandledExcListener.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="ErrorReporter.resx">
       <DependentUpon>ErrorReporter.cs</DependentUpon>
     </EmbeddedResource>
@@ -100,9 +97,9 @@
       <Project>{7368B848-14D4-431E-952F-AA1E440C607E}</Project>
       <Name>JP.Base.Common.EmailSending</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JP.Base.Common.Errors\JP.Base.Common.Errors\JP.Base.Common.Errors.csproj">
+    <ProjectReference Include="..\JP.Base.Common.Exceptions.Parsing\JP.Base.Common.Exceptions.Parsing.csproj">
       <Project>{BF448196-7505-4035-A792-A104EF47B313}</Project>
-      <Name>JP.Base.Common.Errors</Name>
+      <Name>JP.Base.Common.Exceptions.Parsing</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.Common.Extensions\JP.Common.Extensions\JP.Base.Common.Extensions.csproj">
       <Project>{8774DA41-B1E4-44B5-AEB9-F02F43C115EE}</Project>
