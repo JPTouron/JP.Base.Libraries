@@ -23,7 +23,7 @@ We are still in the process of building unit tests and POCs that work as tests a
 However, everything is perfectible so, if you find any bugs or need a new feature please feel free to report bugs, fork the project and / or send Pull Requests our way!
 
 ## License
-GNU v3, pretty much use it as you need, just rememeber to give credit ;-)
+MIT-licensed
 
 # Code contributions
 - Windows Forms Collapsible Splitter Control for .Net | (c)Copyright 2002-2003 NJF (furty74@yahoo.com). All rights reserved.
