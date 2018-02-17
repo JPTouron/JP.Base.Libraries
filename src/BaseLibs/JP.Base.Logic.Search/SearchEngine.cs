@@ -97,9 +97,11 @@ namespace JP.Base.Logic.Search
 
             var filtered = FilterEntities(entities, searchExp);
 
-            var orderByKey = GetSortingKey();
-
-            filtered = ApplyOrderBy(filtered, orderByKey);
+            if (!string.IsNullOrEmpty(sortAndFilter.SortField))
+            {
+                var orderByKey = GetSortingKey();
+                filtered = ApplyOrderBy(filtered, orderByKey);
+            }
 
             IQueryable locator = BuildRowLocatorQuery(filtered, skip, take);
 
