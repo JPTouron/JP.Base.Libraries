@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TD.Base.Errors.Managing.TestDrive")]
+[assembly: AssemblyTitle("JP.Base.Exceptions.Winforms.TestDrive")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TD.Base.Errors.Managing.TestDrive")]
+[assembly: AssemblyProduct("JP.Base.Exceptions.Winforms.TestDrive")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

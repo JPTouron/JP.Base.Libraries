@@ -8,8 +8,8 @@
     <ProjectGuid>{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TD.Base.Errors.Managing.TestDrive</RootNamespace>
-    <AssemblyName>TD.Base.Errors.Managing.TestDrive</AssemblyName>
+    <RootNamespace>JP.Base.Exceptions.Winforms.TestDrive</RootNamespace>
+    <AssemblyName>JP.Base.Exceptions.Winforms.TestDrive</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -89,9 +89,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Exceptions.Managing\JP.Base.Exceptions.Managing.csproj">
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Exceptions.Winforms\JP.Base.Exceptions.Winforms.csproj">
       <Project>{4AC840A0-2663-4061-8669-307422CE8CA3}</Project>
-      <Name>JP.Base.Exceptions.Managing</Name>
+      <Name>JP.Base.Exceptions.Winforms</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

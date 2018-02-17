@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TD.Base.Errors.Managing.TestDrive.Properties {
+namespace JP.Base.Exceptions.Winforms.TestDrive.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

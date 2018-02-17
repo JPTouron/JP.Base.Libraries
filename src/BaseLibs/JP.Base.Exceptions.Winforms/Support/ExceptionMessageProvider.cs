@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace JP.Base.Errors.Managing.Support
+namespace JP.Base.Exceptions.Winforms.Support
 {
     /// <summary>
     /// call this within your app initialization to setup the default message and any known error types with fixed messages
@@ -24,10 +24,9 @@ namespace JP.Base.Errors.Managing.Support
         public static string GetMessageForError(this Exception ex)
         {
             var result = string.IsNullOrEmpty(DefaultErrorMessage) ? "An error has occurred" : DefaultErrorMessage;
+
             if (KnownErrorTypes.ContainsKey(ex.GetType()) || (IsExceptionOfBaseType != null && IsExceptionOfBaseType(ex)))
-            {
                 result = string.IsNullOrEmpty(ex.Message) ? result : ex.Message;
-            }
 
             return result;
         }

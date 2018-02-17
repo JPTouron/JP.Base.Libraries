@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace JP.Base.Errors.Managing
+namespace JP.Base.Exceptions.Winforms
 {
     public class ErrorProcessMessage
     {

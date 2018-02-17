@@ -8,8 +8,8 @@
     <ProjectGuid>{FC4B788B-E87B-4FF1-8711-621C744C3711}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TD.Base.Logging.ErrorLogging.TestDrive</RootNamespace>
-    <AssemblyName>TD.Base.Logging.ErrorLogging.TestDrive</AssemblyName>
+    <RootNamespace>JP.Base.Exceptions.Logging.TestDrive</RootNamespace>
+    <AssemblyName>JP.Base.Exceptions.Logging.TestDrive</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

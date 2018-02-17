@@ -3,9 +3,9 @@ using System.Threading;
 using System.Windows.Forms;
 using JP.Base.Common.Exceptions.Parsing;
 using JP.Base.Errors.Logging;
-using JP.Base.Errors.Managing.Support;
+using JP.Base.Exceptions.Winforms.Support;
 
-namespace JP.Base.Errors.Managing
+namespace JP.Base.Exceptions.Winforms
 {
     public class UnHandledExcListener
     {
@@ -36,10 +36,7 @@ namespace JP.Base.Errors.Managing
 
         private static void HandleUnHandledException(Exception ex)
         {
-            if (UnhandledExceptionOcurred != null)
-            {
-                UnhandledExceptionOcurred(ex, new EventArgs());
-            }
+            UnhandledExceptionOcurred?.Invoke(ex, new EventArgs());
             ExceptionData ErrObj = new ExceptionData(ex, true);
 
             var logger = new ErrorLogger(ErrObj);
@@ -49,13 +46,9 @@ namespace JP.Base.Errors.Managing
             logger.LogException();
 
             if (showErrorForm)
-            {
                 new ErrorReporter(ErrObj, killApp, enableErrorEmailSending, logger.SavedLogFileName).ShowDialog();
-            }
             else
-            {
                 MessageBox.Show(ex.GetMessageForError(), "Ocurrió un error inesperado de sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }

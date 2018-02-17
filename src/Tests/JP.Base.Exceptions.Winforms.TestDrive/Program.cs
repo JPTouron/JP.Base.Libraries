@@ -1,4 +1,4 @@
-﻿using JP.Base.Errors.Managing;
+﻿using JP.Base.Exceptions.Winforms;
 using System;
 using System.Windows.Forms;
 
@@ -22,6 +22,7 @@ namespace TD.Base.Errors.Managing.TestDrive
 
         private static void UnHandledExcListener_UnhandledExceptionOcurred(object sender, EventArgs e)
         {
+            MessageBox.Show("an unhandled exception happened");
         }
     }
 }

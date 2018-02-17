@@ -1,4 +1,4 @@
-﻿namespace JP.Base.Errors.Managing
+﻿namespace JP.Base.Exceptions.Winforms
 {
     public class ProcessValidator : IProcessValidator
     {

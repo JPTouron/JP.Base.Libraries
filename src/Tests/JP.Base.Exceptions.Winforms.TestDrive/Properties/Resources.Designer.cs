@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TD.Base.Errors.Managing.TestDrive.Properties {
+namespace JP.Base.Exceptions.Winforms.TestDrive.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace TD.Base.Errors.Managing.TestDrive.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("TD.Base.Errors.Managing.TestDrive.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("JP.Base.Exceptions.Winforms.TestDrive.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

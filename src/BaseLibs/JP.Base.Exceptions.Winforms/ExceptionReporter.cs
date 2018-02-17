@@ -7,9 +7,9 @@ using JP.Base.Common.EmailSending;
 using JP.Base.Common.Exceptions.Parsing;
 using JP.Base.Common.Extensions.Strings;
 using JP.Base.Errors.Logging;
-using JP.Base.Errors.Managing.Support;
+using JP.Base.Exceptions.Winforms.Support;
 
-namespace JP.Base.Errors.Managing
+namespace JP.Base.Exceptions.Winforms
 {
     internal partial class ErrorReporter : Form
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{4AC840A0-2663-4061-8669-307422CE8CA3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.Exceptions.Managing</RootNamespace>
-    <AssemblyName>JP.Base.Exceptions.Managing</AssemblyName>
+    <RootNamespace>JP.Base.Exceptions.Winforms</RootNamespace>
+    <AssemblyName>JP.Base.Exceptions.Winforms</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>

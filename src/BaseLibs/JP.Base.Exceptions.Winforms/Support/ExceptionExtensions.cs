@@ -2,7 +2,7 @@
 using JP.Base.Common.Exceptions.Parsing;
 using JP.Base.Errors.Logging;
 
-namespace JP.Base.Errors.Managing.Support
+namespace JP.Base.Exceptions.Winforms.Support
 {
     public static class ExceptionExtensions
     {

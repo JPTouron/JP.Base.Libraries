@@ -291,7 +291,7 @@
     <Path Id="21cdc162-fd9b-4a9b-9e70-a5d0aa27bb4c.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\BaseLibs\JP.Base.DAL.EF6.Repositories\bin\Debug\JP.Base.DAL.EF6.Repositories.dll" />
     <Path Id="36645b1f-a702-4577-87a8-25bdb833515b.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\BaseLibs\JP.Base.Forms.GenericCRUD\bin\Debug\JP.Base.Forms.GenericCRUD.dll" />
     <Path Id="3ce5d2df-8bd1-4e16-9285-6c4ab690f00c.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\BaseLibs\JP.Base.MVP\bin\Debug\JP.Base.MVP.dll" />
-    <Path Id="4ac840a0-2663-4061-8669-307422ce8ca3.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\BaseLibs\JP.Base.Errors.Managing\bin\Debug\JP.Base.Errors.Managing.dll" />
+    <Path Id="4ac840a0-2663-4061-8669-307422ce8ca3.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\BaseLibs\JP.Base.Exceptions.Winforms\bin\Debug\JP.Base.Exceptions.Winforms.dll" />
     <Path Id="4ffbbc2a-0f28-40d2-8213-56b0cc3773f0.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\Implementations\JP.Base.MVP.Implementation.Winforms\bin\Debug\JP.Base.MVP.Implementation.Winforms.dll" />
     <Path Id="5368297e-8b07-43dc-8b38-0fe6076ff7f5.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\Implementations\JP.Base.MVP.Implementation\bin\Debug\JP.Base.MVP.Implementation.dll" />
     <Path Id="59c2e34f-2031-4f90-85f1-94a93453fca7.OutputPath" Value="G:\GIT Repos\jp.base.libraries\src\BaseLibs\JP.Base.Common.Forms\bin\Debug\JP.Base.Common.Forms.dll" />
