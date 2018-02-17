@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JP.Base.Errors.Logging")]
+[assembly: AssemblyTitle("JP.Base.Exceptions.Logging")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Juan Pablo Touron")]
-[assembly: AssemblyProduct("JP.Base.Errors.Logging")]
+[assembly: AssemblyProduct("JP.Base.Exceptions.Logging")]
 [assembly: AssemblyCopyright("Copyright © Juan Pablo Touron")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

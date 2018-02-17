@@ -89,9 +89,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Errors.Managing\JP.Base.Errors.Managing.csproj">
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Exceptions.Managing\JP.Base.Exceptions.Managing.csproj">
       <Project>{4AC840A0-2663-4061-8669-307422CE8CA3}</Project>
-      <Name>JP.Base.Errors.Managing</Name>
+      <Name>JP.Base.Exceptions.Managing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

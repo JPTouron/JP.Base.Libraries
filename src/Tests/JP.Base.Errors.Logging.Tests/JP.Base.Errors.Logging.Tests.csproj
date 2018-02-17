@@ -75,9 +75,9 @@
       <Project>{BF448196-7505-4035-A792-A104EF47B313}</Project>
       <Name>JP.Base.Common.Exceptions.Parsing</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Errors.Logging\JP.Base.Errors.Logging.csproj">
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Exceptions.Logging\JP.Base.Exceptions.Logging.csproj">
       <Project>{851185BD-AC5B-4A76-A8C1-F127104ADAAF}</Project>
-      <Name>JP.Base.Errors.Logging</Name>
+      <Name>JP.Base.Exceptions.Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

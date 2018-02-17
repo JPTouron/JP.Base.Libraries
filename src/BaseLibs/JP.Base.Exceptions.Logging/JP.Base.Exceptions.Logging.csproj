@@ -8,8 +8,8 @@
     <ProjectGuid>{851185BD-AC5B-4A76-A8C1-F127104ADAAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.Errors.Logging</RootNamespace>
-    <AssemblyName>JP.Base.Errors.Logging</AssemblyName>
+    <RootNamespace>JP.Base.Exceptions.Logging</RootNamespace>
+    <AssemblyName>JP.Base.Exceptions.Logging</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SignAssembly>false</SignAssembly>
@@ -42,9 +42,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ErrorLogger.cs" />
+    <Compile Include="ExceptionLogger.cs" />
     <Compile Include="ExceptionExtensions.cs" />
-    <Compile Include="LoggingErrors.cs" />
+    <Compile Include="LoggingExceptions.cs" />
     <Compile Include="MiniDumpManager.cs" />
     <Compile Include="ScreenShotManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

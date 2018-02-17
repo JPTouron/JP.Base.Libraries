@@ -8,8 +8,8 @@
     <ProjectGuid>{4AC840A0-2663-4061-8669-307422CE8CA3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.Errors.Managing</RootNamespace>
-    <AssemblyName>JP.Base.Errors.Managing</AssemblyName>
+    <RootNamespace>JP.Base.Exceptions.Managing</RootNamespace>
+    <AssemblyName>JP.Base.Exceptions.Managing</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <FileUpgradeFlags>
@@ -60,24 +60,24 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ErrorProcessMessage.cs" />
-    <Compile Include="ErrorReporter.cs">
+    <Compile Include="ExceptionProcessMessage.cs" />
+    <Compile Include="ExceptionReporter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ErrorReporter.Designer.cs">
-      <DependentUpon>ErrorReporter.cs</DependentUpon>
+    <Compile Include="ExceptionReporter.Designer.cs">
+      <DependentUpon>ExceptionReporter.cs</DependentUpon>
     </Compile>
     <Compile Include="IProcessValidator.cs" />
     <Compile Include="ProcessValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Support\ConfigReader.cs" />
-    <Compile Include="Support\ErrorMessageProvider.cs" />
+    <Compile Include="Support\ExceptionMessageProvider.cs" />
     <Compile Include="Support\ExceptionExtensions.cs" />
     <Compile Include="UnHandledExcListener.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="ErrorReporter.resx">
-      <DependentUpon>ErrorReporter.cs</DependentUpon>
+    <EmbeddedResource Include="ExceptionReporter.resx">
+      <DependentUpon>ExceptionReporter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -105,9 +105,9 @@
       <Project>{8774DA41-B1E4-44B5-AEB9-F02F43C115EE}</Project>
       <Name>JP.Base.Common.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JP.Base.Errors.Logging\JP.Base.Errors.Logging.csproj">
+    <ProjectReference Include="..\JP.Base.Exceptions.Logging\JP.Base.Exceptions.Logging.csproj">
       <Project>{851185BD-AC5B-4A76-A8C1-F127104ADAAF}</Project>
-      <Name>JP.Base.Errors.Logging</Name>
+      <Name>JP.Base.Exceptions.Logging</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
