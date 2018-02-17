@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.JP.base.common", "03.JP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Common.EmailSending", "BaseLibs\JP.Base.Common.EmailSending\JP.Base.Common.EmailSending.csproj", "{7368B848-14D4-431E-952F-AA1E440C607E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.JP.base.Exceptions", "04.JP.base.Exceptions", "{7CAF2A28-9A61-4A51-84BF-EC8164D88C68}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04.JP.base.exceptions", "04.JP.base.exceptions", "{7CAF2A28-9A61-4A51-84BF-EC8164D88C68}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.JP.base.logic", "02.JP.base.logic", "{06440465-74C8-42B9-9187-C8F3ADD9E635}"
 EndProject
