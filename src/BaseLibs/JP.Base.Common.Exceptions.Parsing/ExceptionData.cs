@@ -200,14 +200,7 @@ namespace JP.Base.Common.Exceptions.Parsing
 
             StringBuilder builder = new StringBuilder();
             builder.Append("Exception Type:           ");
-            try
-            {
-                builder.Append(ex.GetType().FullName);
-            }
-            catch (Exception e)
-            {
-                builder.Append("* Exception Type Error: " + e.ToString());
-            }
+            builder.Append(ex.GetType().FullName);
 
             return builder.ToString();
         }
@@ -229,14 +222,8 @@ namespace JP.Base.Common.Exceptions.Parsing
             builder.Append(Environment.NewLine);
 
             builder.Append("Machine Name:          ");
-            try
-            {
-                builder.Append(Environment.MachineName);
-            }
-            catch (Exception e)
-            {
-                builder.Append(e.Message);
-            }
+
+            builder.Append(Environment.MachineName);
             builder.Append(Environment.NewLine);
 
             builder.Append("IP Addresses:            ");
@@ -260,7 +247,7 @@ namespace JP.Base.Common.Exceptions.Parsing
             {
                 return System.Environment.UserDomainName + "\\" + System.Environment.UserName;
             }
-            catch (Exception)
+            catch
             {
                 return string.Empty;
             }
@@ -278,7 +265,8 @@ namespace JP.Base.Common.Exceptions.Parsing
             {
                 return System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             }
-            catch (Exception)
+            catch
+
             {
                 return string.Empty;
             }
@@ -311,7 +299,7 @@ namespace JP.Base.Common.Exceptions.Parsing
 
                 return ipAddressList.ToString();
             }
-            catch (Exception)
+            catch
             {
                 return "127.0.0.1";
             }

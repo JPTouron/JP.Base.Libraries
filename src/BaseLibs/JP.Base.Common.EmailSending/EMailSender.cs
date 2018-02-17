@@ -43,18 +43,11 @@ namespace JP.Base.Common.EmailSending
             bool result = false;
             SmtpClient smtpClient = new SmtpClient();
 
-            try
-            {
                 if (CreateMailMessage())
                 {
                     smtpClient.Send(message);
                     result = true;
                 }
-            }
-            catch
-            {
-                throw;
-            }
 
             return result;
         }
@@ -76,8 +69,6 @@ namespace JP.Base.Common.EmailSending
 
             message = new MailMessage();
 
-            try
-            {
                 MailAddress fromAddress = new MailAddress(FromAddress);
 
                 message.From = fromAddress;
@@ -95,11 +86,6 @@ namespace JP.Base.Common.EmailSending
                     message.Bcc.Add(BCCAddresses.ToSeparatedValues<string>(","));
 
                 result = true;
-            }
-            catch
-            {
-                throw;
-            }
 
             return result;
         }
