@@ -89,19 +89,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01.Base.Libraries", "01.Bas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Common.Exceptions.Parsing", "BaseLibs\JP.Base.Common.Exceptions.Parsing\JP.Base.Common.Exceptions.Parsing.csproj", "{BF448196-7505-4035-A792-A104EF47B313}"
 EndProject
-<<<<<<< Updated upstream
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Exceptions.Logging", "BaseLibs\JP.Base.Exceptions.Logging\JP.Base.Exceptions.Logging.csproj", "{851185BD-AC5B-4A76-A8C1-F127104ADAAF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Exceptions.Winforms", "BaseLibs\JP.Base.Exceptions.Winforms\JP.Base.Exceptions.Winforms.csproj", "{4AC840A0-2663-4061-8669-307422CE8CA3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Exceptions.Winforms.TestDrive", "Tests\JP.Base.Exceptions.Winforms.TestDrive\JP.Base.Exceptions.Winforms.TestDrive.csproj", "{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Exceptions.Logging.TestDrive", "Tests\JP.Base.Exceptions.Logging.TestDrive\JP.Base.Exceptions.Logging.TestDrive.csproj", "{FC4B788B-E87B-4FF1-8711-621C744C3711}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Errors.Logging.Tests", "Tests\JP.Base.Exceptions.Logging.TestDrive\JP.Base.Errors.Logging.Tests.csproj", "{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}"
-EndProject
-=======
->>>>>>> Stashed changes
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -310,49 +297,6 @@ Global
 		{BF448196-7505-4035-A792-A104EF47B313}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BF448196-7505-4035-A792-A104EF47B313}.Release|x86.ActiveCfg = Release|Any CPU
 		{BF448196-7505-4035-A792-A104EF47B313}.Release|x86.Build.0 = Release|Any CPU
-<<<<<<< Updated upstream
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Debug|x86.Build.0 = Debug|Any CPU
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Release|x86.ActiveCfg = Release|Any CPU
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF}.Release|x86.Build.0 = Release|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Debug|x86.Build.0 = Debug|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Release|x86.ActiveCfg = Release|Any CPU
-		{4AC840A0-2663-4061-8669-307422CE8CA3}.Release|x86.Build.0 = Release|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Debug|x86.Build.0 = Debug|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Release|Any CPU.Build.0 = Release|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Release|x86.ActiveCfg = Release|Any CPU
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01}.Release|x86.Build.0 = Release|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Debug|x86.Build.0 = Debug|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Release|x86.ActiveCfg = Release|Any CPU
-		{FC4B788B-E87B-4FF1-8711-621C744C3711}.Release|x86.Build.0 = Release|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Debug|x86.Build.0 = Debug|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Release|x86.ActiveCfg = Release|Any CPU
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D}.Release|x86.Build.0 = Release|Any CPU
-=======
->>>>>>> Stashed changes
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -397,13 +341,5 @@ Global
 		{A2FD60A3-5ECB-4B53-AABB-A5F8A668B8A7} = {AD3A6781-2C33-4DD3-B7FF-0E3E8371BB5F}
 		{4BB73D77-7BFA-4E1F-8DDF-0300C0AE543F} = {A2FD60A3-5ECB-4B53-AABB-A5F8A668B8A7}
 		{BF448196-7505-4035-A792-A104EF47B313} = {3C01D090-5A24-439D-A654-BB903238D440}
-<<<<<<< Updated upstream
-		{851185BD-AC5B-4A76-A8C1-F127104ADAAF} = {7CAF2A28-9A61-4A51-84BF-EC8164D88C68}
-		{4AC840A0-2663-4061-8669-307422CE8CA3} = {7CAF2A28-9A61-4A51-84BF-EC8164D88C68}
-		{55C7ECE7-9F2B-4F26-B4BC-1E2A9D300A01} = {A3DF3F42-93E3-43B3-A350-8A6FD887495B}
-		{FC4B788B-E87B-4FF1-8711-621C744C3711} = {A3DF3F42-93E3-43B3-A350-8A6FD887495B}
-		{2DA3FB1C-9BD9-411A-8CBE-E7F2CDF5CB7D} = {FE8682F4-B53E-4C6A-A719-68F5A04FF1A4}
-=======
->>>>>>> Stashed changes
 	EndGlobalSection
 EndGlobal
