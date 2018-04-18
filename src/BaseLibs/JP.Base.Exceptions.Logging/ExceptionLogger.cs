@@ -8,6 +8,10 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 
+
+
+
+
 namespace JP.Base.Errors.Logging
 {
     /// <summary>
@@ -511,9 +515,9 @@ namespace JP.Base.Errors.Logging
             }
             catch (Exception ex)
             {
-                var exData = new ExceptionData(ex);
 
-                sReturn = "No se pudo guardar el Mini Dump: " + Environment.NewLine + exData.ToString();
+                sReturn = "No se pudo guardar el Mini Dump: " + Environment.NewLine + Common.Exceptions.Parsing.ExceptionExtensions.ExceptionToString(ex);
+
                 MiniDumpPath = "Dump File not created";
             }
 
@@ -532,8 +536,9 @@ namespace JP.Base.Errors.Logging
             }
             catch (Exception ex)
             {
-                var exData = new ExceptionData(ex);
-                result = "Could not take screen shot, the following error occurred: " + Environment.NewLine + exData.ToString();
+
+                result = "Could not take screen shot, the following error occurred: " + Environment.NewLine + Common.Exceptions.Parsing.ExceptionExtensions.ExceptionToString(ex);
+
                 screenShotPath = "Screen shot not taken";
             }
             return result;

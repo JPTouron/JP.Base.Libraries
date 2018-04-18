@@ -190,7 +190,7 @@ namespace JP.Base.Logic.Implementations
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
             if (getCount)
-                totalCount = repo.Get(dontTrack: true).AsQueryable().Count();
+                totalCount = repo.Get().Count();
 
             var models = ToViewModel(searchQuery).ToList();
 
@@ -264,7 +264,7 @@ namespace JP.Base.Logic.Implementations
                 var searchQuery = search.GetSearchQuery();
                 var totalCount = 0;
 
-                var res = unitOfWork.Execute<IEnumerable<TViewModel>>(() =>
+                var res = unitOfWork.Execute(() =>
                 {
                     return ExecuteSearchMethod(getCount, unitOfWork, searchQuery, ref totalCount);
                 });

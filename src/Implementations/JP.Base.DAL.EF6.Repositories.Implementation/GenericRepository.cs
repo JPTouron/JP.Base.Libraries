@@ -124,16 +124,14 @@ namespace JP.Base.DAL.EF6.Repositories.Implementation
         /// <param name="includeNavigationProperties">comma separated values with the property names of the navigation properties to traverse for information, equals to an eager-loading mode</param>
         /// <param name="skip">pagination tool which records to skip before we start querying the db</param>
         /// <param name="take">pagination tool equals TOP from Sql</param>
-        /// <param name="returnQueryable">if false we execute the query right away by means of a call to ToList method else we return an IQueryable (masked as an IEnumerable)</param>
         /// <param name="dontTrack">if true the dbSet method <see cref="System.Data.Entity.Infrastructure.DbQuery{TResult}.AsNoTracking"/> is invoked and the returned entities are not tracked by the DbContext, this is useful when executing queries for read-only purposes</param>
-        /// <returns>the IEnumerable{TEntity} with the results obtained from the query or null if no results were found</returns>
-        public virtual IEnumerable<TEntity> Get(
+        /// <returns>the IQueryable{TEntity} with the results obtained from the query or null if no results were found</returns>
+        public virtual IQueryable<TEntity> Get(
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
             string includeNavigationProperties = "",
             int skip = 0,
             int take = 0,
-            bool returnQueryable = true,
             bool dontTrack = true)
         {
             IQueryable<TEntity> query;
@@ -163,14 +161,8 @@ namespace JP.Base.DAL.EF6.Repositories.Implementation
             if (take > 0)
                 query = query.Take(take);
 
-            IEnumerable<TEntity> result;
-
-            if (returnQueryable)
-                result = query;
-            else
-                result = query.ToList();
-
-            return result;
+            
+            return query;
         }
 
         /// <summary>

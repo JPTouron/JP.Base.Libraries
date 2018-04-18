@@ -44,10 +44,9 @@ namespace JP.Base.DAL.EF6.Repositories.Contracts
         /// <param name="includeNavigationProperties">comma separated values with the property names of the navigation properties to traverse for information, equals to an eager-loading mode</param>
         /// <param name="skip">pagination tool which records to skip before we start querying the db</param>
         /// <param name="take">pagination tool equals TOP from Sql</param>
-        /// <param name="returnQueryable">if false we execute the query right away else we return an IQueryable (masked as an IEnumerable)</param>
         /// <param name="dontTrack">if true the returned entities are not tracked by the DbContext, this is useful when executing queries for read-only purposes</param>
-        /// <returns>the IEnumerable{TEntity} with the results obtained from the query or null if no results were found</returns>
-        IEnumerable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeNavigationProperties = "", int skip = 0, int take = 0, bool returnQueryable = true, bool dontTrack = true);
+        /// <returns>the IQueryable{TEntity} with the results obtained from the query or null if no results were found</returns>
+        IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeNavigationProperties = "", int skip = 0, int take = 0, bool dontTrack = true);
 
         /// <summary>
         /// returns an entity of type TEntity based on id
