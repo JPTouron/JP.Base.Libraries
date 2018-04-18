@@ -4,7 +4,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00.Solution Items", "00.Solution Items", "{5492C79B-BF91-44BB-BA2B-75EB5D94BD9C}"
 	ProjectSection(SolutionItems) = preProject
-		CodeMap.dgml = CodeMap.dgml
+		codeMap.dgml = codeMap.dgml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Common.Exceptions", "BaseLibs\JP.Base.Common.Exceptions\JP.Base.Common.Exceptions.csproj", "{6B3AD624-820E-4ADE-B5AB-81DAED54D0B6}"
