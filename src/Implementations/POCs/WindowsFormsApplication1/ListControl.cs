@@ -5,6 +5,8 @@ namespace WindowsFormsApplication1
 {
     public partial class ListControl : SliceControl
     {
+        private bool finishedLoading = false;
+
         public ListControl()
         {
             InitializeComponent();
@@ -25,6 +27,7 @@ namespace WindowsFormsApplication1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            finishedLoading = false;
             this.LoadAllItems(new JP.Base.Logic.Search.SortAndFilterData
             {
                 SearchString = textBox1.Text
@@ -38,12 +41,14 @@ namespace WindowsFormsApplication1
 
         private void ListControl_FinishedLoadingItems(object sender, EventArgs e)
         {
-            MessageBox.Show("all loaded");
+            finishedLoading = true;
+            MessageBox.Show($"all loaded, item selected {View.Model.name}");
         }
 
         private void ListControl_ItemHasBeenSelected(object sender, EventArgs e)
         {
-            MessageBox.Show($"item selected {View.Model.name}");
+            if (finishedLoading)
+                MessageBox.Show($"item selected {View.Model.name}");
         }
     }
 }
