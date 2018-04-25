@@ -38,6 +38,7 @@
             this.Value = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,9 +46,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 150);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 214);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(192, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(431, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -88,48 +89,59 @@
             // 
             this.Id.Location = new System.Drawing.Point(71, 6);
             this.Id.Name = "Id";
-            this.Id.Size = new System.Drawing.Size(100, 20);
+            this.Id.Size = new System.Drawing.Size(198, 20);
             this.Id.TabIndex = 4;
             // 
             // ModelName
             // 
             this.ModelName.Location = new System.Drawing.Point(72, 38);
             this.ModelName.Name = "ModelName";
-            this.ModelName.Size = new System.Drawing.Size(100, 20);
+            this.ModelName.Size = new System.Drawing.Size(198, 20);
             this.ModelName.TabIndex = 5;
             // 
             // Value
             // 
             this.Value.Location = new System.Drawing.Point(72, 69);
             this.Value.Name = "Value";
-            this.Value.Size = new System.Drawing.Size(100, 20);
+            this.Value.Size = new System.Drawing.Size(198, 20);
             this.Value.TabIndex = 6;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(15, 112);
+            this.button1.Location = new System.Drawing.Point(71, 112);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(198, 23);
             this.button1.TabIndex = 7;
-            this.button1.Text = "save";
+            this.button1.Text = "save - no error thrown";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(97, 112);
+            this.button2.Location = new System.Drawing.Point(72, 141);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.Size = new System.Drawing.Size(198, 23);
             this.button2.TabIndex = 8;
-            this.button2.Text = "update";
+            this.button2.Text = "update - throw error at presenter level";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(71, 170);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(198, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "update - throw error at view level";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(192, 172);
+            this.ClientSize = new System.Drawing.Size(431, 236);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Value);
@@ -162,5 +174,6 @@
         private System.Windows.Forms.TextBox Value;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }

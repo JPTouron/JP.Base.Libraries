@@ -1,6 +1,6 @@
-﻿using log4net;
+﻿using JP.Base.MVP.Implementation.Presenters.Base;
+using log4net;
 using System;
-using JP.Base.MVP.Implementation.Presenters.Base;
 
 namespace MVPWithLog4Net
 {
@@ -22,12 +22,20 @@ namespace MVPWithLog4Net
         {
             try
             {
+                SetViewBusyState();
                 throw new Exception("dont wanna update shit");
             }
             catch (Exception ex)
             {
                 HandleError(ex, true);
             }
+        }
+
+        public void UpdateItem2()
+        {
+            SetViewBusyState();
+
+            throw new Exception("i'll handle this shit at view level");
         }
 
         protected override IFormPresenter GetPresenterEndpoint()

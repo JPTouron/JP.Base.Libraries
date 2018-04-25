@@ -1,8 +1,8 @@
-﻿using System;
+﻿using JP.Base.MVP.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using JP.Base.MVP.Implementation;
 
 namespace MVPWithLog4Net
 {
@@ -67,6 +67,19 @@ namespace MVPWithLog4Net
         {
             Model = new Model { id = Id.Text, name = ModelName.Text, value = Value.Text };
             presenter.UpdateItem(false);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Model = new Model { id = Id.Text, name = ModelName.Text, value = Value.Text };
+                presenter.UpdateItem2();
+            }
+            catch (Exception ex)
+            {
+                presenter.HandleError(ex,true,false);
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
