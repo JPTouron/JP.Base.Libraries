@@ -38,12 +38,7 @@ namespace JP.Base.MVP.Implementation.Presenters.Base
             DisplayExceptionOnView(ex, shouldDisableView);
         }
 
-        protected virtual void LogException(Exception ex)
-        {
-            //    ex.LogException();
-
-            // by default: do nothing
-        }
+        protected abstract void LogException(Exception ex);    
 
         /// <summary>
         /// dispose of anything here as the view is terminating
