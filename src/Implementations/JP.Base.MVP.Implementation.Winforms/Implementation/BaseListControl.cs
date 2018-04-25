@@ -312,8 +312,14 @@ namespace JP.Base.MVP.Implementation.Winforms.Implementation.Views.Controls.Base
         /// <param name="rowIndex">the index of the selected row, zero by default</param>
         protected virtual void SetSelectedItem(int rowIndex = 0)
         {
+            if (rowIndex < 0)
+                rowIndex = 0;
+
             var items = ((IEnumerable<TModel>)BindingSource.DataSource);
-            View.Model = items.ElementAt(rowIndex);
+
+            if (items != null)
+                View.Model = items.ElementAt(rowIndex);
+
             RaiseItemHasBeenSelectedEvent();
         }
 
