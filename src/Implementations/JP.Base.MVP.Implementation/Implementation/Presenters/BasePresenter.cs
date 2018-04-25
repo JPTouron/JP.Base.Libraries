@@ -1,5 +1,5 @@
-﻿using System;
-using JP.Base.MVP.Implementation.Contracts.Views.Base;
+﻿using JP.Base.MVP.Implementation.Contracts.Views.Base;
+using System;
 
 namespace JP.Base.MVP.Implementation.Presenters.Base
 {
@@ -16,6 +16,16 @@ namespace JP.Base.MVP.Implementation.Presenters.Base
 
         protected virtual TIView currentView { get; set; }
 
+        public void HandleError(Exception ex, bool shouldDisableView = false, bool setNormalState = true)
+        {
+            if (setNormalState)
+                SetViewNormalState();
+
+            LogException(ex);
+
+            DisplayExceptionOnView(ex, shouldDisableView);
+        }
+
         protected virtual void BindToViewEvents()
         {
             currentView.NotifyTerminating += OnCurrentViewNotifyTerminating;
@@ -28,17 +38,7 @@ namespace JP.Base.MVP.Implementation.Presenters.Base
 
         protected abstract override TIPresenter GetPresenterEndpoint();
 
-        protected void HandleError(Exception ex, bool shouldDisableView = false, bool setNormalState = true)
-        {
-            if (setNormalState)
-                SetViewNormalState();
-
-            LogException(ex);
-
-            DisplayExceptionOnView(ex, shouldDisableView);
-        }
-
-        protected abstract void LogException(Exception ex);    
+        protected abstract void LogException(Exception ex);
 
         /// <summary>
         /// dispose of anything here as the view is terminating
