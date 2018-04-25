@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace ImplementingUserControls
 {
     public partial class ListControl : SliceControl
     {

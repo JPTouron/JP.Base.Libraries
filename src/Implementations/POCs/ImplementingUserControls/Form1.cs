@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace WindowsFormsApplication1
+namespace ImplementingUserControls
 {
     public partial class Form1 : Form
     {

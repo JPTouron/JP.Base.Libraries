@@ -4,7 +4,7 @@ using JP.Base.MVP.Implementation;
 using JP.Base.MVP.Implementation.Contracts.Views.Base;
 using JP.Base.MVP.Implementation.Views.Base;
 
-namespace WindowsFormsApplication1
+namespace ImplementingUserControls
 {
     public interface IListView : IBaseListView<Model, IListView>
     {

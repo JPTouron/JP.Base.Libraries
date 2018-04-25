@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace ImplementingUserControls
 {
     partial class Form1
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listControl1 = new WindowsFormsApplication1.ListControl();
+            this.listControl1 = new ImplementingUserControls.ListControl();
             this.SuspendLayout();
             // 
             // listControl1

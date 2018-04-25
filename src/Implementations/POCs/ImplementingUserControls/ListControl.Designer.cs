@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace ImplementingUserControls
 {
     partial class ListControl
     {
@@ -56,7 +56,7 @@
             // 
             // bindingSource1
             // 
-            this.bindingSource1.DataSource = typeof(WindowsFormsApplication1.Model);
+            this.bindingSource1.DataSource = typeof(ImplementingUserControls.Model);
             this.bindingSource1.Filter = "";
             // 
             // textBox1
