@@ -4,7 +4,7 @@ using System.Data;
 
 namespace JP.Base.DAL.ADO.ConnectionManagement
 {
-    public interface IDBConnection : IDisposable
+    public interface IDBAdoConnection : IDisposable
     {
         /// <summary>
         /// Abre una conexion a la base de datos especificada

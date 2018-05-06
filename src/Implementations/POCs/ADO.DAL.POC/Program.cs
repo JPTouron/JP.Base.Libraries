@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ADO.DAL.Connection
+namespace ADO.DAL.POC
 {
     static class Program
     {

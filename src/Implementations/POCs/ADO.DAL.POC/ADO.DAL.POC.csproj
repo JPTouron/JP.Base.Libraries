@@ -7,8 +7,8 @@
     <ProjectGuid>{A13EF7FE-2ED1-479D-B8A5-2DF5F5F957E3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ADO.DAL.Connection</RootNamespace>
-    <AssemblyName>ADO.DAL.Connection</AssemblyName>
+    <RootNamespace>ADO.DAL.POC</RootNamespace>
+    <AssemblyName>ADO.DAL.POC</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -54,6 +54,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XlInterface.cs" />
+    <Compile Include="SqlInterface.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -65,6 +67,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -78,6 +81,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
+      <Project>{e33c27aa-cbef-42b0-adb3-160313fe5404}</Project>
+      <Name>JP.Base.DAL.ADO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ADO.DAL.Commands\ADO.DAL.Commands.csproj">
+      <Project>{8a775645-8cbb-426f-89f5-0fa46ede4353}</Project>
+      <Name>ADO.DAL.Commands</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

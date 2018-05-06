@@ -7,9 +7,7 @@ namespace ADO.DAL.Commands
         public static IDbAccess GetDBAccess()
         {
 
-            var db = new DbAccess();
 
-            return db;
-        }
+            return null;        }
     }
 }

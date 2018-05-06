@@ -11,7 +11,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
     /// Define los comportamientos comunes a todas las conexiones a bases de datos que se
     /// utilizan en este ensamblado
     /// </summary>
-    internal abstract class DBCommonConnection : IDBConnection, IDisposable
+    internal abstract class DBCommonConnection : IDBAdoConnection, IDisposable
     {
         
         protected DbCommand _DBCmd = null;

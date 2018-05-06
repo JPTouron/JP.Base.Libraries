@@ -1,4 +1,4 @@
-﻿namespace LRM.Casiraghi.DAL.Commands.Contracts.Base
+﻿namespace ADO.DAL.Commands.Contracts.Base
 {
     public interface ICommand
     {

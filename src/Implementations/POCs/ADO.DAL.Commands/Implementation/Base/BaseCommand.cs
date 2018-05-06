@@ -1,6 +1,6 @@
-﻿using LRM.Casiraghi.DAL.Commands.Contracts.Base;
+﻿using ADO.DAL.Commands.Contracts.Base;
 
-namespace LRM.Casiraghi.DAL.Commands.Base
+namespace ADO.DAL.Commands.Base
 {
     public abstract class BaseCommand : ICommand
     {

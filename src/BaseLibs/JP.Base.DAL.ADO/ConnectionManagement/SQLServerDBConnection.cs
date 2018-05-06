@@ -61,7 +61,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
             int iReturn = 0;
 
             try
-            {
+            {   
                 iReturn = _DBCmd.ExecuteNonQuery();
             }
             catch (Exception ex)

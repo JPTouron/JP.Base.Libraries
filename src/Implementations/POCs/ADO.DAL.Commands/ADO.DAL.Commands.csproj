@@ -45,6 +45,7 @@
     <Compile Include="Implementation\Base\BaseCommand.cs" />
     <Compile Include="Implementation\CreateUserCommand.cs" />
     <Compile Include="Implementation\DBFactory.cs" />
+    <Compile Include="Model\Models.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

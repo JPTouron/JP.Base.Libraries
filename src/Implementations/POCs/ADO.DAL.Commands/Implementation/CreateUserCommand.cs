@@ -1,9 +1,8 @@
-﻿using ADO.DAL.Commands.Base;
-using ADO.DAL.Commands.Contracts;
+﻿using ADO.DAL.Commands.Contracts;
 
 namespace ADO.DAL.Commands
 {
-    public class CreateUserCommand : BaseCommand, ICreateUserCommand
+    public class CreateUserCommand : Base.BaseCommand, ICreateUserCommand
     {
         public CreateUserCommand(object user)
         {

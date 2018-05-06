@@ -1,6 +1,6 @@
-﻿using LRM.Casiraghi.DAL.Commands.Contracts.Base;
+﻿using ADO.DAL.Commands.Contracts.Base;
 
-namespace LRM.Casiraghi.DAL.Commands.Contracts
+namespace ADO.DAL.Commands.Contracts
 {
     public interface ICreateUserCommand : ICommand
     {

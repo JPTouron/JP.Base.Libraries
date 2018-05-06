@@ -20,7 +20,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <param name="DataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
         /// <param name="ConnString">Connection String utilizada para conectar con la base de datos especificada</param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        public static IDBConnection Obtener_Nueva_Conexion(string DataProvider, string ConnectionString)
+        public static IDBAdoConnection Obtener_Nueva_Conexion(string DataProvider, string ConnectionString)
         {
             return Instanciar_Conexion_SegunBaseDeDatos(DataProvider, ConnectionString);
         }
@@ -41,7 +41,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <remarks><para>Obtiene los datos de DataProvider y Connection String desde la seccion appSettings del archivo .config de la aplicacion</para>
         /// </remarks>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        public static IDBConnection Obtener_Nueva_Conexion()
+        public static IDBAdoConnection Obtener_Nueva_Conexion()
         {
             return Instanciar_Conexion_SegunBaseDeDatos(ConfigurationSettings.AppSettings["DataProvider"], ConfigurationSettings.AppSettings["ConnectionString"]);
         }
@@ -52,9 +52,9 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <param name="DataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
         /// <param name="ConnString">Connection String utilizada para conectar con la base de datos especificada</param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        private static IDBConnection Instanciar_Conexion_SegunBaseDeDatos(string DataProvider, string ConnString)
+        private static IDBAdoConnection Instanciar_Conexion_SegunBaseDeDatos(string DataProvider, string ConnString)
         {
-            IDBConnection IDBConn;
+            IDBAdoConnection IDBConn;
 
             if (DataProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase))
             {

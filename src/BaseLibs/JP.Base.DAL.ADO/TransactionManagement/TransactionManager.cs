@@ -37,7 +37,7 @@ namespace JP.Base.DAL.ADO.TransactionManagement
 
         public void Finalizar_Transaccion(string IDTransaccion, bool pDeshacerTransaccion)
         {
-            IDBConnection DBConn = Obtener_Conexion_De_Transaccion(IDTransaccion);
+            IDBAdoConnection DBConn = Obtener_Conexion_De_Transaccion(IDTransaccion);
             DBConn.Cerrar_Conexion(pDeshacerTransaccion);
 
             foreach (TransactionData TranData in _TransactionConnections)
@@ -55,7 +55,7 @@ namespace JP.Base.DAL.ADO.TransactionManagement
             Finalizar_Transaccion(IDTransaccion, false);
         }
 
-        public string Iniciar_Transaccion(out  IDBConnection DBConnTransaccionada)
+        public string Iniciar_Transaccion(out  IDBAdoConnection DBConnTransaccionada)
         {
             DBConnTransaccionada = Obtener_Nueva_Conexion();
             DBConnTransaccionada.Abrir_Conexion(true);
@@ -70,14 +70,14 @@ namespace JP.Base.DAL.ADO.TransactionManagement
             return TranData.TransactionID;
         }
 
-        public IDBConnection Obtener_Conexion_De_Transaccion()
+        public IDBAdoConnection Obtener_Conexion_De_Transaccion()
         {
             return Obtener_Conexion_De_Transaccion(null);
         }
 
-        public IDBConnection Obtener_Conexion_De_Transaccion(string pIdTransaccion)
+        public IDBAdoConnection Obtener_Conexion_De_Transaccion(string pIdTransaccion)
         {
-            IDBConnection DBConn = null;
+            IDBAdoConnection DBConn = null;
             bool bConnEncontrada = false;
 
             if (!string.IsNullOrEmpty(pIdTransaccion))
@@ -133,14 +133,14 @@ namespace JP.Base.DAL.ADO.TransactionManagement
             return _LastTransactionId;
         }
 
-        private IDBConnection Obtener_Nueva_Conexion()
+        private IDBAdoConnection Obtener_Nueva_Conexion()
         {
             return DBConnFactory.Obtener_Nueva_Conexion(_DataProvider, _ConnString);
         }
 
         private class TransactionData
         {
-            public IDBConnection DBConn { get; set; }
+            public IDBAdoConnection DBConn { get; set; }
             public string TransactionID { get; set; }
 
             public override bool Equals(object obj)

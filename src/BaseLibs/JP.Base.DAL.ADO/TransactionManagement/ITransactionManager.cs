@@ -8,10 +8,10 @@ namespace JP.Base.DAL.ADO.TransactionManagement
 
         void Finalizar_Transaccion(string IDTransaccion);
 
-        string Iniciar_Transaccion(out IDBConnection DBConnTransaccionada);
+        string Iniciar_Transaccion(out IDBAdoConnection DBConnTransaccionada);
 
-        IDBConnection Obtener_Conexion_De_Transaccion(string pIdTransaccion);
+        IDBAdoConnection Obtener_Conexion_De_Transaccion(string pIdTransaccion);
 
-        IDBConnection Obtener_Conexion_De_Transaccion();
+        IDBAdoConnection Obtener_Conexion_De_Transaccion();
     }
 }
