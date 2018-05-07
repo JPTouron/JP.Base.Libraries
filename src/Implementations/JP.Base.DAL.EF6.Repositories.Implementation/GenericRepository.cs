@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using JP.Base.DAL.EF6.Contracts;
+using JP.Base.DAL.EF6.Repositories.Contracts;
+using JP.Base.DAL.EF6.Repositories.Implementation.Exceptions;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using JP.Base.DAL.EF6.Contracts;
-using JP.Base.DAL.EF6.Repositories.Contracts;
-using JP.Base.DAL.EF6.Repositories.Exceptions;
 
 namespace JP.Base.DAL.EF6.Repositories.Implementation
 {
     /// <summary>
-    /// provides an implementation of <see cref="IGenericRepository{TEntity}"/>
+    /// provides an implementation of <see cref="IGenericRepositoryEf{TEntity}"/>
     /// <para>you are not required to base your implementation on this</para>
     /// </summary>
     /// <typeparam name="TEntity">the type of the entity to be managed by this repository</typeparam>
-    public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
+    public abstract class GenericRepository<TEntity> : IGenericRepositoryEf<TEntity> where TEntity : class
     {
         /// <summary>
         /// a simple factory that would get you the current context instance to be used within this repo
@@ -116,6 +115,11 @@ namespace JP.Base.DAL.EF6.Repositories.Implementation
             Delete(entityToDelete);
         }
 
+        public virtual IQueryable<TEntity> Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, int skip = 0, int take = 0)
+        {
+            return Get(string.Empty, true, filter, orderBy, skip, take);
+        }
+
         /// <summary>
         /// provides a way to obtain a collection out of the dbSet by means of a query
         /// </summary>
@@ -127,12 +131,12 @@ namespace JP.Base.DAL.EF6.Repositories.Implementation
         /// <param name="dontTrack">if true the dbSet method <see cref="System.Data.Entity.Infrastructure.DbQuery{TResult}.AsNoTracking"/> is invoked and the returned entities are not tracked by the DbContext, this is useful when executing queries for read-only purposes</param>
         /// <returns>the IQueryable{TEntity} with the results obtained from the query or null if no results were found</returns>
         public virtual IQueryable<TEntity> Get(
+            string includeNavigationProperties,
+            bool dontTrack,
             Expression<Func<TEntity, bool>> filter = null,
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeNavigationProperties = "",
             int skip = 0,
-            int take = 0,
-            bool dontTrack = true)
+            int take = 0)
         {
             IQueryable<TEntity> query;
 
@@ -161,7 +165,6 @@ namespace JP.Base.DAL.EF6.Repositories.Implementation
             if (take > 0)
                 query = query.Take(take);
 
-            
             return query;
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace JP.Base.DAL.EF6.Repositories.Implementation.Exceptions
+namespace JP.Base.DAL.Repositories.Implementation.Exceptions
 {
     /// <summary>
     /// Defines an exception that will only happen when the entity to be deleted is null
