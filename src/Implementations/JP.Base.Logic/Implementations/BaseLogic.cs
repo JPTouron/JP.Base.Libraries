@@ -33,7 +33,7 @@ namespace JP.Base.Logic.Implementations
     /// <typeparam name="TModel">The model that the business logic should handle</typeparam>
     /// <typeparam name="TViewModel">The view model that's related to the UI and relate to the <see cref="TModel"/> object</typeparam>
     public abstract class BaseLogic<TModel, TViewModel>
-        where TModel : BaseModel<int>
+        where TModel : BaseModelEf<int>
         where TViewModel : BaseViewModel<int>
     {
         protected LogicAction currentAction;

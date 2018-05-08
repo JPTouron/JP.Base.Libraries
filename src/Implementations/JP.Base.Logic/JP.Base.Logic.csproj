@@ -58,6 +58,10 @@
       <Project>{279390DA-1EC1-44A1-83CF-F4FD76AC055B}</Project>
       <Name>JP.Base.DAL.EF6.UnitOfWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
+      <Name>JP.Base.DAL.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
       <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
       <Name>JP.Base.ViewModel</Name>
