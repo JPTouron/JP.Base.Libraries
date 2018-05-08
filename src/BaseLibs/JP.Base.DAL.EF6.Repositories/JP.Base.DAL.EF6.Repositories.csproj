@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\IContextProvider.cs" />
-    <Compile Include="Contracts\IGenericRepositoryEf.cs" />
+    <Compile Include="Contracts\IGenericRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,10 +52,6 @@
     <ProjectReference Include="..\JP.Base.DAL.EF6\JP.Base.DAL.EF6.csproj">
       <Project>{E0C708F5-DCC8-4098-ABBD-2DD9D2766F1B}</Project>
       <Name>JP.Base.DAL.EF6</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
-      <Project>{ba6a63e9-4ed6-42da-a193-cac1719d375d}</Project>
-      <Name>JP.Base.DAL.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

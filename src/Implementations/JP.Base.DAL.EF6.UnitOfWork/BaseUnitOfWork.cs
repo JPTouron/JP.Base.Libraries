@@ -88,10 +88,10 @@ namespace JP.Base.DAL.EF6.UnitOfWork
         /// <summary>
         /// see <see cref="IBaseUnitOfWork.GetGenericRepo{TModel}"/> for more information
         /// </summary>
-        public IGenericRepositoryEf<TModel> GetGenericRepo<TModel>() where TModel : class
+        public IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class
         {
             CheckIfDisposed();
-            return repos[typeof(TModel)] as IGenericRepositoryEf<TModel>;
+            return repos[typeof(TModel)] as IGenericRepository<TModel>;
         }
 
         /// <summary>

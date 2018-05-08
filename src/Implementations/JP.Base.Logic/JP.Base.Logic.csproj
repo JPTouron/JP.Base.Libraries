@@ -46,10 +46,6 @@
       <Project>{21cdc162-fd9b-4a9b-9e70-a5d0aa27bb4c}</Project>
       <Name>JP.Base.DAL.EF6.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
-      <Project>{ba6a63e9-4ed6-42da-a193-cac1719d375d}</Project>
-      <Name>JP.Base.DAL.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
       <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
       <Name>JP.Base.Logic.Search</Name>
@@ -69,9 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
