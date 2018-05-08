@@ -1,7 +1,6 @@
 ﻿using JP.Base.Common.Extensions;
-using JP.Base.DAL.EF6.Model;
-using JP.Base.DAL.EF6.UnitOfWork;
 using JP.Base.DAL.Model;
+using JP.Base.DAL.UnitOfWork;
 using JP.Base.Logic.Contracts;
 using JP.Base.Logic.Search;
 using JP.Base.ViewModel;
@@ -33,9 +32,10 @@ namespace JP.Base.Logic.Implementations
     /// </summary>
     /// <typeparam name="TModel">The model that the business logic should handle</typeparam>
     /// <typeparam name="TViewModel">The view model that's related to the UI and relate to the <see cref="TModel"/> object</typeparam>
-    public abstract class BaseLogic<TModel, TViewModel>
+    public abstract class BaseLogic<TModel, TViewModel, TIUnitOfWork>
         where TModel : BaseModel<int>
         where TViewModel : BaseViewModel<int>
+        where TIUnitOfWork : IBaseUnitOfWork
     {
         protected LogicAction currentAction;
         protected IUoWFactory factory;
@@ -86,7 +86,7 @@ namespace JP.Base.Logic.Implementations
                 {
                     unitOfWork.Execute(() =>
                     {
-                        ExecuteCreateMethod(model, unitOfWork);
+                        ExecuteCreateMethod(model, (TIUnitOfWork)unitOfWork);
                     }, true);
                 }
             }, viewModel);
@@ -114,7 +114,7 @@ namespace JP.Base.Logic.Implementations
                 {
                     unitOfWork.Execute(() =>
                     {
-                        ExecuteDeleteMethod(model, unitOfWork);
+                        ExecuteDeleteMethod(model, (TIUnitOfWork)unitOfWork);
                     }, true);
                 }
             }, viewModel);
@@ -126,11 +126,11 @@ namespace JP.Base.Logic.Implementations
         /// </summary>
         /// <param name="model">the <see cref="TViewModel"/> entity already converted into a <see cref="TModel"/> entity to be persisted into db </param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
-        protected virtual void ExecuteCreateMethod(TModel model, IBaseUnitOfWork unitOfWork)
-        {
-            var repo = unitOfWork.GetGenericRepo<TModel>();
-            repo.Insert(model);
-        }
+        protected abstract void ExecuteCreateMethod(TModel model, TIUnitOfWork unitOfWork);
+        //{
+        //    var repo = unitOfWork.GetGenericRepo<TModel>();
+        //    repo.Insert(model);
+        //}
 
         /// <summary>
         /// executes the method defined within <see cref="Create(TViewModel)"/> / <see cref="Update(TViewModel)"/> / <see cref="Delete(TViewModel)"/>  / <see cref="GetEntityById(int)"/>,
@@ -150,14 +150,14 @@ namespace JP.Base.Logic.Implementations
         /// </summary>
         /// <param name="model">the <see cref="TViewModel"/> entity already converted into a <see cref="TModel"/> entity to be deleted from db </param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
-        protected virtual void ExecuteDeleteMethod(TModel model, IBaseUnitOfWork unitOfWork)
-        {
-            var repo = unitOfWork.GetGenericRepo<TModel>();
+        protected abstract void ExecuteDeleteMethod(TModel model, TIUnitOfWork unitOfWork);
+        //{
+        //    var repo = unitOfWork.GetGenericRepo<TModel>();
 
-            repo.AttachEntity(model);
+        //    repo.AttachEntity(model);
 
-            repo.Delete(model);
-        }
+        //    repo.Delete(model);
+        //}
 
         /// <summary>
         /// Executes the actual get by id against the db
@@ -165,14 +165,14 @@ namespace JP.Base.Logic.Implementations
         /// </summary>
         /// <param name="id">the id used to search for the data</param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
-        protected virtual TViewModel ExecuteGetById(int id, IBaseUnitOfWork unitOfWork)
-        {
-            var repo = unitOfWork.GetGenericRepo<TModel>();
+        protected abstract TViewModel ExecuteGetById(int id, TIUnitOfWork unitOfWork);
+        //{
+        //    var repo = unitOfWork.GetGenericRepo<TModel>();
 
-            var model = repo.GetById(id);
+        //    var model = repo.GetById(id);
 
-            return ToViewModel(model);
-        }
+        //    return ToViewModel(model);
+        //}
 
         /// <summary>
         /// Performs the actual search query onto the database
@@ -182,21 +182,21 @@ namespace JP.Base.Logic.Implementations
         /// NOTE: be aware that setting this parameter as true may incurr into some overhead
         /// </para>
         /// </param>
-        /// <param name="unitOfWork">the <seealso  cref="IBaseUnitOfWork"/> that perofms the actual query against the db</param>
+        /// <param name="unitOfWork">the <seealso  cref="IBaseUnitOfWork"/> that performs the actual query against the db</param>
         /// <param name="searchQuery">the query that will be executed against the database</param>
         /// <param name="totalCount">when <paramref name="getCount"/> is true then this parameter returns the obtained count for the records that matched searching criteria</param>
         /// <returns></returns>
-        protected virtual IEnumerable<TViewModel> ExecuteSearchMethod(bool getCount, IBaseUnitOfWork unitOfWork, IQueryable<TModel> searchQuery, ref int totalCount)
-        {
-            var repo = unitOfWork.GetGenericRepo<TModel>();
+        protected abstract IEnumerable<TViewModel> ExecuteSearchMethod(bool getCount, TIUnitOfWork unitOfWork, IQueryable<TModel> searchQuery, ref int totalCount);
+        //{
+        //    var repo = unitOfWork.GetGenericRepo<TModel>();
 
-            if (getCount)
-                totalCount = repo.Get().Count();
+        //    if (getCount)
+        //        totalCount = repo.Get().Count();
 
-            var models = ToViewModel(searchQuery).ToList();
+        //    var models = ToViewModel(searchQuery).ToList();
 
-            return models;
-        }
+        //    return models;
+        //}
 
         /// <summary>
         /// Executes the actual update into the database
@@ -204,16 +204,16 @@ namespace JP.Base.Logic.Implementations
         /// </summary>
         /// <param name="model">the <see cref="TViewModel"/> entity already converted into a <see cref="TModel"/> entity to be updated into the db </param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
-        protected virtual TViewModel ExecuteUpdateMethod(TModel model, IBaseUnitOfWork unitOfWork)
-        {
-            var repo = unitOfWork.GetGenericRepo<TModel>();
+        protected abstract TViewModel ExecuteUpdateMethod(TModel model, TIUnitOfWork unitOfWork);
+        //{
+        //    var repo = unitOfWork.GetGenericRepo<TModel>();
 
-            repo.AttachEntity(model);
+        //    repo.AttachEntity(model);
 
-            repo.Update(model);
+        //    repo.Update(model);
 
-            return ToViewModel(model);
-        }
+        //    return ToViewModel(model);
+        //}
 
         /// <summary>
         /// Returns an entity based on its Id
@@ -233,7 +233,7 @@ namespace JP.Base.Logic.Implementations
                 {
                     unitOfWork.Execute(() =>
                     {
-                        viewModel = ExecuteGetById(id, unitOfWork);
+                        viewModel = ExecuteGetById(id, (TIUnitOfWork)unitOfWork);
                     }, true);
                 }
             }, viewModel);
@@ -259,7 +259,7 @@ namespace JP.Base.Logic.Implementations
         {
             using (var unitOfWork = factory.CreateUoW())
             {
-                var param = GetSearchParams(sortAndFilter, unitOfWork);
+                var param = GetSearchParams(sortAndFilter, (TIUnitOfWork)unitOfWork);
                 var search = GetSearchEngine(param);
 
                 var searchQuery = search.GetSearchQuery();
@@ -267,7 +267,7 @@ namespace JP.Base.Logic.Implementations
 
                 var res = unitOfWork.Execute(() =>
                 {
-                    return ExecuteSearchMethod(getCount, unitOfWork, searchQuery, ref totalCount);
+                    return ExecuteSearchMethod(getCount, (TIUnitOfWork)unitOfWork, searchQuery, ref totalCount);
                 });
 
                 return new SearchResults<TViewModel> { Results = res, Count = totalCount };
@@ -289,7 +289,7 @@ namespace JP.Base.Logic.Implementations
         /// <param name="sortAndFilter">determines the sort and filtering criteria for the search</param>
         /// <param name="unitOfWork">the unit of work required to perform the search</param>
         /// <returns></returns>
-        protected virtual SearchParams GetSearchParams(SortAndFilterData sortAndFilter, IBaseUnitOfWork unitOfWork)
+        protected virtual SearchParams GetSearchParams(SortAndFilterData sortAndFilter, TIUnitOfWork unitOfWork)
         {
             var param = new SearchParams
             {
@@ -346,7 +346,7 @@ namespace JP.Base.Logic.Implementations
                 {
                     unitOfWork.Execute(() =>
                     {
-                        viewModel = ExecuteUpdateMethod(model, unitOfWork);
+                        viewModel = ExecuteUpdateMethod(model, (TIUnitOfWork)unitOfWork);
                     }, true);
                 }
             }, viewModel);

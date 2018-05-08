@@ -1,7 +1,6 @@
-﻿using JP.Base.DAL.EF6.Repositories.Contracts;
-using System;
+﻿using System;
 
-namespace JP.Base.DAL.EF6.UnitOfWork
+namespace JP.Base.DAL.UnitOfWork
 {
     /// <summary>
     /// models a unit of work, in which we manage the life time of a db context to perform database operations
@@ -37,10 +36,6 @@ namespace JP.Base.DAL.EF6.UnitOfWork
         /// </summary>
         TResult Execute<TIn, TResult>(Func<TIn, TResult> meth, TIn arg);
 
-        /// <summary>
-        /// obtains a <see cref="IGenericRepository{TEntity}"/> to operate the underlying DbSet
-        /// </summary>
-        /// <typeparam name="TModel">The model the repository handles</typeparam>
-        IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class;
+        
     }
 }

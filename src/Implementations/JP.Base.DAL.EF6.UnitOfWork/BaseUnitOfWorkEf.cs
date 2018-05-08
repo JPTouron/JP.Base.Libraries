@@ -8,7 +8,7 @@ namespace JP.Base.DAL.EF6.UnitOfWork
     /// <summary>
     /// base class implementation to model a UnitOfWork
     /// </summary>
-    internal abstract class BaseUnitOfWork : IBaseUnitOfWork
+    internal abstract class BaseUnitOfWorkEf : IBaseUnitOfWorkEf
     {
         /// <summary>
         /// the respositories dictionary from which all the possible repositories will be obtained
@@ -19,7 +19,7 @@ namespace JP.Base.DAL.EF6.UnitOfWork
 
         private IContextProvider ctxtFactory;
 
-        public BaseUnitOfWork(IContextProvider ctxtFactory)
+        public BaseUnitOfWorkEf(IContextProvider ctxtFactory)
         {
             IsDisposed = false;
             repos = new Dictionary<Type, object>();

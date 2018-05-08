@@ -34,6 +34,7 @@
     <Compile Include="Contracts\ICRUDLogic.cs" />
     <Compile Include="Contracts\ISearchEngineFactory.cs" />
     <Compile Include="Implementations\BaseLogic.cs" />
+    <Compile Include="Implementations\SearchParameters.cs" />
     <Compile Include="Implementations\SearchParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -42,23 +43,15 @@
       <Project>{8774da41-b1e4-44b5-aeb9-f02f43c115ee}</Project>
       <Name>JP.Base.Common.Extensions</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.EF6.Repositories\JP.Base.DAL.EF6.Repositories.csproj">
-      <Project>{21cdc162-fd9b-4a9b-9e70-a5d0aa27bb4c}</Project>
-      <Name>JP.Base.DAL.EF6.Repositories</Name>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
+      <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
+      <Name>JP.Base.DAL.UnitOfWork</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
       <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
       <Name>JP.Base.Logic.Search</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JP.Base.DAL.EF6.Model\JP.Base.DAL.EF6.Model.csproj">
-      <Project>{FBDE0B0D-2B83-42B3-A4BE-058C880BDF26}</Project>
-      <Name>JP.Base.DAL.EF6.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.DAL.EF6.UnitOfWork\JP.Base.DAL.EF6.UnitOfWork.csproj">
-      <Project>{279390DA-1EC1-44A1-83CF-F4FD76AC055B}</Project>
-      <Name>JP.Base.DAL.EF6.UnitOfWork</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
       <Name>JP.Base.DAL.Model</Name>
     </ProjectReference>

@@ -3,10 +3,10 @@
     /// <summary>
     /// this interface represents a factory for a UnitOfWork
     /// </summary>
-    public interface IUoWFactory
+    public interface IUoWFactoryEf
     {
         /// <summary>
-        /// <para>this method returns a <see cref="IBaseUnitOfWork"/></para>
+        /// <para>this method returns a <see cref="IBaseUnitOfWorkEf"/></para>
         /// <para>
         /// in case you use ninject for this:
         /// do not use Get... as the method name or there will be trouble:
@@ -14,7 +14,6 @@
         /// http://stackoverflow.com/questions/10479384/activationexception-when-using-tofactory-in-ninject
         /// </para>
         /// </summary>
-        IBaseUnitOfWork CreateUoW();
-
+        IBaseUnitOfWorkEf CreateUoW();
     }
 }
