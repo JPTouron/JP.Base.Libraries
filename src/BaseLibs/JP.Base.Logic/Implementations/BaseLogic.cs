@@ -38,10 +38,10 @@ namespace JP.Base.Logic.Implementations
         where TIUnitOfWork : IBaseUnitOfWork
     {
         protected LogicAction currentAction;
-        protected IUoWFactory factory;
+        protected IUoWFactory<TIUnitOfWork> factory;
         protected ISearchEngineFactory searchFac;
 
-        public BaseLogic(IUoWFactory factory, ISearchEngineFactory searchFac)
+        public BaseLogic(IUoWFactory<TIUnitOfWork> factory, ISearchEngineFactory searchFac)
         {
             this.factory = factory;
             this.searchFac = searchFac;

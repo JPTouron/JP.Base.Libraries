@@ -3,7 +3,8 @@
     /// <summary>
     /// this interface represents a factory for a UnitOfWork
     /// </summary>
-    public interface IUoWFactory
+    public interface IUoWFactory<TIUnitOfWork>
+        where TIUnitOfWork: IBaseUnitOfWork
     {
         /// <summary>
         /// <para>this method returns a <see cref="IBaseUnitOfWork"/></para>
@@ -14,6 +15,6 @@
         /// http://stackoverflow.com/questions/10479384/activationexception-when-using-tofactory-in-ninject
         /// </para>
         /// </summary>
-        IBaseUnitOfWork CreateUoW();
+        TIUnitOfWork CreateUoW();
     }
 }

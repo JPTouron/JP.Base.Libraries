@@ -8,7 +8,7 @@ namespace JP.Base.DAL.EF6.UnitOfWork
     /// <summary>
     /// base class implementation to model a UnitOfWork
     /// </summary>
-    internal abstract class BaseUnitOfWorkEf : IBaseUnitOfWorkEf
+    public abstract class BaseUnitOfWorkEf : IBaseUnitOfWorkEf
     {
         /// <summary>
         /// the respositories dictionary from which all the possible repositories will be obtained

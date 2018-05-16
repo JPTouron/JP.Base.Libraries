@@ -3,6 +3,7 @@
     /// <summary>
     /// this interface represents a factory for a UnitOfWork
     /// </summary>
+    //[Deprecated]
     public interface IUoWFactoryEf
     {
         /// <summary>

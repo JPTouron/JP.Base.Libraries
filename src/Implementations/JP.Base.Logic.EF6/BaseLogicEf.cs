@@ -9,30 +9,30 @@ using System.Linq;
 
 namespace JP.Base.Logic.EF6
 {
-    public abstract class BaseLogicEf<TModel, TViewModel, TIdentity> : BaseLogic<BaseModelEf<TIdentity>, BaseViewModel<TIdentity>, IBaseUnitOfWorkEf, TIdentity>
+    public abstract class BaseLogicEf<TModel, TViewModel, TIdentity> : BaseLogic<TModel, TViewModel, IBaseUnitOfWorkEf, TIdentity>
         where TModel : BaseModelEf<TIdentity>
         where TViewModel : BaseViewModel<TIdentity>
     {
-        public BaseLogicEf(IUoWFactory factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
+        public BaseLogicEf(IUoWFactory<IBaseUnitOfWorkEf> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
         {
         }
 
-        protected override void ExecuteCreateMethod(BaseModelEf<TIdentity> model, IBaseUnitOfWorkEf unitOfWork)
+        protected override void ExecuteCreateMethod(TModel model, IBaseUnitOfWorkEf unitOfWork)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
-            repo.Insert((TModel)model);
+            repo.Insert(model);
         }
 
-        protected override void ExecuteDeleteMethod(BaseModelEf<TIdentity> model, IBaseUnitOfWorkEf unitOfWork)
+        protected override void ExecuteDeleteMethod(TModel model, IBaseUnitOfWorkEf unitOfWork)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
-            repo.AttachEntity((TModel)model);
+            repo.AttachEntity(model);
 
             repo.Delete((TModel)model);
         }
 
-        protected override BaseViewModel<TIdentity> ExecuteGetById(TIdentity id, IBaseUnitOfWorkEf unitOfWork)
+        protected override TViewModel ExecuteGetById(TIdentity id, IBaseUnitOfWorkEf unitOfWork)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
@@ -41,7 +41,7 @@ namespace JP.Base.Logic.EF6
             return ToViewModel(model);
         }
 
-        protected override IEnumerable<BaseViewModel<TIdentity>> ExecuteSearchMethod(bool getCount, IBaseUnitOfWorkEf unitOfWork, IQueryable<BaseModelEf<TIdentity>> searchQuery, ref int totalCount)
+        protected override IEnumerable<TViewModel> ExecuteSearchMethod(bool getCount, IBaseUnitOfWorkEf unitOfWork, IQueryable<TModel> searchQuery, ref int totalCount)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
@@ -53,7 +53,7 @@ namespace JP.Base.Logic.EF6
             return models;
         }
 
-        protected override BaseViewModel<TIdentity> ExecuteUpdateMethod(BaseModelEf<TIdentity> model, IBaseUnitOfWorkEf unitOfWork)
+        protected override TViewModel ExecuteUpdateMethod(TModel model, IBaseUnitOfWorkEf unitOfWork)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
