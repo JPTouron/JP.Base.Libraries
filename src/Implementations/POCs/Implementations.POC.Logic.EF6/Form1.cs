@@ -19,9 +19,31 @@ namespace Implementations.POC.Logic.EF6
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var logic = new EmployerLogic(new UoWFac(),null);
+            var logic = new EmployerLogic(new UoWFac(), null);
 
-            
+            var list = logic.GetList();
+
+            dataGridView1.DataSource = list;
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var logic = new EmployerLogic(new UoWFac(), null);
+
+            var rnd = new Random();
+
+
+            logic.Create(new EmployerVM
+            {
+                Area = $"area {rnd.Next()}",
+                Name = $"Name {rnd.Next()}",
+            });
+
+            var list = logic.GetList();
+
+            dataGridView1.DataSource = list;
 
         }
     }

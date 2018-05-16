@@ -7,15 +7,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JP.Base.DAL.EF6.Contracts;
+using JP.Base.DAL.EF6.Repositories.Implementation;
 
 namespace Implementations.POC.Logic.EF6
 {
 
     public class CtxtProv : IContextProvider
     {
+
+        PocDbContext ctx;
+
         public IDbContext ProvideContext()
         {
-            return new PocDbContext();
+
+            if (ctx==null || ctx.IsDisposed)
+                ctx = new PocDbContext();
+
+            return ctx; 
+        }
+    }
+
+
+    public class PocRepo<TEntity> : GenericRepository<TEntity> where TEntity :class
+    {
+        public PocRepo(IContextProvider factory) : base(factory)
+        {
         }
     }
 
@@ -23,6 +39,9 @@ namespace Implementations.POC.Logic.EF6
     {
         public UoW(IContextProvider ctxtFactory) : base(ctxtFactory)
         {
+
+            repos.Add(typeof(Employer), new PocRepo<Employer>(ctxtFactory));
+
         }
     }
 

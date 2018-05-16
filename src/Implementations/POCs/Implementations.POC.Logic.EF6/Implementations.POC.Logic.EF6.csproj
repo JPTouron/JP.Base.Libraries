@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Implementations.POC.Logic.EF6</RootNamespace>
     <AssemblyName>Implementations.POC.Logic.EF6</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -66,6 +67,10 @@
     <Compile Include="Migrations\201805161800475_InitialMigration.Designer.cs">
       <DependentUpon>201805161800475_InitialMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805162004010_sarasa.cs" />
+    <Compile Include="Migrations\201805162004010_sarasa.Designer.cs">
+      <DependentUpon>201805162004010_sarasa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models.cs" />
     <Compile Include="PocDbContext.cs" />
@@ -79,6 +84,9 @@
     <EmbeddedResource Include="Migrations\201805161800475_InitialMigration.resx">
       <DependentUpon>201805161800475_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805162004010_sarasa.resx">
+      <DependentUpon>201805162004010_sarasa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -87,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\EmployerVM.datasource" />
@@ -127,6 +136,10 @@
     <ProjectReference Include="..\..\JP.Base.DAL.EF6.Model\JP.Base.DAL.EF6.Model.csproj">
       <Project>{FBDE0B0D-2B83-42B3-A4BE-058C880BDF26}</Project>
       <Name>JP.Base.DAL.EF6.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JP.Base.DAL.EF6.Repositories.Implementation\JP.Base.DAL.EF6.Repositories.Implementation.csproj">
+      <Project>{C6E56885-9222-430F-9F94-CA968E223E59}</Project>
+      <Name>JP.Base.DAL.EF6.Repositories.Implementation</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\JP.Base.DAL.EF6.UnitOfWork\JP.Base.DAL.EF6.UnitOfWork.csproj">
       <Project>{279390da-1ec1-44a1-83cf-f4fd76ac055b}</Project>
