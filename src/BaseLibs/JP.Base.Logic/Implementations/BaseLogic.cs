@@ -32,9 +32,9 @@ namespace JP.Base.Logic.Implementations
     /// </summary>
     /// <typeparam name="TModel">The model that the business logic should handle</typeparam>
     /// <typeparam name="TViewModel">The view model that's related to the UI and relate to the <see cref="TModel"/> object</typeparam>
-    public abstract class BaseLogic<TModel, TViewModel, TIUnitOfWork>
-        where TModel : BaseModel<int>
-        where TViewModel : BaseViewModel<int>
+    public abstract class BaseLogic<TModel, TViewModel, TIUnitOfWork, TIdentity>
+        where TModel : BaseModel<TIdentity>
+        where TViewModel : BaseViewModel<TIdentity>
         where TIUnitOfWork : IBaseUnitOfWork
     {
         protected LogicAction currentAction;
@@ -70,7 +70,7 @@ namespace JP.Base.Logic.Implementations
         /// </summary>
         /// <param name="viewModel">The view model that will be persisted into the db</param>
         /// <returns>the id of the inserted entity</returns>
-        protected int Create(TViewModel viewModel)
+        protected TIdentity Create(TViewModel viewModel)
         {
             currentAction = LogicAction.Create;
 
@@ -91,7 +91,7 @@ namespace JP.Base.Logic.Implementations
                 }
             }, viewModel);
 
-            return model.Id;
+            return (TIdentity)model.Id;
         }
 
         /// <summary>
@@ -127,10 +127,6 @@ namespace JP.Base.Logic.Implementations
         /// <param name="model">the <see cref="TViewModel"/> entity already converted into a <see cref="TModel"/> entity to be persisted into db </param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
         protected abstract void ExecuteCreateMethod(TModel model, TIUnitOfWork unitOfWork);
-        //{
-        //    var repo = unitOfWork.GetGenericRepo<TModel>();
-        //    repo.Insert(model);
-        //}
 
         /// <summary>
         /// executes the method defined within <see cref="Create(TViewModel)"/> / <see cref="Update(TViewModel)"/> / <see cref="Delete(TViewModel)"/>  / <see cref="GetEntityById(int)"/>,
@@ -151,13 +147,6 @@ namespace JP.Base.Logic.Implementations
         /// <param name="model">the <see cref="TViewModel"/> entity already converted into a <see cref="TModel"/> entity to be deleted from db </param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
         protected abstract void ExecuteDeleteMethod(TModel model, TIUnitOfWork unitOfWork);
-        //{
-        //    var repo = unitOfWork.GetGenericRepo<TModel>();
-
-        //    repo.AttachEntity(model);
-
-        //    repo.Delete(model);
-        //}
 
         /// <summary>
         /// Executes the actual get by id against the db
@@ -165,14 +154,7 @@ namespace JP.Base.Logic.Implementations
         /// </summary>
         /// <param name="id">the id used to search for the data</param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
-        protected abstract TViewModel ExecuteGetById(int id, TIUnitOfWork unitOfWork);
-        //{
-        //    var repo = unitOfWork.GetGenericRepo<TModel>();
-
-        //    var model = repo.GetById(id);
-
-        //    return ToViewModel(model);
-        //}
+        protected abstract TViewModel ExecuteGetById(TIdentity id, TIUnitOfWork unitOfWork);
 
         /// <summary>
         /// Performs the actual search query onto the database
@@ -187,16 +169,6 @@ namespace JP.Base.Logic.Implementations
         /// <param name="totalCount">when <paramref name="getCount"/> is true then this parameter returns the obtained count for the records that matched searching criteria</param>
         /// <returns></returns>
         protected abstract IEnumerable<TViewModel> ExecuteSearchMethod(bool getCount, TIUnitOfWork unitOfWork, IQueryable<TModel> searchQuery, ref int totalCount);
-        //{
-        //    var repo = unitOfWork.GetGenericRepo<TModel>();
-
-        //    if (getCount)
-        //        totalCount = repo.Get().Count();
-
-        //    var models = ToViewModel(searchQuery).ToList();
-
-        //    return models;
-        //}
 
         /// <summary>
         /// Executes the actual update into the database
@@ -205,22 +177,13 @@ namespace JP.Base.Logic.Implementations
         /// <param name="model">the <see cref="TViewModel"/> entity already converted into a <see cref="TModel"/> entity to be updated into the db </param>
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
         protected abstract TViewModel ExecuteUpdateMethod(TModel model, TIUnitOfWork unitOfWork);
-        //{
-        //    var repo = unitOfWork.GetGenericRepo<TModel>();
-
-        //    repo.AttachEntity(model);
-
-        //    repo.Update(model);
-
-        //    return ToViewModel(model);
-        //}
 
         /// <summary>
         /// Returns an entity based on its Id
         /// </summary>
         /// <param name="id">the Id that matches the entity</param>
         /// <returns>the view model that represents the actual entity</returns>
-        protected TViewModel GetEntityById(int id)
+        protected TViewModel GetEntityById(TIdentity id)
         {
             currentAction = LogicAction.Get;
 
@@ -280,7 +243,7 @@ namespace JP.Base.Logic.Implementations
         /// <param name="param">the searching params</param>
         protected virtual SearchEngine<TModel> GetSearchEngine(SearchParams param)
         {
-            return searchFac.CreateSearchEngine<TModel, int>(param);
+            return searchFac.CreateSearchEngine<TModel, TIdentity>(param);
         }
 
         /// <summary>
@@ -357,7 +320,7 @@ namespace JP.Base.Logic.Implementations
         /// <summary>
         /// Validates the Id specified by the caller
         /// </summary>
-        protected abstract void ValidateId(int id);
+        protected abstract void ValidateId(TIdentity id);
 
         /// <summary>
         /// Validates the model or viewmodel specified by the caller

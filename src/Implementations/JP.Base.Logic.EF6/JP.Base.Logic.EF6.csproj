@@ -41,10 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseLogicEf6.cs" />
+    <Compile Include="BaseLogicEf.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.EF6.Repositories\JP.Base.DAL.EF6.Repositories.csproj">
+      <Project>{21cdc162-fd9b-4a9b-9e70-a5d0aa27bb4c}</Project>
+      <Name>JP.Base.DAL.EF6.Repositories</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
       <Project>{8C805FBE-D496-44B1-A3AC-A3066FC34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
