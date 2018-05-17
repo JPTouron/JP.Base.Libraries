@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace JP.Base.DAL.ADO.ConnectionManagement
+namespace JP.Base.DAL.ADO.Implementations.Commands
 {
     public class ParameterData
     {

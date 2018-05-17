@@ -10,9 +10,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("JP.Base.DAL.ADO")]
 [assembly: AssemblyDescription("Basic support library for projects with data base access")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MiCasa")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("JP.Base.DAL.ADO")]
-[assembly: AssemblyCopyright("Copyright © MiCasa 2010")]
+[assembly: AssemblyCopyright("Copyright © 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

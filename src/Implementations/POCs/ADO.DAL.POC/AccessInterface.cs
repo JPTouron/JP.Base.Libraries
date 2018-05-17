@@ -1,4 +1,5 @@
-﻿using JP.Base.DAL.ADO.ConnectionManagement;
+﻿using JP.Base.DAL.ADO.Contracts;
+using JP.Base.DAL.ADO.Factories;
 using System;
 using System.Data;
 
@@ -12,10 +13,10 @@ namespace ADO.DAL.POC
 
             using (var conn = SetConnection())
             {
-                conn.Abrir_Conexion();
-                conn.Crear_Comando("select * from Clients", CommandType.Text);
+                conn.Open();
+                conn.CreateCommand("select * from Clients", CommandType.Text);
 
-                dt = conn.Ejecutar_Comando_De_Retorno_Tabular();
+                dt = conn.ExecuteReaderCommand();
             }
         }
 
@@ -27,21 +28,21 @@ namespace ADO.DAL.POC
 
             using (var conn = SetConnection())
             {
-                conn.Abrir_Conexion();
-                conn.Crear_Comando($"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType.Text);
+                conn.Open();
+                conn.CreateCommand($"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType.Text);
 
-                conn.Ejecutar_Comando_Sin_Retorno();
+                conn.ExecuteNonQueryCommand();
 
-                conn.Crear_Comando($"select * from Clients where code = '{data}'", CommandType.Text);
+                conn.CreateCommand($"select * from Clients where code = '{data}'", CommandType.Text);
 
-                dt = conn.Ejecutar_Comando_De_Retorno_Tabular();
+                dt = conn.ExecuteReaderCommand();
             }
         }
 
-        private IDBAdoConnection SetConnection()
+        private IDbAdoConnection SetConnection()
         {
             var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\DatabaseScripts\dbAccess.mdb;";
-            return DBConnFactory.Obtener_Nueva_Conexion("System.Data.OleDb", connstring);
+            return DbConnFactory.Obtener_Nueva_Conexion("System.Data.OleDb", connstring);
         }
     }
 }

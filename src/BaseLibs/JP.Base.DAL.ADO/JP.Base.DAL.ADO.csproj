@@ -70,7 +70,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -85,21 +85,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionManagement\DataReaderAdapter.cs">
+    <Compile Include="Implementations\Connections\Base\DbAdoConnection.cs" />
+    <Compile Include="Contracts\IDbAdoConnection.cs" />
+    <Compile Include="Implementations\Connections\OleDbConnection.cs" />
+    <Compile Include="Implementations\Connections\Oracle9DbConnection.cs" />
+    <Compile Include="Implementations\Commands\ParameterData.cs" />
+    <Compile Include="Implementations\Connections\SqlServerDbConnection.cs" />
+    <Compile Include="Helpers\DataReaderAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ConnectionManagement\DBCommonConnection.cs" />
-    <Compile Include="ConnectionManagement\ParameterData.cs" />
-    <Compile Include="ConnectionManagement\DBConnFactory.cs" />
-    <Compile Include="TransactionManagement\TransactionManager.cs" />
-    <Compile Include="ConnectionManagement\OleDbConnection.cs" />
-    <Compile Include="ConnectionManagement\Oracle9DBConnection.cs" />
-    <Compile Include="ConnectionManagement\SQLServerDBConnection.cs" />
-    <Compile Include="ConnectionManagement\IDBAdoConnection.cs" />
-    <Compile Include="TransactionManagement\TranManagerFactory.cs" />
-    <Compile Include="TransactionManagement\ITransactionManager.cs" />
+    <Compile Include="Factories\DbConnFactory.cs" />
+    <Compile Include="Implementations\TransactionManagement\TransactionManager.cs" />
+    <Compile Include="Factories\TranManagerFactory.cs" />
+    <Compile Include="Contracts\ITransactionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

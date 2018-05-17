@@ -1,7 +1,9 @@
-﻿using System;
+﻿using JP.Base.DAL.ADO.Contracts;
+using JP.Base.DAL.ADO.Implementations.Connections;
+using System;
 using System.Configuration;
 
-namespace JP.Base.DAL.ADO.ConnectionManagement
+namespace JP.Base.DAL.ADO.Factories
 {
     /// <summary>
     /// <para>v1.0.0 - 26-03-2010</para>
@@ -12,7 +14,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
     /// Es posible seleccionar entre: Oracle, SQL Server y OleDb
     /// </para>
     /// </summary>
-    public static class DBConnFactory
+    public static class DbConnFactory
     {
         /// <summary>
         /// Devuelve IDBConnection que representa la conexion seleccionada segun los parametros proveídos
@@ -20,7 +22,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <param name="DataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
         /// <param name="ConnString">Connection String utilizada para conectar con la base de datos especificada</param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        public static IDBAdoConnection Obtener_Nueva_Conexion(string DataProvider, string ConnectionString)
+        public static IDbAdoConnection Obtener_Nueva_Conexion(string DataProvider, string ConnectionString)
         {
             return Instanciar_Conexion_SegunBaseDeDatos(DataProvider, ConnectionString);
         }
@@ -41,9 +43,9 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <remarks><para>Obtiene los datos de DataProvider y Connection String desde la seccion appSettings del archivo .config de la aplicacion</para>
         /// </remarks>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        public static IDBAdoConnection Obtener_Nueva_Conexion()
+        public static IDbAdoConnection Obtener_Nueva_Conexion()
         {
-            return Instanciar_Conexion_SegunBaseDeDatos(ConfigurationSettings.AppSettings["DataProvider"], ConfigurationSettings.AppSettings["ConnectionString"]);
+            return Instanciar_Conexion_SegunBaseDeDatos(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"]);
         }
 
         /// <summary>
@@ -52,17 +54,17 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <param name="DataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
         /// <param name="ConnString">Connection String utilizada para conectar con la base de datos especificada</param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        private static IDBAdoConnection Instanciar_Conexion_SegunBaseDeDatos(string DataProvider, string ConnString)
+        private static IDbAdoConnection Instanciar_Conexion_SegunBaseDeDatos(string DataProvider, string ConnString)
         {
-            IDBAdoConnection IDBConn;
+            IDbAdoConnection IDBConn;
 
             if (DataProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase))
             {
-                IDBConn = new Oracle9DBConnection(DataProvider, ConnString);
+                IDBConn = new Oracle9DbConnection(DataProvider, ConnString);
             }
             else if (DataProvider.Equals("System.Data.SqlClient", StringComparison.CurrentCultureIgnoreCase))
             {
-                IDBConn = new SQLServerDBConnection(DataProvider, ConnString);
+                IDBConn = new SqlServerDbConnection(DataProvider, ConnString);
             }
             else
             {

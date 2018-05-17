@@ -1,19 +1,21 @@
-﻿using System;
+﻿using JP.Base.DAL.ADO.Contracts;
+using JP.Base.DAL.ADO.Helpers;
+using JP.Base.DAL.ADO.Implementations.Commands;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Globalization;
 
-namespace JP.Base.DAL.ADO.ConnectionManagement
+namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 {
     /// <summary>
     /// Define los comportamientos comunes a todas las conexiones a bases de datos que se
     /// utilizan en este ensamblado
     /// </summary>
-    internal abstract class DBCommonConnection : IDBAdoConnection, IDisposable
+    internal abstract class DbAdoConnection : IDbAdoConnection, IDisposable
     {
-        
         protected DbCommand _DBCmd = null;
 
         protected DbConnection _DBConn = null;
@@ -31,10 +33,10 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <summary>
         /// Inicializa el objeto con los valores para el DataProvider y el ConnectionString desde el archivo Web.configo o App.config
         /// </summary>
-        public DBCommonConnection()
+        public DbAdoConnection()
         {
-            _DataProvider = ConfigurationSettings.AppSettings["DataProvider"];
-            _ConnString = ConfigurationSettings.AppSettings["ConnectionString"];
+            _DataProvider = ConfigurationManager.AppSettings["DataProvider"];
+            _ConnString = ConfigurationManager.AppSettings["ConnectionString"];
             _ProviderFactory = DbProviderFactories.GetFactory(_DataProvider);
         }
 
@@ -43,16 +45,11 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// </summary>
         /// <param name="DataProvider">Define el proveedor de datos de acuerdo al NameSpace del mismo. Ej: System.Data.SqlClient</param>
         /// <param name="ConnString">El string que representa la cadena de conexion a la base de datos</param>
-        public DBCommonConnection(string DataProvider, string ConnString)
+        public DbAdoConnection(string DataProvider, string ConnString)
         {
             _ConnString = ConnString;
             _DataProvider = DataProvider;
             _ProviderFactory = DbProviderFactories.GetFactory(DataProvider);
-        }
-
-        ~DBCommonConnection()
-        {
-            Dispose(false);
         }
 
         internal enum TipoComandoRetorno
@@ -62,58 +59,12 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
             Ninguno
         }
 
-        public bool Abrir_Conexion(bool IniciarTransaccion)
-        {
-            bool bReturn = false;
-
-            try
-            {
-                if (_DBConn == null)
-                {
-                    Crear_Conexion();
-                }
-
-                if (_DBConn.State == ConnectionState.Closed)
-                {
-                    _DBConn.Open();
-                }
-
-                if (IniciarTransaccion)
-                {
-                    _DBTran = _DBConn.BeginTransaction();
-                }
-
-                bReturn = true;
-            }
-            catch
-            {
-                _DBConn = null;
-                throw;
-            }
-
-            return bReturn;
-        }
-
-        /// <summary>
-        /// Abre una conexion a la base de datos especificada
-        /// </summary>
-        /// <param name="IniciarTransaccion">Indica si la apertura de la conexion implica iniciar una transaccion</param>
-        /// <returns>True si la conexion se abrio exitosamente</returns>
-        /// <summary>
-        /// Abre una conexion a la base de datos especificada sin iniciar una transaccion
-        /// </summary>
-        /// <returns>True si la conexion se abrio exitosamente</returns>
-        public bool Abrir_Conexion()
-        {
-            return Abrir_Conexion(false);
-        }
-
         /// <summary>
         /// Invoca al metodo abstracto Agregar_Parametro con los parametros especificados, y establece los valores null del parametro si
         /// el parametro valor es un String.Empty o un DateTime.MinValue o null
         /// </summary>
         /// <param name="Parametro">Nombre, valor y direccion del parametro</param>
-        public void Agregar_Parametro_A_Comando(ParameterData Parametro)
+        public void AddCommandParameter(ParameterData Parametro)
         {
             if (Parametro.ValorParametro == null)
             {
@@ -145,13 +96,13 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// el parametro valor es un String.Empty o un DateTime.MinValue o null
         /// </summary>
         /// <param name="Parametros">Lista de datos del parametro como nombre, valor y direccion</param>
-        public void Agregar_Parametros_A_Comando(ref List<ParameterData> Parametros)
+        public void AddCommandParameter(List<ParameterData> Parametros)
         {
             if (Parametros != null)
             {
                 foreach (ParameterData Param in Parametros)
                 {
-                    Agregar_Parametro_A_Comando(Param);
+                    AddCommandParameter(Param);
                 }
             }
         }
@@ -161,7 +112,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// </summary>
         /// <param name="DeshacerTransaccion">indica si debe deshacerse la transaccion pendiente, en caso contrario, la misma no se altera</param>
         /// <returns>True si el proceso retorna exitosamente</returns>
-        public bool Cerrar_Conexion(bool DeshacerTransaccion)
+        public bool Close(bool DeshacerTransaccion = false)
         {
             bool bReturn = false;
 
@@ -197,14 +148,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
             return bReturn;
         }
 
-        /// <summary>
-        /// Cierra la conexion a la base de datos sin alterar la transaccion
-        /// </summary>
-        /// <returns>True si el proceso finaliza exitosamente</returns>
-        public bool Cerrar_Conexion()
-        {
-            return Cerrar_Conexion(false);
-        }
+
 
         /// <summary>
         /// Crea un comando y lo establece como el tipo especificado y con el timeout especificado
@@ -212,9 +156,9 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         /// <param name="NombreSP">Indica el nombre del stored procedure</param>
         /// <param name="TipoComando">Indica el tipo del comando</param>
         /// <param name="TimeOut">Indica el timeout del comando</param>
-        public void Crear_Comando(string NombreCMD, CommandType TipoComando, int TimeOut)
+        public void CreateCommand(string NombreCMD, CommandType TipoComando = CommandType.Text, int TimeOut = 1000)
         {
-            if (_DBCmd!=null)
+            if (_DBCmd != null)
             {
                 _DBCmd.Dispose();
                 _DBCmd = null;
@@ -226,24 +170,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
             _DBCmd.CommandTimeout = TimeOut;
         }
 
-        /// <summary>
-        /// Crea un comando y lo establece como el tipo especificado el timeout es 0
-        /// </summary>
-        /// <param name="NombreSP">Indica el nombre del stored procedure</param>
-        /// <param name="TipoComando">Indica el tipo del comando</param>
-        public void Crear_Comando(string NombreCMD, CommandType TipoComando)
-        {
-            Crear_Comando(NombreCMD, TipoComando, 0);
-        }
-
-        /// <summary>
-        /// Crea un comando y lo establece como SP, el timeout del comando se establece en 0 y el tipo de comando es Stored Procedure
-        /// </summary>
-        /// <param name="NombreSP">Indica el nombre del stored procedure</param>
-        public void Crear_Comando(string NombreCMD)
-        {
-            Crear_Comando(NombreCMD, CommandType.StoredProcedure, 0);
-        }
+        
 
         /// <summary>
         /// Deshace la transaccion actual pendiente ejecutando un RollBack
@@ -281,30 +208,30 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         }
 
         /// <summary>
-        /// Ejecuta un comando SQL retornando el escalar correspondiente
+        /// Ejecuta un comando SQL retornando la cantidad de filas afectadas
         /// </summary>
-        /// <returns>Retorna el valor escalar obtenido</returns>
-        public object Ejecutar_Comando_De_Retorno_Escalar()
+        /// <returns>Retorna el nro de filas afectadas</returns>
+        public int ExecuteNonQueryCommand()
         {
-            return Ejecutar_Comando(TipoComandoRetorno.Escalar);
+            return (int)Ejecutar_Comando(TipoComandoRetorno.Ninguno);
         }
 
         /// <summary>
         /// Ejecuta un comando SQL retornando el DataTable correspondiente
         /// </summary>
         /// <returns>Retorna el DataTable obtenido</returns>
-        public DataTable Ejecutar_Comando_De_Retorno_Tabular()
+        public DataTable ExecuteReaderCommand()
         {
             return (DataTable)Ejecutar_Comando(TipoComandoRetorno.Tabular);
         }
 
         /// <summary>
-        /// Ejecuta un comando SQL retornando la cantidad de filas afectadas
+        /// Ejecuta un comando SQL retornando el escalar correspondiente
         /// </summary>
-        /// <returns>Retorna el nro de filas afectadas</returns>
-        public int Ejecutar_Comando_Sin_Retorno()
+        /// <returns>Retorna el valor escalar obtenido</returns>
+        public object ExecuteScalarCommand()
         {
-            return (int)Ejecutar_Comando(TipoComandoRetorno.Ninguno);
+            return Ejecutar_Comando(TipoComandoRetorno.Escalar);
         }
 
         /// <summary>
@@ -317,9 +244,43 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         {
             if (CloseConn)
             {
-                Cerrar_Conexion(UndoTran);
+                Close(UndoTran);
             }
         }
+
+        public bool Open(bool IniciarTransaccion =false)
+        {
+            bool bReturn = false;
+
+            try
+            {
+                if (_DBConn == null)
+                {
+                    Crear_Conexion();
+                }
+
+                if (_DBConn.State == ConnectionState.Closed)
+                {
+                    _DBConn.Open();
+                }
+
+                if (IniciarTransaccion)
+                {
+                    _DBTran = _DBConn.BeginTransaction();
+                }
+
+                bReturn = true;
+            }
+            catch
+            {
+                _DBConn = null;
+                throw;
+            }
+
+            return bReturn;
+        }
+
+        
 
         protected internal abstract void Agregar_Parametro(string Nombre, object Valor, ParameterDirection Direccion, DbType Tipo, int size);
 
@@ -434,7 +395,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
             {
                 if (bCerrarConn)
                 {
-                    Cerrar_Conexion(false);//cerrar la conn sin tocar la tran
+                    Close(false);//cerrar la conn sin tocar la tran
                 }
             }
             return oReturnVal;
@@ -452,11 +413,16 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
             {
                 if (_DBConn.State == ConnectionState.Closed)//sino checkear el estado de la conn
                 {
-                    Abrir_Conexion(false);
+                    Open(false);
                     bCerrarConn = true;//indicar que se debe cerrar la conn
                 }
             }
             return bCerrarConn;
+        }
+
+        ~DbAdoConnection()
+        {
+            Dispose(false);
         }
     }
 }

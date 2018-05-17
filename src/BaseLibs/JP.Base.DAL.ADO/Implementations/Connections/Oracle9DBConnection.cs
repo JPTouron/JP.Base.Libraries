@@ -1,24 +1,24 @@
-﻿using System;
+﻿using JP.Base.DAL.ADO.Implementations.Connections.Base;
+using System;
 using System.Configuration;
 using System.Data;
-using System.Data.Common;
-using System.Data.SqlClient;
+using System.Data.OracleClient;
 
-namespace JP.Base.DAL.ADO.ConnectionManagement
+namespace JP.Base.DAL.ADO.Implementations.Connections
 {
-    internal class SQLServerDBConnection : DBCommonConnection
+    internal class Oracle9DbConnection : DbAdoConnection
     {
-        public SQLServerDBConnection()
-            : base(ConfigurationSettings.AppSettings["DataProvider"], ConfigurationSettings.AppSettings["ConnectionString"])
+        public Oracle9DbConnection()
+            : base(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"])
         {
         }
 
-        public SQLServerDBConnection(string DataProvider, string ConnString)
+        public Oracle9DbConnection(string DataProvider, string ConnString)
             : base(DataProvider, ConnString)
         {
         }
 
-        ~SQLServerDBConnection()
+        ~Oracle9DbConnection()
         {
             Dispose(false);
         }
@@ -27,12 +27,12 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
         {
             try
             {
-                SqlParameter Param = new SqlParameter(NombreParam, Valor);
+                OracleParameter Param = new OracleParameter(NombreParam, Valor);
                 Param.Direction = Direccion;
                 Param.Size = size;
                 Param.DbType = Tipo;
 
-                ((SqlCommand)_DBCmd).Parameters.Add(Param);
+                ((OracleCommand)_DBCmd).Parameters.Add(Param);
             }
             catch (Exception ex)
             {
@@ -46,7 +46,13 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
 
             try
             {
-                oReturn = _DBCmd.ExecuteScalar();//ejecutar el comando
+                OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"], OracleType.Number);
+                prm.Direction = ParameterDirection.Output;
+
+                _DBCmd.Parameters.Add(prm);
+                _DBCmd.ExecuteScalar();
+
+                oReturn = _DBCmd.Parameters[ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"]].Value;
             }
             catch (Exception ex)
             {
@@ -61,7 +67,7 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
             int iReturn = 0;
 
             try
-            {   
+            {
                 iReturn = _DBCmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -74,30 +80,25 @@ namespace JP.Base.DAL.ADO.ConnectionManagement
 
         protected internal override DataTable Ejecutar_CMD_Tabular()
         {
-            DataTable DTReturn = null;
-
-            DbDataReader Reader = null;
+            DataSet DSReturn = new DataSet();
 
             try
             {
-                Reader = _DBCmd.ExecuteReader();
-                DTReturn = Reader_To_Table(ref Reader, true);
+                OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_TABULAR"], OracleType.Cursor);
+                prm.Direction = ParameterDirection.Output;
+                _DBCmd.Parameters.Add(prm);
+
+                OracleDataAdapter adapter = new OracleDataAdapter((OracleCommand)_DBCmd);
+
+                adapter.Fill(DSReturn);
+                adapter.Dispose();
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
-            }
-            finally
-            {
-                if (Reader != null)
-                {
-                    Reader.Close();
-                    Reader.Dispose();
-                    Reader = null;
-                }
+                throw ex;
             }
 
-            return DTReturn;
+            return DSReturn.Tables[0];
         }
 
         protected override void Dispose(bool disposing)

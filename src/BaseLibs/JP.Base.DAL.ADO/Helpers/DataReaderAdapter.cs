@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.Common;
 
-namespace JP.Base.DAL.ADO.ConnectionManagement
+namespace JP.Base.DAL.ADO.Helpers
 {
     /// <summary>
     /// Esta clase solo se utiliza para convertir un IDataReader a un DataTable

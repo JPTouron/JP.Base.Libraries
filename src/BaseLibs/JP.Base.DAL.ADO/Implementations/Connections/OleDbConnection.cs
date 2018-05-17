@@ -1,15 +1,16 @@
-﻿using System;
+﻿using JP.Base.DAL.ADO.Implementations.Connections.Base;
+using System;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.OleDb;
 
-namespace JP.Base.DAL.ADO.ConnectionManagement
+namespace JP.Base.DAL.ADO.Implementations.Connections
 {
-    internal class OleDbConnection : DBCommonConnection
+    internal class OleDbConnection : DbAdoConnection
     {
         public OleDbConnection()
-            : base(ConfigurationSettings.AppSettings["DataProvider"], ConfigurationSettings.AppSettings["ConnectionString"])
+            : base(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"])
         {
         }
 
