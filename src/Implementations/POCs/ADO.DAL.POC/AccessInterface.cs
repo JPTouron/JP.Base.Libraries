@@ -4,7 +4,7 @@ using System.Data;
 
 namespace ADO.DAL.POC
 {
-    internal class SqlInterface
+    public class AccessInterface
     {
         public void GetData()
         {
@@ -21,36 +21,27 @@ namespace ADO.DAL.POC
 
         public void SetData()
         {
-
             var rnd = new Random();
-            var data = rnd.Next().ToString().Substring(0,7).PadLeft(8,'0');
+            var data = rnd.Next().ToString().Substring(0, 7).PadLeft(8, '0');
+            DataTable dt;
+
             using (var conn = SetConnection())
             {
                 conn.Abrir_Conexion();
                 conn.Crear_Comando($"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType.Text);
 
                 conn.Ejecutar_Comando_Sin_Retorno();
+
+                conn.Crear_Comando($"select * from Clients where code = '{data}'", CommandType.Text);
+
+                dt = conn.Ejecutar_Comando_De_Retorno_Tabular();
             }
-
-
-            data = rnd.Next().ToString().Substring(0, 7).PadLeft(8, '0');
-            using (var conn = SetConnection())
-            {
-                conn.Abrir_Conexion();
-                conn.Crear_Comando($"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType.Text);
-
-                conn.Ejecutar_Comando_Sin_Retorno();
-            }
-
-
-
         }
-
 
         private IDBAdoConnection SetConnection()
         {
-            var connstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ADO.DAL;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            return DBConnFactory.Obtener_Nueva_Conexion("System.Data.SqlClient", connstring);
+            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\DatabaseScripts\dbAccess.mdb;";
+            return DBConnFactory.Obtener_Nueva_Conexion("System.Data.OleDb", connstring);
         }
     }
 }

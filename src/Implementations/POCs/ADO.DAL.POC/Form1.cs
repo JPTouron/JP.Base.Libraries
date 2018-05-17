@@ -43,6 +43,28 @@ namespace ADO.DAL.POC
 
         private void button9_Click(object sender, EventArgs e)
         {
+            
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            var s = new SqlInterface();
+
+            s.SetData();
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            var a = new AccessInterface();
+
+            a.GetData();
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var a = new AccessInterface();
+
+            a.SetData();
         }
     }
 }

@@ -95,7 +95,7 @@
     <Compile Include="ConnectionManagement\OleDbConnection.cs" />
     <Compile Include="ConnectionManagement\Oracle9DBConnection.cs" />
     <Compile Include="ConnectionManagement\SQLServerDBConnection.cs" />
-    <Compile Include="ConnectionManagement\IDBConnection.cs" />
+    <Compile Include="ConnectionManagement\IDBAdoConnection.cs" />
     <Compile Include="TransactionManagement\TranManagerFactory.cs" />
     <Compile Include="TransactionManagement\ITransactionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
