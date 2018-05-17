@@ -34,13 +34,19 @@ namespace Implementations.POC.Logic.EF6
         {
             using (var uow = ((UoWFac)factory).CreateUoW())
             {
-                var res = uow.Execute(() =>
+                var data = uow.Execute(() =>
                 {
-                    return uow.GetGenericRepo<Employee>().Get(orderBy: x => x.OrderBy(y => y.Name));
+                    var res = uow.GetGenericRepo<Employee>().Get(orderBy: x => x.OrderBy(y => y.Name));
+                    return ToViewModel(res).ToList();
                 });
 
-                return ToViewModel(res);
+                return data;
             }
+        }
+
+        public void CreateEmployee(EmployeeVM employee)
+        {
+            Create(employee);
         }
 
         protected override void PerformSpecificValidations(EmployeeVM viewModel)
@@ -56,12 +62,9 @@ namespace Implementations.POC.Logic.EF6
             return new Employee
             {
                 Age = viewModel.Age,
-                Employer = new Employer
-                {
-                    Area = viewModel.EmployerArea,
-                    Id = viewModel.EmployerId,
-                    Name = viewModel.EmployerName
-                }
+                EmployerId = viewModel.EmployerId,
+                Name = viewModel.Name,
+                Function = viewModel.Function,
             };
         }
 
@@ -112,21 +115,10 @@ namespace Implementations.POC.Logic.EF6
         {
         }
 
-        public void Create(EmployerVM employer) {
-
-            var model  = ToModel(employer);
-
-            using (var unitOfWork = factory.CreateUoW())
-            {
-                unitOfWork.Execute(() =>
-                {
-                    ExecuteCreateMethod(model, unitOfWork);
-                }, true);
-            }
-
-
+        public void Create(EmployerVM employer)
+        {
+            base.Create(employer);
         }
-
 
         protected override string DefaultSortField
         {
@@ -153,19 +145,16 @@ namespace Implementations.POC.Logic.EF6
         {
             return new Employer
             {
-
                 Area = viewModel.Area,
                 Id = viewModel.Id,
 
                 Name = viewModel.Name,
                 Version = viewModel.Version
-
             };
         }
 
         protected override IEnumerable<EmployerVM> ToViewModel(IQueryable<Employer> query)
         {
-
             var data = query.Select(x => new EmployerVM
             {
                 Id = x.Id,
@@ -183,14 +172,9 @@ namespace Implementations.POC.Logic.EF6
                     Function = y.Function,
                     Version = y.Version
                 })
-
             });
 
-
-
-
             return data;
-
         }
 
         protected override EmployerVM ToViewModel(Employer model)
@@ -204,21 +188,21 @@ namespace Implementations.POC.Logic.EF6
                 Employees = model.Employees == null ? null : ToEmployeesList(model.Employees)
             };
         }
+
         public IEnumerable<EmployerVM> GetList()
         {
             using (var uow = ((UoWFac)factory).CreateUoW())
             {
-                 var data = uow.Execute(() =>
-                {
-                    var res =  uow.GetGenericRepo<Employer>().Get(orderBy: x => x.OrderBy(y => y.Name));
-                    return ToViewModel(res).ToList();
-                });
-
+                var data = uow.Execute(() =>
+               {
+                   var res = uow.GetGenericRepo<Employer>().Get(orderBy: x => x.OrderBy(y => y.Name));
+                   return ToViewModel(res).ToList();
+               });
 
                 return data;
-                
             }
         }
+
         protected override void ValidateId(int id)
         {
             // some validation

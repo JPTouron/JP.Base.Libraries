@@ -41,6 +41,7 @@ namespace Implementations.POC.Logic.EF6
         {
 
             repos.Add(typeof(Employer), new PocRepo<Employer>(ctxtFactory));
+            repos.Add(typeof(Employee), new PocRepo<Employee>(ctxtFactory));
 
         }
     }
