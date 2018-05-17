@@ -8,7 +8,7 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
 {
     internal class TransactionManager : ITransactionManager, IDisposable
     {
-        private static string _LastTransactionId = "0";
+        private static string lastTransactionId = "0";
         private string _ConnString;
         private string _DataProvider;
         private List<TransactionData> _TransactionConnections = new List<TransactionData>();
@@ -23,6 +23,11 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
         {
             _DataProvider = ConfigurationManager.AppSettings["DataProvider"];
             _ConnString = ConfigurationManager.AppSettings["ConnectionString"];
+        }
+
+        ~TransactionManager()
+        {
+            Dispose(false);
         }
 
         public void Dispose()
@@ -107,7 +112,7 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
             if (disposing)
             {
                 //managed
-                _LastTransactionId = "0";
+                lastTransactionId = "0";
             }
 
             //unmanaged
@@ -125,8 +130,8 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
 
         private string Crear_Id_Transaccion()
         {
-            _LastTransactionId = (Convert.ToInt32(_LastTransactionId) + 1).ToString();
-            return _LastTransactionId;
+            lastTransactionId = (Convert.ToInt32(lastTransactionId) + 1).ToString();
+            return lastTransactionId;
         }
 
         private IDbAdoConnection Obtener_Nueva_Conexion()
@@ -148,11 +153,6 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
             {
                 return TransactionID.GetHashCode() + DBConn.GetHashCode();
             }
-        }
-
-        ~TransactionManager()
-        {
-            Dispose(false);
         }
     }
 }

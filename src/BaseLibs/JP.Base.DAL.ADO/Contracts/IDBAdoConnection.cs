@@ -8,25 +8,29 @@ namespace JP.Base.DAL.ADO.Contracts
     public interface IDbAdoConnection : IDisposable
     {
         /// <summary>
-        /// Invoca al metodo abstracto Agregar_Parametro con los parametros especificados, y establece los valores null del parametro si
-        /// el parametro valor es un String.Empty o un DateTime.MinValue o null
+        /// Invoca al metodo abstracto Agregar_Parametro con los parametros especificados, y
+        /// establece los valores null del parametro si el parametro valor es un String.Empty o un
+        /// DateTime.MinValue o null
         /// </summary>
         /// <param name="ParameterData">Nombre, valor y direccion del parametro</param>
-        void AddCommandParameter(ParameterData Parametro);
+        void AddCommandParameter(ParameterData paramData);
 
         /// <summary>
-        /// Invoca al metodo abstracto Agregar_Parametro con los parametros especificados, y establece los valores null del parametro si
-        /// el parametro valor es un String.Empty o un DateTime.MinValue o null
+        /// Invoca al metodo abstracto Agregar_Parametro con los parametros especificados, y
+        /// establece los valores null del parametro si el parametro valor es un String.Empty o un
+        /// DateTime.MinValue o null
         /// </summary>
-        /// <param name="Parametros">Lista de datos del parametro como nombre, valor y direccion</param>
-        void AddCommandParameter(List<ParameterData> Parametros);
+        /// <param name="param">Lista de datos del parametro como nombre, valor y direccion</param>
+        void AddCommandParameter(List<ParameterData> param);
 
         /// <summary>
         /// Cierra la conexion a la base de datos
         /// </summary>
-        /// <param name="DeshacerTransaccion">indica si debe deshacerse la transaccion pendiente, en caso contrario, la misma no se altera</param>
+        /// <param name="DeshacerTransaccion">
+        /// indica si debe deshacerse la transaccion pendiente, en caso contrario, la misma no se altera
+        /// </param>
         /// <returns>True si el proceso retorna exitosamente</returns>
-        bool Close(bool deshacerTransaccion = false);
+        void Close(bool rollbackTransaction = false);
 
         /// <summary>
         /// Crea un comando y lo establece como el tipo especificado y con el timeout especificado
@@ -57,8 +61,10 @@ namespace JP.Base.DAL.ADO.Contracts
         /// <summary>
         /// Abre una conexion a la base de datos especificada
         /// </summary>
-        /// <param name="IniciarTransaccion">Indica si la apertura de la conexion implica iniciar una transaccion</param>
+        /// <param name="beginTransaction">
+        /// Indica si la apertura de la conexion implica iniciar una transaccion
+        /// </param>
         /// <returns>True si la conexion se abrio exitosamente</returns>
-        bool Open(bool IniciarTransaccion = false);
+        bool Open(bool beginTransaction = false);
     }
 }

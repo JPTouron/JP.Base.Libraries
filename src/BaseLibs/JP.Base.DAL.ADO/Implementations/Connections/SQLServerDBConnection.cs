@@ -1,8 +1,6 @@
 ﻿using JP.Base.DAL.ADO.Implementations.Connections.Base;
-using System;
 using System.Configuration;
 using System.Data;
-using System.Data.Common;
 using System.Data.SqlClient;
 
 namespace JP.Base.DAL.ADO.Implementations.Connections
@@ -24,92 +22,49 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             Dispose(false);
         }
 
-        protected internal override void Agregar_Parametro(string NombreParam, object Valor, ParameterDirection Direccion, DbType Tipo, int size)
+        protected internal override void AddParameter(string NombreParam, object Valor, ParameterDirection Direccion, DbType Tipo, int size)
         {
-            try
-            {
-                SqlParameter Param = new SqlParameter(NombreParam, Valor);
-                Param.Direction = Direccion;
-                Param.Size = size;
-                Param.DbType = Tipo;
+            SqlParameter Param = new SqlParameter(NombreParam, Valor);
+            Param.Direction = Direccion;
+            Param.Size = size;
+            Param.DbType = Tipo;
 
-                ((SqlCommand)_DBCmd).Parameters.Add(Param);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            ((SqlCommand)command).Parameters.Add(Param);
         }
 
-        protected internal override object Ejecutar_CMD_Escalar()
+        protected internal override int ExecuteNonQuery()
         {
-            object oReturn = null;
+            var result = command.ExecuteNonQuery();
 
-            try
-            {
-                oReturn = _DBCmd.ExecuteScalar();//ejecutar el comando
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return oReturn;
+            return result;
         }
 
-        protected internal override int Ejecutar_CMD_Sin_Retorno()
+        protected internal override DataTable ExecuteReader()
         {
-            int iReturn = 0;
+            var reader = command.ExecuteReader();
+            var result = ReaderToTable(reader);
 
-            try
-            {   
-                iReturn = _DBCmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
+            if (reader != null)
             {
-                throw ex;
+                reader.Close();
+                reader.Dispose();
+                reader = null;
             }
 
-            return iReturn;
+            return result;
         }
 
-        protected internal override DataTable Ejecutar_CMD_Tabular()
+        protected internal override object ExecuteScalar()
         {
-            DataTable DTReturn = null;
+            var result = command.ExecuteScalar();//ejecutar el comando
 
-            DbDataReader Reader = null;
-
-            try
-            {
-                Reader = _DBCmd.ExecuteReader();
-                DTReturn = Reader_To_Table(ref Reader, true);
-            }
-            catch
-            {
-                throw;
-            }
-            finally
-            {
-                if (Reader != null)
-                {
-                    Reader.Close();
-                    Reader.Dispose();
-                    Reader = null;
-                }
-            }
-
-            return DTReturn;
+            return result;
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-            }
-            // Release managed resources.
-            // Release unmanaged resources.
-            // Set large fields to null.
-            // Call Dispose on your base class.
+            // Release managed resources. Release unmanaged resources. Set large fields to null. Call
+            // Dispose on your base class.
 
             base.Dispose(disposing);
         }

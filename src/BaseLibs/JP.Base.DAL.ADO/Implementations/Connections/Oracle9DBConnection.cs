@@ -1,5 +1,4 @@
 ﻿using JP.Base.DAL.ADO.Implementations.Connections.Base;
-using System;
 using System.Configuration;
 using System.Data;
 using System.Data.OracleClient;
@@ -23,93 +22,56 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             Dispose(false);
         }
 
-        protected internal override void Agregar_Parametro(string NombreParam, object Valor, ParameterDirection Direccion, DbType Tipo, int size)
+        protected internal override void AddParameter(string NombreParam, object Valor, ParameterDirection Direccion, DbType Tipo, int size)
         {
-            try
-            {
-                OracleParameter Param = new OracleParameter(NombreParam, Valor);
-                Param.Direction = Direccion;
-                Param.Size = size;
-                Param.DbType = Tipo;
+            OracleParameter Param = new OracleParameter(NombreParam, Valor);
+            Param.Direction = Direccion;
+            Param.Size = size;
+            Param.DbType = Tipo;
 
-                ((OracleCommand)_DBCmd).Parameters.Add(Param);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            ((OracleCommand)command).Parameters.Add(Param);
         }
 
-        protected internal override object Ejecutar_CMD_Escalar()
+        protected internal override int ExecuteNonQuery()
         {
-            object oReturn = null;
+            var result = command.ExecuteNonQuery();
 
-            try
-            {
-                OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"], OracleType.Number);
-                prm.Direction = ParameterDirection.Output;
-
-                _DBCmd.Parameters.Add(prm);
-                _DBCmd.ExecuteScalar();
-
-                oReturn = _DBCmd.Parameters[ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"]].Value;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return oReturn;
+            return result;
         }
 
-        protected internal override int Ejecutar_CMD_Sin_Retorno()
-        {
-            int iReturn = 0;
-
-            try
-            {
-                iReturn = _DBCmd.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return iReturn;
-        }
-
-        protected internal override DataTable Ejecutar_CMD_Tabular()
+        protected internal override DataTable ExecuteReader()
         {
             DataSet DSReturn = new DataSet();
 
-            try
-            {
-                OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_TABULAR"], OracleType.Cursor);
-                prm.Direction = ParameterDirection.Output;
-                _DBCmd.Parameters.Add(prm);
+            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_TABULAR"], OracleType.Cursor);
+            prm.Direction = ParameterDirection.Output;
+            command.Parameters.Add(prm);
 
-                OracleDataAdapter adapter = new OracleDataAdapter((OracleCommand)_DBCmd);
+            OracleDataAdapter adapter = new OracleDataAdapter((OracleCommand)command);
 
-                adapter.Fill(DSReturn);
-                adapter.Dispose();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            adapter.Fill(DSReturn);
+            adapter.Dispose();
 
             return DSReturn.Tables[0];
         }
 
+        protected internal override object ExecuteScalar()
+        {
+            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"], OracleType.Number);
+            prm.Direction = ParameterDirection.Output;
+
+            command.Parameters.Add(prm);
+            command.ExecuteScalar();
+
+            var result = command.Parameters[ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"]].Value;
+
+            return result;
+        }
+
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-            }
-            // Release managed resources.
-            // Release unmanaged resources.
-            // Set large fields to null.
-            // Call Dispose on your base class.
+            // Release managed resources. Release unmanaged resources. Set large fields to null. Call
+            // Dispose on your base class.
 
             base.Dispose(disposing);
         }

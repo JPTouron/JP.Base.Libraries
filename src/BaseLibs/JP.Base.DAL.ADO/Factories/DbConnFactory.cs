@@ -7,12 +7,8 @@ namespace JP.Base.DAL.ADO.Factories
 {
     /// <summary>
     /// <para>v1.0.0 - 26-03-2010</para>
-    /// <para>
-    /// Clase estática que representa una fabrica de conexiones a base de datos
-    /// </para>
-    /// <para>
-    /// Es posible seleccionar entre: Oracle, SQL Server y OleDb
-    /// </para>
+    /// <para>Clase estática que representa una fabrica de conexiones a base de datos</para>
+    /// <para>Es posible seleccionar entre: Oracle, SQL Server y OleDb</para>
     /// </summary>
     public static class DbConnFactory
     {
@@ -20,7 +16,9 @@ namespace JP.Base.DAL.ADO.Factories
         /// Devuelve IDBConnection que representa la conexion seleccionada segun los parametros proveídos
         /// </summary>
         /// <param name="DataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
-        /// <param name="ConnString">Connection String utilizada para conectar con la base de datos especificada</param>
+        /// <param name="ConnString">
+        /// Connection String utilizada para conectar con la base de datos especificada
+        /// </param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
         public static IDbAdoConnection Obtener_Nueva_Conexion(string DataProvider, string ConnectionString)
         {
@@ -28,19 +26,21 @@ namespace JP.Base.DAL.ADO.Factories
         }
 
         /// <summary>
-        /// Devuelve IDBConnection que representa la conexion seleccionada segun las configuraciones especificadas en la seccion appSettings del archivo .config de la aplicacion
-        /// <example><para>-</para><para>Ejemplo: (cambiar corchetes por simbolos mayor/menor)</para><para>-</para>
+        /// Devuelve IDBConnection que representa la conexion seleccionada segun las configuraciones
+        /// especificadas en la seccion appSettings del archivo .config de la aplicacion <example>
+        /// <para>-</para>
+        /// <para>Ejemplo: (cambiar corchetes por simbolos mayor/menor)</para>
+        /// <para>-</para>
         /// <code>
-        ///	<para>[configuration]</para>
-        ///	<para>[appSettings]</para>
-        ///	<para>[add key="ConnectionString" value="Mi_Connection_String"/]</para>
-        ///	<para>[add key="DataProvider" value="System.Data.SqlClient"/]</para>
-        ///	<para>[/appSettings]</para>
-        ///	<para>[/configuration]</para>
+        /// <para>[configuration]</para><para>[appSettings]</para><para>[add key="ConnectionString" value="Mi_Connection_String"/]</para><para>[add key="DataProvider" value="System.Data.SqlClient"/]</para><para>[/appSettings]</para><para>[/configuration]</para>
         /// </code>
-        ///	</example>
+        /// </example>
         /// </summary>
-        /// <remarks><para>Obtiene los datos de DataProvider y Connection String desde la seccion appSettings del archivo .config de la aplicacion</para>
+        /// <remarks>
+        /// <para>
+        /// Obtiene los datos de DataProvider y Connection String desde la seccion appSettings del
+        /// archivo .config de la aplicacion
+        /// </para>
         /// </remarks>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
         public static IDbAdoConnection Obtener_Nueva_Conexion()
@@ -49,10 +49,13 @@ namespace JP.Base.DAL.ADO.Factories
         }
 
         /// <summary>
-        /// Devuelve una instancia de un tipo de conexion a base de datos especifico, basado en los parametros proveídos
+        /// Devuelve una instancia de un tipo de conexion a base de datos especifico, basado en los
+        /// parametros proveídos
         /// </summary>
         /// <param name="DataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
-        /// <param name="ConnString">Connection String utilizada para conectar con la base de datos especificada</param>
+        /// <param name="ConnString">
+        /// Connection String utilizada para conectar con la base de datos especificada
+        /// </param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
         private static IDbAdoConnection Instanciar_Conexion_SegunBaseDeDatos(string DataProvider, string ConnString)
         {
