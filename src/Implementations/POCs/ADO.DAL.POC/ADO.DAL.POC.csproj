@@ -88,10 +88,6 @@
       <Project>{e33c27aa-cbef-42b0-adb3-160313fe5404}</Project>
       <Name>JP.Base.DAL.ADO</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ADO.DAL.Commands\ADO.DAL.Commands.csproj">
-      <Project>{8a775645-8cbb-426f-89f5-0fa46ede4353}</Project>
-      <Name>ADO.DAL.Commands</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
