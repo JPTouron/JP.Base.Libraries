@@ -2,14 +2,10 @@
 {
     public interface ITransactionManager
     {
-        void Finalizar_Transaccion(string IDTransaccion, bool pDeshacerTransaccion);
+        int BeginTransaction(out IDbAdoConnection conn);
 
-        void Finalizar_Transaccion(string IDTransaccion);
+        void FinishTransaction(int transactionId, bool rollbackTransaction = false);
 
-        string Iniciar_Transaccion(out IDbAdoConnection DBConnTransaccionada);
-
-        IDbAdoConnection Obtener_Conexion_De_Transaccion(string pIdTransaccion);
-
-        IDbAdoConnection Obtener_Conexion_De_Transaccion();
+        IDbAdoConnection GetConnection(int transactionId = 0);
     }
 }

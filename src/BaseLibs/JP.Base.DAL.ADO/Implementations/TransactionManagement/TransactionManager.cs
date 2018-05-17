@@ -8,7 +8,7 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
 {
     internal class TransactionManager : ITransactionManager, IDisposable
     {
-        private static string lastTransactionId = "0";
+        private static int lastTransactionId;
         private string _ConnString;
         private string _DataProvider;
         private List<TransactionData> _TransactionConnections = new List<TransactionData>();
@@ -17,17 +17,31 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
         {
             _DataProvider = DataProvider;
             _ConnString = ConnString;
+            lastTransactionId = 0;
         }
 
-        public TransactionManager()
+        public TransactionManager() : this(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"])
         {
-            _DataProvider = ConfigurationManager.AppSettings["DataProvider"];
-            _ConnString = ConfigurationManager.AppSettings["ConnectionString"];
         }
 
         ~TransactionManager()
         {
             Dispose(false);
+        }
+
+        public int BeginTransaction(out IDbAdoConnection DBConnTransaccionada)
+        {
+            DBConnTransaccionada = Obtener_Nueva_Conexion();
+            DBConnTransaccionada.Open(true);
+
+            TransactionData TranData = new TransactionData();
+
+            TranData.TranId = lastTransactionId++;
+            TranData.DBConn = DBConnTransaccionada;
+
+            _TransactionConnections.Add(TranData);
+
+            return TranData.TranId;
         }
 
         public void Dispose()
@@ -36,14 +50,14 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
             GC.SuppressFinalize(this);
         }
 
-        public void Finalizar_Transaccion(string IDTransaccion, bool pDeshacerTransaccion)
+        public void FinishTransaction(int transactionId, bool rollbackTransaction = false)
         {
-            IDbAdoConnection DBConn = Obtener_Conexion_De_Transaccion(IDTransaccion);
-            DBConn.Close(pDeshacerTransaccion);
+            IDbAdoConnection DBConn = GetConnection(transactionId);
+            DBConn.Close(rollbackTransaction);
 
             foreach (TransactionData TranData in _TransactionConnections)
             {
-                if (TranData.TransactionID == IDTransaccion)
+                if (TranData.TranId == transactionId)
                 {
                     _TransactionConnections.Remove(TranData);
                     break;
@@ -51,41 +65,16 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
             }
         }
 
-        public void Finalizar_Transaccion(string IDTransaccion)
-        {
-            Finalizar_Transaccion(IDTransaccion, false);
-        }
-
-        public string Iniciar_Transaccion(out IDbAdoConnection DBConnTransaccionada)
-        {
-            DBConnTransaccionada = Obtener_Nueva_Conexion();
-            DBConnTransaccionada.Open(true);
-
-            TransactionData TranData = new TransactionData();
-
-            TranData.TransactionID = Crear_Id_Transaccion();
-            TranData.DBConn = DBConnTransaccionada;
-
-            _TransactionConnections.Add(TranData);
-
-            return TranData.TransactionID;
-        }
-
-        public IDbAdoConnection Obtener_Conexion_De_Transaccion()
-        {
-            return Obtener_Conexion_De_Transaccion(null);
-        }
-
-        public IDbAdoConnection Obtener_Conexion_De_Transaccion(string pIdTransaccion)
+        public IDbAdoConnection GetConnection(int transactionId = 0)
         {
             IDbAdoConnection DBConn = null;
             bool bConnEncontrada = false;
 
-            if (!string.IsNullOrEmpty(pIdTransaccion))
+            if (transactionId == 0)
             {
                 foreach (TransactionData TranData in _TransactionConnections)
                 {
-                    if (String.Equals(TranData.TransactionID, pIdTransaccion, StringComparison.InvariantCultureIgnoreCase))
+                    if (TranData.TranId == transactionId)
                     {
                         DBConn = TranData.DBConn;
                         bConnEncontrada = true;
@@ -110,13 +99,9 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
-            {
-                //managed
-                lastTransactionId = "0";
-            }
+                lastTransactionId = 0;
 
             //unmanaged
-
             if (_TransactionConnections != null)
             {
                 foreach (TransactionData TranData in _TransactionConnections)
@@ -128,12 +113,6 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
             }
         }
 
-        private string Crear_Id_Transaccion()
-        {
-            lastTransactionId = (Convert.ToInt32(lastTransactionId) + 1).ToString();
-            return lastTransactionId;
-        }
-
         private IDbAdoConnection Obtener_Nueva_Conexion()
         {
             return DbConnFactory.Obtener_Nueva_Conexion(_DataProvider, _ConnString);
@@ -142,16 +121,16 @@ namespace JP.Base.DAL.ADO.Implementations.TransactionManagement
         private class TransactionData
         {
             public IDbAdoConnection DBConn { get; set; }
-            public string TransactionID { get; set; }
+            public int TranId { get; set; }
 
             public override bool Equals(object obj)
             {
-                return ((TransactionData)obj).TransactionID == this.TransactionID;
+                return ((TransactionData)obj).TranId == TranId;
             }
 
             public override int GetHashCode()
             {
-                return TransactionID.GetHashCode() + DBConn.GetHashCode();
+                return TranId.GetHashCode() + DBConn.GetHashCode();
             }
         }
     }
