@@ -111,6 +111,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.Logic.EF6", "Implem
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementations.POC.Logic.EF6", "Implementations\POCs\Implementations.POC.Logic.EF6\Implementations.POC.Logic.EF6.csproj", "{A85AF198-8D3C-4508-A4E0-BCCE6C86257B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JP.Base.DAL.ADO.UnitOfWork", "Implementations\JP.Base.DAL.ADO.UnitOfWork\JP.Base.DAL.ADO.UnitOfWork.csproj", "{260078AF-579D-426F-A4B7-CF07E16C4390}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -383,6 +385,14 @@ Global
 		{A85AF198-8D3C-4508-A4E0-BCCE6C86257B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A85AF198-8D3C-4508-A4E0-BCCE6C86257B}.Release|x86.ActiveCfg = Release|Any CPU
 		{A85AF198-8D3C-4508-A4E0-BCCE6C86257B}.Release|x86.Build.0 = Release|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Debug|x86.Build.0 = Debug|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Release|Any CPU.Build.0 = Release|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Release|x86.ActiveCfg = Release|Any CPU
+		{260078AF-579D-426F-A4B7-CF07E16C4390}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -438,5 +448,6 @@ Global
 		{83AD9B2E-A3BB-49D9-9302-A3B961A59181} = {06440465-74C8-42B9-9187-C8F3ADD9E635}
 		{7C9FAAF1-BBC5-4F18-AB8E-D61778179D25} = {3D2AA0F4-0337-457D-933D-2C601410A9BC}
 		{A85AF198-8D3C-4508-A4E0-BCCE6C86257B} = {5C680857-3F2E-458E-9558-6E717EEF67A5}
+		{260078AF-579D-426F-A4B7-CF07E16C4390} = {3D2AA0F4-0337-457D-933D-2C601410A9BC}
 	EndGlobalSection
 EndGlobal

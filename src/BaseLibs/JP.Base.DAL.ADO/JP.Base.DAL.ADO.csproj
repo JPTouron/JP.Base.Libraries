@@ -85,6 +85,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDbConnFactory.cs" />
     <Compile Include="Implementations\Connections\Base\DbAdoConnection.cs" />
     <Compile Include="Contracts\IDbAdoConnection.cs" />
     <Compile Include="Implementations\Connections\OleDbConnection.cs" />
@@ -94,10 +95,12 @@
     <Compile Include="Helpers\DataReaderAdapter.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Factories\DbConnFactory.cs" />
+    <Compile Include="Implementations\Factories\DbConnFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Factories\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

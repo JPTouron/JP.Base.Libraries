@@ -1,5 +1,5 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
-using JP.Base.DAL.ADO.Factories;
+using JP.Base.DAL.ADO.Implementations.Factories;
 using System;
 using System.Data;
 
@@ -42,7 +42,7 @@ namespace ADO.DAL.POC
         private IDbAdoConnection SetConnection()
         {
             var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\DatabaseScripts\dbAccess.mdb;";
-            return DbConnFactory.GetConnection("System.Data.OleDb", connstring);
+            return new DbConnFactory().GetConnection("System.Data.OleDb", connstring);
         }
     }
 }

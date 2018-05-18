@@ -4,6 +4,11 @@ namespace JP.Base.DAL.ADO.Implementations.Commands
 {
     public class ParameterData
     {
+        public ParameterData()
+        {
+
+        }
+
         public ParameterData(string Nombre, object Valor, ParameterDirection Direccion, DbType TipoParam, int ParamSize)
         {
             Constructor(Nombre, Valor, Direccion, TipoParam, ParamSize);

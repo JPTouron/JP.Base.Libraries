@@ -22,7 +22,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         protected DbTransaction transaction = null;
         private string connstring = string.Empty;
         private bool isConnDisposed;
-        private bool isDisposed;
 
         /// <summary>
         /// Inicializa el objeto con los valores para el DataProvider y el ConnectionString desde el
@@ -50,6 +49,8 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             connstring = connString;
             dbProviderFactory = DbProviderFactories.GetFactory(dataProvider);
         }
+
+        public bool IsDisposed { get; private set; }
 
         internal enum CommandReturnType
         {
@@ -131,7 +132,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         /// <param name="NombreSP">Indica el nombre del stored procedure</param>
         /// <param name="TipoComando">Indica el tipo del comando</param>
         /// <param name="TimeOut">Indica el timeout del comando</param>
-        public void CreateCommand(string NombreCMD, CommandType TipoComando = CommandType.Text, int TimeOut = 1000)
+        public void CreateCommand(string NombreCMD, CommandType TipoComando = CommandType.Text, int TimeOut = 1000, List<ParameterData> param=null)
         {
             if (command != null)
             {
@@ -143,15 +144,17 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             command.CommandType = TipoComando;
             command.CommandText = NombreCMD;
             command.CommandTimeout = TimeOut;
+
+            AddCommandParameter(param);
         }
 
         public void Dispose()
         {
-            if (!isDisposed)
+            if (!IsDisposed)
             {
                 Dispose(true);
                 GC.SuppressFinalize(this);
-                isDisposed = true;
+                IsDisposed = true;
             }
         }
 
@@ -272,7 +275,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         /// </summary>
         private void CreateConnection()
         {
-            conn = dbProviderFactory.CreateConnection();            
+            conn = dbProviderFactory.CreateConnection();
             conn.ConnectionString = connstring;
             conn.Disposed += OnConnDisposed;
         }

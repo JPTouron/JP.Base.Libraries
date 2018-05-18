@@ -1,5 +1,5 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
-using JP.Base.DAL.ADO.Factories;
+using JP.Base.DAL.ADO.Implementations.Factories;
 using System;
 using System.Data;
 
@@ -45,7 +45,7 @@ namespace ADO.DAL.POC
         private IDbAdoConnection SetConnection()
         {
             var connstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ADO.DAL;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            return DbConnFactory.GetConnection("System.Data.SqlClient", connstring);
+            return new DbConnFactory().GetConnection("System.Data.SqlClient", connstring);
         }
     }
 }

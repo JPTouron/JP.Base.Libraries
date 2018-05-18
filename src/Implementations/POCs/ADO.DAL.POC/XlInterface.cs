@@ -1,5 +1,5 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
-using JP.Base.DAL.ADO.Factories;
+using JP.Base.DAL.ADO.Implementations.Factories;
 using System;
 using System.Data;
 
@@ -48,7 +48,8 @@ namespace ADO.DAL.POC
         {
             var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Captura_4Ado Pesadas Set.xls;Mode=ReadWrite;Extended Properties=""Excel 8.0;HDR=Yes;"";Persist Security Info=False";
 
-            return DbConnFactory.GetConnection("System.Data.OleDb", connstring);
+
+            return new DbConnFactory().GetConnection("System.Data.OleDb", connstring);
         }
     }
 }
