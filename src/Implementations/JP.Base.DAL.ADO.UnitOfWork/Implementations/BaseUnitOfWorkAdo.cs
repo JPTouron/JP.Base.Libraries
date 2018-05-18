@@ -6,13 +6,13 @@ using JP.Base.DAL.ADO.Repositories;
 
 namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 {
-    internal class BaseUnitOfWorkAdo : IBaseUnitOfWorkAdo
+    public class BaseUnitOfWorkAdo : IBaseUnitOfWorkAdo
     {
         private string connectionString = "";
-        private IDbAdoConnection currentConnection;
+        protected IDbAdoConnection currentConnection;
         private string dataProvider;
         private IDbConnFactory factory;
-         IDictionary<Type, object> repos;
+         protected IDictionary<Type, object> repos;
 
         public BaseUnitOfWorkAdo(IDbConnFactory factory, string dataProvider = "", string connectionString = "")
         {
@@ -76,6 +76,8 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
         public IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class
         {
+            
+            
             return repos[typeof(TModel)] as IGenericRepository<TModel>;
         }
 

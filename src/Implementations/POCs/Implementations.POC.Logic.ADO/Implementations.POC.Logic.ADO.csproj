@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D3D30B30-C61B-4020-AA47-164158F49D21}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Implementations.POC.Logic.ADO</RootNamespace>
+    <AssemblyName>Implementations.POC.Logic.ADO</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers.cs" />
+    <Compile Include="LogicLayer.cs" />
+    <Compile Include="Models.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
+      <Project>{f063181c-788f-4f0b-b73a-11d4aa080458}</Project>
+      <Name>JP.Base.DAL.ADO.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.ADO.EntityDbMapper\JP.Base.DAL.ADO.EntityDbMapper.csproj">
+      <Project>{06610113-2E17-4F67-BA82-25DEE667D44B}</Project>
+      <Name>JP.Base.DAL.ADO.EntityDbMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.ADO.Repositories\JP.Base.DAL.ADO.Repositories.csproj">
+      <Project>{44aad56f-c424-483d-a107-4161d68b5efd}</Project>
+      <Name>JP.Base.DAL.ADO.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
+      <Project>{E33C27AA-CBEF-42B0-ADB3-160313FE5404}</Project>
+      <Name>JP.Base.DAL.ADO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
+      <Project>{09ac9317-01bc-4881-a495-32ab0402a4df}</Project>
+      <Name>JP.Base.DAL.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
+      <Project>{8C805FBE-D496-44B1-A3AC-A3066FC34204}</Project>
+      <Name>JP.Base.DAL.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
+      <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
+      <Name>JP.Base.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
+      <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
+      <Name>JP.Base.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JP.Base.DAL.ADO.Repositories.Implementation\JP.Base.DAL.ADO.Repositories.Implementation.csproj">
+      <Project>{0D46A999-CAAB-4B28-8B00-907AD75288AF}</Project>
+      <Name>JP.Base.DAL.ADO.Repositories.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JP.Base.DAL.ADO.UnitOfWork\JP.Base.DAL.ADO.UnitOfWork.csproj">
+      <Project>{260078AF-579D-426F-A4B7-CF07E16C4390}</Project>
+      <Name>JP.Base.DAL.ADO.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JP.Base.DAL.EF6.Model\JP.Base.DAL.EF6.Model.csproj">
+      <Project>{FBDE0B0D-2B83-42B3-A4BE-058C880BDF26}</Project>
+      <Name>JP.Base.DAL.EF6.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+      <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
+      <Name>JP.Base.DAL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\JP.Base.Logic.ADO\JP.Base.Logic.ADO.csproj">
+      <Project>{C1518B77-35AD-4ADC-A803-CD36EF340BEB}</Project>
+      <Name>JP.Base.Logic.ADO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
