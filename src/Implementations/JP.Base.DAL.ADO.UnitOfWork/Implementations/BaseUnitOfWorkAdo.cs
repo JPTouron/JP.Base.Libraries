@@ -1,6 +1,8 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.UnitOfWork.Contracts;
 using System;
+using System.Collections.Generic;
+using JP.Base.DAL.ADO.Repositories;
 
 namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 {
@@ -10,12 +12,14 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
         private IDbAdoConnection currentConnection;
         private string dataProvider;
         private IDbConnFactory factory;
+         IDictionary<Type, object> repos;
 
         public BaseUnitOfWorkAdo(IDbConnFactory factory, string dataProvider = "", string connectionString = "")
         {
             this.dataProvider = dataProvider;
             this.connectionString = connectionString;
             this.factory = factory;
+            repos = new Dictionary<Type, object>();
         }
 
         public IExecutionData ExecutionData
@@ -68,6 +72,11 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
                 return meth.Invoke(arg);
             }
+        }
+
+        public IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class
+        {
+            return repos[typeof(TModel)] as IGenericRepository<TModel>;
         }
 
         protected virtual void Dispose(bool disposing)

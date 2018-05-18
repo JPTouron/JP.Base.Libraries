@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{260078AF-579D-426F-A4B7-CF07E16C4390}</ProjectGuid>
+    <ProjectGuid>{C1518B77-35AD-4ADC-A803-CD36EF340BEB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.DAL.ADO.UnitOfWork</RootNamespace>
-    <AssemblyName>JP.Base.DAL.ADO.UnitOfWork</AssemblyName>
+    <RootNamespace>JP.Base.Logic.ADO</RootNamespace>
+    <AssemblyName>JP.Base.Logic.ADO</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,35 +31,42 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\BaseUnitOfWorkAdo.cs" />
-    <Compile Include="Implementations\ExecutionData.cs" />
-    <Compile Include="Contracts\IBaseUnitOfWorkAdo.cs" />
-    <Compile Include="Contracts\IExecutionData.cs" />
+    <Compile Include="BaseLogicAdo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
-      <Project>{F063181C-788F-4F0B-B73A-11D4AA080458}</Project>
-      <Name>JP.Base.DAL.ADO.Commands</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Repositories\JP.Base.DAL.ADO.Repositories.csproj">
-      <Project>{44AAD56F-C424-483D-A107-4161D68B5EFD}</Project>
+      <Project>{44aad56f-c424-483d-a107-4161d68b5efd}</Project>
       <Name>JP.Base.DAL.ADO.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
-      <Project>{e33c27aa-cbef-42b0-adb3-160313fe5404}</Project>
-      <Name>JP.Base.DAL.ADO</Name>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
+      <Project>{09ac9317-01bc-4881-a495-32ab0402a4df}</Project>
+      <Name>JP.Base.DAL.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
       <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JP.Base.DAL.EF6.UnitOfWork\JP.Base.DAL.EF6.UnitOfWork.csproj">
-      <Project>{279390DA-1EC1-44A1-83CF-F4FD76AC055B}</Project>
-      <Name>JP.Base.DAL.EF6.UnitOfWork</Name>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
+      <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
+      <Name>JP.Base.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
+      <Project>{83ad9b2e-a3bb-49d9-9302-a3b961a59181}</Project>
+      <Name>JP.Base.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.DAL.ADO.UnitOfWork\JP.Base.DAL.ADO.UnitOfWork.csproj">
+      <Project>{260078af-579d-426f-a4b7-cf07e16c4390}</Project>
+      <Name>JP.Base.DAL.ADO.UnitOfWork</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
