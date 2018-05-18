@@ -20,9 +20,9 @@ namespace JP.Base.DAL.ADO.Factories
         /// Connection String utilizada para conectar con la base de datos especificada
         /// </param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        public static IDbAdoConnection Obtener_Nueva_Conexion(string DataProvider, string ConnectionString)
+        public static IDbAdoConnection GetConnection(string DataProvider, string ConnectionString)
         {
-            return Instanciar_Conexion_SegunBaseDeDatos(DataProvider, ConnectionString);
+            return GetConnectionByProvider(DataProvider, ConnectionString);
         }
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace JP.Base.DAL.ADO.Factories
         /// </para>
         /// </remarks>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        public static IDbAdoConnection Obtener_Nueva_Conexion()
+        public static IDbAdoConnection GetConnection()
         {
-            return Instanciar_Conexion_SegunBaseDeDatos(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"]);
+            return GetConnectionByProvider(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"]);
         }
 
         /// <summary>
@@ -57,22 +57,16 @@ namespace JP.Base.DAL.ADO.Factories
         /// Connection String utilizada para conectar con la base de datos especificada
         /// </param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        private static IDbAdoConnection Instanciar_Conexion_SegunBaseDeDatos(string DataProvider, string ConnString)
+        private static IDbAdoConnection GetConnectionByProvider(string DataProvider, string ConnString)
         {
             IDbAdoConnection IDBConn;
 
             if (DataProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase))
-            {
                 IDBConn = new Oracle9DbConnection(DataProvider, ConnString);
-            }
             else if (DataProvider.Equals("System.Data.SqlClient", StringComparison.CurrentCultureIgnoreCase))
-            {
                 IDBConn = new SqlServerDbConnection(DataProvider, ConnString);
-            }
             else
-            {
                 IDBConn = new OleDbConnection(DataProvider, ConnString);
-            }
 
             return IDBConn;
         }

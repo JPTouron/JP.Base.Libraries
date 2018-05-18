@@ -95,9 +95,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Factories\DbConnFactory.cs" />
-    <Compile Include="Implementations\TransactionManagement\TransactionManager.cs" />
-    <Compile Include="Factories\TranManagerFactory.cs" />
-    <Compile Include="Contracts\ITransactionManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

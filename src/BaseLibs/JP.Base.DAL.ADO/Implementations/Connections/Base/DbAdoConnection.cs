@@ -51,11 +51,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             dbProviderFactory = DbProviderFactories.GetFactory(dataProvider);
         }
 
-        ~DbAdoConnection()
-        {
-            Dispose(false);
-        }
-
         internal enum CommandReturnType
         {
             Scalar = 0,
@@ -277,13 +272,14 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         /// </summary>
         private void CreateConnection()
         {
-            conn = dbProviderFactory.CreateConnection();
+            conn = dbProviderFactory.CreateConnection();            
             conn.ConnectionString = connstring;
             conn.Disposed += OnConnDisposed;
         }
 
-        private object ExecuteCommand(CommandReturnType returnType, object retVal)
+        private object DoExecuteCommand(CommandReturnType returnType)
         {
+            object retVal = null;
             switch (returnType)
             {
                 case CommandReturnType.Scalar:
@@ -309,7 +305,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             try
             {
                 closeConn = PrepareConnAndTranForExecution();
-                retVal = ExecuteCommand(returnType, retVal);
+                retVal = DoExecuteCommand(returnType);
             }
             catch
             {
@@ -345,7 +341,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
         private bool PrepareConnAndTranForExecution()
         {
-            bool bCerrarConn = false;
+            bool closeConn = false;
 
             if (transaction != null)//si existe una transac asignarla al comando
                 command.Transaction = transaction;
@@ -354,10 +350,10 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
                 if (conn.State == ConnectionState.Closed)//sino checkear el estado de la conn
                 {
                     Open(false);
-                    bCerrarConn = true;//indicar que se debe cerrar la conn
+                    closeConn = true;//indicar que se debe cerrar la conn
                 }
             }
-            return bCerrarConn;
+            return closeConn;
         }
 
         /// <summary>
@@ -368,6 +364,11 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         {
             if (transaction != null)
                 transaction.Rollback();
+        }
+
+        ~DbAdoConnection()
+        {
+            Dispose(false);
         }
     }
 }

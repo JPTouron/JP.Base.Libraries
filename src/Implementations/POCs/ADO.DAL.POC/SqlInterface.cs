@@ -45,7 +45,7 @@ namespace ADO.DAL.POC
         private IDbAdoConnection SetConnection()
         {
             var connstring = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ADO.DAL;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            return DbConnFactory.Obtener_Nueva_Conexion("System.Data.SqlClient", connstring);
+            return DbConnFactory.GetConnection("System.Data.SqlClient", connstring);
         }
     }
 }
