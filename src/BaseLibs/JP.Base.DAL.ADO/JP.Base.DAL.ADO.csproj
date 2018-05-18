@@ -97,9 +97,7 @@
     <Compile Include="Implementations\Factories\DbConnFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Factories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
       <Project>{f063181c-788f-4f0b-b73a-11d4aa080458}</Project>
