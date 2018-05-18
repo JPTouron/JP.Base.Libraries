@@ -90,7 +90,6 @@
     <Compile Include="Contracts\IDbAdoConnection.cs" />
     <Compile Include="Implementations\Connections\OleDbConnection.cs" />
     <Compile Include="Implementations\Connections\Oracle9DbConnection.cs" />
-    <Compile Include="Implementations\Commands\ParameterData.cs" />
     <Compile Include="Implementations\Connections\SqlServerDbConnection.cs" />
     <Compile Include="Helpers\DataReaderAdapter.cs">
       <SubType>Component</SubType>
@@ -100,6 +99,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Factories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
+      <Project>{f063181c-788f-4f0b-b73a-11d4aa080458}</Project>
+      <Name>JP.Base.DAL.ADO.Commands</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

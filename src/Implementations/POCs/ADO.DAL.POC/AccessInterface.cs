@@ -14,7 +14,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnection())
             {
                 conn.Open();
-                conn.CreateCommand("select * from Clients", CommandType.Text);
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText= "select * from Clients"});
 
                 dt = conn.ExecuteReaderCommand();
             }
@@ -29,11 +29,11 @@ namespace ADO.DAL.POC
             using (var conn = SetConnection())
             {
                 conn.Open();
-                conn.CreateCommand($"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType.Text);
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = $"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')" });
 
                 conn.ExecuteNonQueryCommand();
 
-                conn.CreateCommand($"select * from Clients where code = '{data}'", CommandType.Text);
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = $"select * from Clients where code = '{data}'" });
 
                 dt = conn.ExecuteReaderCommand();
             }

@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace JP.Base.DAL.ADO.Implementations.Commands
+namespace JP.Base.DAL.ADO.Commands
 {
     public class ParameterData
     {

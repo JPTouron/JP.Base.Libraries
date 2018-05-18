@@ -1,4 +1,5 @@
-﻿using JP.Base.DAL.ADO.Contracts;
+﻿using JP.Base.DAL.ADO.Commands;
+using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.Implementations.Factories;
 using System;
 using System.Data;
@@ -14,7 +15,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnection())
             {
                 conn.Open();
-                conn.CreateCommand("select * from Clients", CommandType.Text);
+                conn.CreateCommand(new CommandData { CommandText = "select * from Clients", CommandType = CommandType.Text });
 
                 dt = conn.ExecuteReaderCommand();
             }
@@ -27,7 +28,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnection())
             {
                 conn.Open();
-                conn.CreateCommand($"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType.Text);
+                conn.CreateCommand(new CommandData { CommandText = $"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType = CommandType.Text });
 
                 conn.ExecuteNonQueryCommand();
             }
@@ -36,7 +37,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnection())
             {
                 conn.Open();
-                conn.CreateCommand($"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')", CommandType.Text);
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = $"INSERT INTO Clients (Code,Name) VALUES('{data}','Name{data}')" });
 
                 conn.ExecuteNonQueryCommand();
             }

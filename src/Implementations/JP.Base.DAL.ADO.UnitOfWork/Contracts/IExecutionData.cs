@@ -1,4 +1,4 @@
-﻿using JP.Base.DAL.ADO.Implementations.Commands;
+﻿using JP.Base.DAL.ADO.Commands;
 using System.Collections.Generic;
 using System.Data;
 

@@ -1,4 +1,4 @@
-﻿using JP.Base.DAL.ADO.Implementations.Commands;
+﻿using JP.Base.DAL.ADO.Commands;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -23,7 +23,7 @@ namespace JP.Base.DAL.ADO.Contracts
         /// DateTime.MinValue o null
         /// </summary>
         /// <param name="param">Lista de datos del parametro como nombre, valor y direccion</param>
-        void AddCommandParameter(List<ParameterData> param);
+        void AddCommandParameter(IEnumerable<ParameterData> param);
 
         /// <summary>
         /// Cierra la conexion a la base de datos
@@ -40,7 +40,7 @@ namespace JP.Base.DAL.ADO.Contracts
         /// <param name="NombreCMD">Indica el nombre del stored procedure</param>
         /// <param name="type">Indica el tipo del comando</param>
         /// <param name="timeout">Indica el timeout del comando</param>
-        void CreateCommand(string command, CommandType type = CommandType.Text, int timeout = 1000, List<ParameterData> param=null);
+        void CreateCommand(CommandData data);
 
         /// <summary>
         /// Ejecuta un comando SQL retornando la cantidad de filas afectadas

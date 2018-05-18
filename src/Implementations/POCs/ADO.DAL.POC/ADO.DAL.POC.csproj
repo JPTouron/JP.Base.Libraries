@@ -84,6 +84,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
+      <Project>{f063181c-788f-4f0b-b73a-11d4aa080458}</Project>
+      <Name>JP.Base.DAL.ADO.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\BaseLibs\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
       <Project>{e33c27aa-cbef-42b0-adb3-160313fe5404}</Project>
       <Name>JP.Base.DAL.ADO</Name>

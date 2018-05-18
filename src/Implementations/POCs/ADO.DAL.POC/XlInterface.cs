@@ -13,7 +13,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnectionOleDb())
             {
                 conn.Open();
-                conn.CreateCommand("UPDATE [Hoja1$] SET puesto =NULL, Fecha=null, Hora= null, Elaboracion=null,Codigo=null, Bruto=null, Tara=null, Neto=null  WHERE puesto =2", CommandType.Text);
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = "UPDATE [Hoja1$] SET puesto =NULL, Fecha=null, Hora= null, Elaboracion=null,Codigo=null, Bruto=null, Tara=null, Neto=null  WHERE puesto =2" });
 
                 conn.ExecuteNonQueryCommand();
             }
@@ -26,7 +26,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnectionOleDb())
             {
                 conn.Open();
-                conn.CreateCommand("select * from [Hoja1$]", CommandType.Text);
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = "select * from [Hoja1$]" });
 
                 dt = conn.ExecuteReaderCommand();
             }
@@ -37,7 +37,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnectionOleDb())
             {
                 conn.Open();
-                conn.CreateCommand($"insert into [Hoja1$] VALUES (1,'{DateTime.Now.Date.ToShortDateString()}','{DateTime.Now.ToShortTimeString()}',13,'009',12,10,9)", CommandType.Text);
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = $"insert into [Hoja1$] VALUES (1,'{DateTime.Now.Date.ToShortDateString()}','{DateTime.Now.ToShortTimeString()}',13,'009',12,10,9)"});
                 //conn.Agregar_Parametro_A_Comando(new ParameterData {  });
 
                 conn.ExecuteNonQueryCommand();

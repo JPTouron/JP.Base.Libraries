@@ -4,13 +4,14 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{260078AF-579D-426F-A4B7-CF07E16C4390}</ProjectGuid>
+    <ProjectGuid>{F063181C-788F-4F0B-B73A-11D4AA080458}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.DAL.ADO.UnitOfWork</RootNamespace>
-    <AssemblyName>JP.Base.DAL.ADO.UnitOfWork</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <RootNamespace>JP.Base.DAL.ADO.Commands</RootNamespace>
+    <AssemblyName>JP.Base.DAL.ADO.Commands</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,37 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implementations\BaseUnitOfWorkAdo.cs" />
-    <Compile Include="Implementations\ExecutionData.cs" />
-    <Compile Include="Contracts\IBaseUnitOfWorkAdo.cs" />
-    <Compile Include="Contracts\IExecutionData.cs" />
+    <Compile Include="CommandData.cs" />
+    <Compile Include="ParameterData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
-      <Project>{F063181C-788F-4F0B-B73A-11D4AA080458}</Project>
-      <Name>JP.Base.DAL.ADO.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
-      <Project>{e33c27aa-cbef-42b0-adb3-160313fe5404}</Project>
-      <Name>JP.Base.DAL.ADO</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
-      <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
-      <Name>JP.Base.DAL.UnitOfWork</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.DAL.EF6.UnitOfWork\JP.Base.DAL.EF6.UnitOfWork.csproj">
-      <Project>{279390DA-1EC1-44A1-83CF-F4FD76AC055B}</Project>
-      <Name>JP.Base.DAL.EF6.UnitOfWork</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
-      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
-      <Name>JP.Base.DAL.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

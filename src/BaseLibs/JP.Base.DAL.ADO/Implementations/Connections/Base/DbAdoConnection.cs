@@ -1,6 +1,6 @@
-﻿using JP.Base.DAL.ADO.Contracts;
+﻿using JP.Base.DAL.ADO.Commands;
+using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.Helpers;
-using JP.Base.DAL.ADO.Implementations.Commands;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -91,7 +91,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         /// DateTime.MinValue o null
         /// </summary>
         /// <param name="Parametros">Lista de datos del parametro como nombre, valor y direccion</param>
-        public void AddCommandParameter(List<ParameterData> Parametros)
+        public void AddCommandParameter(IEnumerable<ParameterData> Parametros)
         {
             if (Parametros != null)
                 foreach (ParameterData Param in Parametros)
@@ -132,7 +132,8 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         /// <param name="NombreSP">Indica el nombre del stored procedure</param>
         /// <param name="TipoComando">Indica el tipo del comando</param>
         /// <param name="TimeOut">Indica el timeout del comando</param>
-        public void CreateCommand(string NombreCMD, CommandType TipoComando = CommandType.Text, int TimeOut = 1000, List<ParameterData> param=null)
+
+        public void CreateCommand(CommandData data)
         {
             if (command != null)
             {
@@ -141,11 +142,11 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             }
 
             command = conn.CreateCommand();
-            command.CommandType = TipoComando;
-            command.CommandText = NombreCMD;
-            command.CommandTimeout = TimeOut;
+            command.CommandType = data.CommandType;
+            command.CommandText = data.CommandText;
+            command.CommandTimeout = data.CommandTimeout;
 
-            AddCommandParameter(param);
+            AddCommandParameter(data.Params);
         }
 
         public void Dispose()

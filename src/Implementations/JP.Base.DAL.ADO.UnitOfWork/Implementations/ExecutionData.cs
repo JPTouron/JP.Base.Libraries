@@ -1,5 +1,5 @@
-﻿using JP.Base.DAL.ADO.Contracts;
-using JP.Base.DAL.ADO.Implementations.Commands;
+﻿using JP.Base.DAL.ADO.Commands;
+using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.UnitOfWork.Contracts;
 using System.Collections.Generic;
 using System.Data;
@@ -27,7 +27,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
         public void CreateCommand(string command, CommandType type = CommandType.Text, int timeout = 1000, List<ParameterData> param = null)
         {
-            conn.CreateCommand(command, type, timeout, param);
+            conn.CreateCommand(new CommandData { CommandText = command, CommandTimeout = timeout, CommandType = type, Params = param });
         }
 
         public int ExecuteNonQueryCommand()
