@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using JP.Base.DAL.EF6.Contracts;
+using JP.Base.DAL.EF6.Repositories.Contracts;
+using JP.Base.DAL.EF6.Repositories.Exceptions;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using JP.Base.DAL.EF6.Contracts;
-using JP.Base.DAL.EF6.Repositories.Contracts;
-using JP.Base.DAL.EF6.Repositories.Exceptions;
 
 namespace JP.Base.DAL.EF6.Repositories.Implementation
 {
@@ -161,7 +160,6 @@ namespace JP.Base.DAL.EF6.Repositories.Implementation
             if (take > 0)
                 query = query.Take(take);
 
-            
             return query;
         }
 

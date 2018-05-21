@@ -201,3 +201,4 @@ ModelManifest.xml
 
 published/
 *.bak
+*.ldb

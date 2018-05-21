@@ -60,6 +60,10 @@
       <Project>{E0C708F5-DCC8-4098-ABBD-2DD9D2766F1B}</Project>
       <Name>JP.Base.DAL.EF6</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
+      <Project>{09ac9317-01bc-4881-a495-32ab0402a4df}</Project>
+      <Name>JP.Base.DAL.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -53,6 +53,10 @@
       <Project>{E0C708F5-DCC8-4098-ABBD-2DD9D2766F1B}</Project>
       <Name>JP.Base.DAL.EF6</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
+      <Project>{09AC9317-01BC-4881-A495-32AB0402A4DF}</Project>
+      <Name>JP.Base.DAL.Repositories</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
