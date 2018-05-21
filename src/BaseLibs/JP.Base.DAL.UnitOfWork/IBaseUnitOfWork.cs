@@ -35,7 +35,5 @@ namespace JP.Base.DAL.UnitOfWork
         /// allows to execute a function with a specifically defined parameter against the database
         /// </summary>
         TResult Execute<TIn, TResult>(Func<TIn, TResult> meth, TIn arg);
-
-        
     }
 }

@@ -1,6 +1,4 @@
-﻿using JP.Base.DAL.ADO.Contracts;
-
-namespace JP.Base.DAL.ADO.Contracts
+﻿namespace JP.Base.DAL.ADO.Contracts
 {
     public interface IDbConnFactory
     {

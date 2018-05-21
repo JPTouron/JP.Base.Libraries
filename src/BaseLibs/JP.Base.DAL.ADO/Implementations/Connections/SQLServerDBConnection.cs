@@ -17,11 +17,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
         {
         }
 
-        ~SqlServerDbConnection()
-        {
-            Dispose(false);
-        }
-
         protected internal override void AddParameter(string NombreParam, object Valor, ParameterDirection Direccion, DbType Tipo, int size)
         {
             SqlParameter Param = new SqlParameter(NombreParam, Valor);
@@ -67,6 +62,11 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             // Dispose on your base class.
 
             base.Dispose(disposing);
+        }
+
+        ~SqlServerDbConnection()
+        {
+            Dispose(false);
         }
     }
 }

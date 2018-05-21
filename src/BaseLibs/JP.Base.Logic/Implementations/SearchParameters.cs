@@ -4,8 +4,8 @@ using System.Linq;
 
 namespace JP.Base.Logic.Implementations
 {
-    public class SearchParameters<TModel,TIdentity,TIUnitOfWork> where TModel : BaseModel<TIdentity>
-        where TIUnitOfWork:IBaseUnitOfWork
+    public class SearchParameters<TModel, TIdentity, TIUnitOfWork> where TModel : BaseModel<TIdentity>
+        where TIUnitOfWork : IBaseUnitOfWork
     {
         public bool getCount { get; set; }
         public IQueryable<TModel> searchQuery { get; set; }

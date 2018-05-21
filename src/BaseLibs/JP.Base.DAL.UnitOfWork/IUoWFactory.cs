@@ -4,7 +4,7 @@
     /// this interface represents a factory for a UnitOfWork
     /// </summary>
     public interface IUoWFactory<TIUnitOfWork>
-        where TIUnitOfWork: IBaseUnitOfWork
+        where TIUnitOfWork : IBaseUnitOfWork
     {
         /// <summary>
         /// <para>this method returns a <see cref="IBaseUnitOfWork"/></para>

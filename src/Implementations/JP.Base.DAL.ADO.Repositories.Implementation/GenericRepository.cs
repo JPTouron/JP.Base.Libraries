@@ -12,15 +12,12 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
         private IDbConnFactory factory;
         private IEntityDbMapper<TEntity> mapper;
 
-
-
         public GenericRepository(IEntityDbMapper<TEntity> mapper, IDbConnFactory factory)
         {
             this.mapper = mapper;
             this.factory = factory;
         }
 
-    
         public void Delete(TEntity entityToDelete)
         {
             var cmd = mapper.GetDeleteCommand(entityToDelete);

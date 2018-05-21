@@ -17,11 +17,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
         {
         }
 
-        ~Oracle9DbConnection()
-        {
-            Dispose(false);
-        }
-
         protected internal override void AddParameter(string NombreParam, object Valor, ParameterDirection Direccion, DbType Tipo, int size)
         {
             OracleParameter Param = new OracleParameter(NombreParam, Valor);
@@ -74,6 +69,11 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             // Dispose on your base class.
 
             base.Dispose(disposing);
+        }
+
+        ~Oracle9DbConnection()
+        {
+            Dispose(false);
         }
     }
 }

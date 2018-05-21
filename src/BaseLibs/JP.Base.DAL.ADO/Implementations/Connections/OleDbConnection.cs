@@ -17,11 +17,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
         {
         }
 
-        ~OleDbConnection()
-        {
-            Dispose(false);
-        }
-
         protected internal override void AddParameter(string NombreParam, object Valor, ParameterDirection Direccion, DbType Tipo, int size)
         {
             OleDbParameter Param = new OleDbParameter(NombreParam, Valor);
@@ -60,6 +55,11 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             // Dispose on your base class.
 
             base.Dispose(disposing);
+        }
+
+        ~OleDbConnection()
+        {
+            Dispose(false);
         }
     }
 }

@@ -4,11 +4,8 @@ using JP.Base.DAL.UnitOfWork;
 using JP.Base.Logic.Contracts;
 using JP.Base.Logic.Implementations;
 using JP.Base.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JP.Base.Logic.ADO
 {
@@ -19,7 +16,6 @@ namespace JP.Base.Logic.ADO
         public BaseLogicAdo(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
         {
         }
-        
 
         protected override void ExecuteCreateMethod(TModel model, IBaseUnitOfWorkAdo unitOfWork)
         {
@@ -30,7 +26,7 @@ namespace JP.Base.Logic.ADO
         protected override void ExecuteDeleteMethod(TModel model, IBaseUnitOfWorkAdo unitOfWork)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
-            
+
             repo.Delete((TModel)model);
         }
 
@@ -48,7 +44,7 @@ namespace JP.Base.Logic.ADO
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
             if (getCount)
-                totalCount = repo.Get<TModel,object>().Count();
+                totalCount = repo.Get<TModel, object>().Count();
 
             var models = ToViewModel(searchQuery).ToList();
 

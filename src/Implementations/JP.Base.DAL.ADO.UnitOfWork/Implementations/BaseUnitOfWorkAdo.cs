@@ -10,6 +10,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
     {
         protected IDbAdoConnection currentConnection;
         protected IDictionary<Type, object> repos;
+
         //private string connectionString = "";
         //private string dataProvider;
         private IDbConnFactory factory;
@@ -76,8 +77,8 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
         public IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class
         {
-            var repo =repos[typeof(TModel)] as IGenericRepository<TModel>;            
-            return repo; 
+            var repo = repos[typeof(TModel)] as IGenericRepository<TModel>;
+            return repo;
         }
 
         protected virtual void Dispose(bool disposing)

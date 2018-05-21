@@ -6,7 +6,6 @@ namespace JP.Base.DAL.ADO.Commands
     {
         public ParameterData()
         {
-
         }
 
         public ParameterData(string Nombre, object Valor, ParameterDirection Direccion, DbType TipoParam, int ParamSize)
