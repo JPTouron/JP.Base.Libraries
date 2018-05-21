@@ -1,28 +1,28 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
+using JP.Base.DAL.ADO.Repositories;
 using JP.Base.DAL.ADO.UnitOfWork.Contracts;
 using System;
 using System.Collections.Generic;
-using JP.Base.DAL.ADO.Repositories;
 
 namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 {
     public class BaseUnitOfWorkAdo : IBaseUnitOfWorkAdo
     {
-        private string connectionString = "";
         protected IDbAdoConnection currentConnection;
-        private string dataProvider;
+        protected IDictionary<Type, object> repos;
+        //private string connectionString = "";
+        //private string dataProvider;
         private IDbConnFactory factory;
-         protected IDictionary<Type, object> repos;
 
-        public BaseUnitOfWorkAdo(IDbConnFactory factory, string dataProvider = "", string connectionString = "")
+        public BaseUnitOfWorkAdo(IDbConnFactory factory)
         {
-            this.dataProvider = dataProvider;
-            this.connectionString = connectionString;
+            //this.dataProvider = dataProvider;
+            //this.connectionString = connectionString;
             this.factory = factory;
             repos = new Dictionary<Type, object>();
         }
 
-        public IExecutionData ExecutionData
+        public ICommandExecutionData ExecutionData
         {
             get
             {
@@ -46,9 +46,9 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
         public void Execute(Action meth, bool saveChanges = false)
         {
-            using (var conn = GetConnection())
+            using (currentConnection = GetConnection())
             {
-                conn.Open(true);
+                currentConnection.Open(true);
 
                 meth.Invoke();
             }
@@ -56,9 +56,9 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
         public TResult Execute<TResult>(Func<TResult> meth)
         {
-            using (var conn = GetConnection())
+            using (currentConnection = GetConnection())
             {
-                conn.Open(true);
+                currentConnection.Open(true);
 
                 return meth.Invoke();
             }
@@ -66,9 +66,9 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
         public TResult Execute<TIn, TResult>(Func<TIn, TResult> meth, TIn arg)
         {
-            using (var conn = GetConnection())
+            using (currentConnection = GetConnection())
             {
-                conn.Open(true);
+                currentConnection.Open(true);
 
                 return meth.Invoke(arg);
             }
@@ -76,9 +76,8 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 
         public IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class
         {
-            
-            
-            return repos[typeof(TModel)] as IGenericRepository<TModel>;
+            var repo =repos[typeof(TModel)] as IGenericRepository<TModel>;            
+            return repo; 
         }
 
         protected virtual void Dispose(bool disposing)
@@ -92,7 +91,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
         private IDbAdoConnection GetConnection()
         {
             if (currentConnection == null || currentConnection.IsDisposed)
-                currentConnection = factory.GetConnection(dataProvider, connectionString);
+                currentConnection = factory.GetConnection();
 
             return currentConnection;
         }

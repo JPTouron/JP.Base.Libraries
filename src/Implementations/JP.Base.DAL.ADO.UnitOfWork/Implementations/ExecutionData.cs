@@ -6,7 +6,7 @@ using System.Data;
 
 namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
 {
-    internal class ExecutionData : IExecutionData
+    internal class ExecutionData : ICommandExecutionData
     {
         private IDbAdoConnection conn;
 

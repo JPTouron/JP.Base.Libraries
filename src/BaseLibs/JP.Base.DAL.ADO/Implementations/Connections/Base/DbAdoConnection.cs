@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace JP.Base.DAL.ADO.Implementations.Connections.Base
@@ -22,6 +23,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         protected DbTransaction transaction = null;
         private string connstring = string.Empty;
         private bool isConnDisposed;
+        bool transactionWasCommited;
 
         /// <summary>
         /// Inicializa el objeto con los valores para el DataProvider y el ConnectionString desde el
@@ -51,6 +53,16 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         }
 
         public bool IsDisposed { get; private set; }
+
+        public string ConnHash
+        {
+            get
+            {
+
+                return conn == null ? "" : conn.GetHashCode().ToString();
+            }
+
+        }
 
         internal enum CommandReturnType
         {
@@ -107,21 +119,39 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         /// <returns>True si el proceso retorna exitosamente</returns>
         public void Close(bool rollbackTransaction = false)
         {
+            Debug.WriteLine($"closing connection, rollback: { rollbackTransaction}");
+            Debug.WriteLine($"conn != null: { conn != null}");
+
+
             if (conn != null)
             {
+                Debug.WriteLine($"conn id: { conn.GetHashCode()}");
+                Debug.WriteLine($"conn state: { conn.State.ToString()}");
+
                 if (conn.State == ConnectionState.Open)
                 {
                     if (rollbackTransaction)
+                    {
                         RollbackTransaction();
+
+
+                        Debug.WriteLine($"rolling back tran");
+                    }
                     else
                     {
                         if (transaction != null)
+                        {
                             transaction.Commit();
+                            transactionWasCommited = true;
+                        }
                     }
 
                     conn.Close();
                     conn.Disposed -= OnConnDisposed;
                     isConnDisposed = false;
+
+                    Debug.WriteLine($"closed conn, and removed on disposed event ");
+
                 }
             }
         }
@@ -192,12 +222,20 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
             try
             {
+                Debug.WriteLine($"Opening connection, conn ==null: { conn == null}");
+
                 if (conn == null)
                     CreateConnection();
+
+                Debug.WriteLine($"conn state: { conn.State.ToString()}");
 
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
 
+                Debug.WriteLine($"conn state: { conn.State.ToString()}");
+                Debug.WriteLine($"conn id: { ConnHash}");
+
+                Debug.WriteLine($"begin tran: { beginTransaction}");
                 if (beginTransaction)
                     transaction = conn.BeginTransaction();
 
@@ -205,6 +243,8 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             }
             catch
             {
+
+                Debug.WriteLine($"error on dbadoconnection conn!=null: { conn != null}");
                 if (conn != null)
                     conn.Dispose();
 
@@ -239,7 +279,9 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
                 if (transaction != null)
                 {
-                    transaction.Rollback();
+                    if (transactionWasCommited)
+                        transaction.Rollback();
+
                     transaction.Dispose();
                 }
 
@@ -279,6 +321,8 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             conn = dbProviderFactory.CreateConnection();
             conn.ConnectionString = connstring;
             conn.Disposed += OnConnDisposed;
+
+            Debug.WriteLine($"Created Connection{ConnHash}");
         }
 
         private object DoExecuteCommand(CommandReturnType returnType)
@@ -319,6 +363,10 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             }
             finally
             {
+
+                if (transaction!=null)
+                    transaction.Commit();
+                                
                 if (closeConn)
                     Close(false);//cerrar la conn sin tocar la tran
             }
@@ -341,6 +389,8 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         private void OnConnDisposed(object sender, EventArgs e)
         {
             isConnDisposed = true;
+            Debug.WriteLine($"Disposed internal Connection {((DbConnection)sender).GetHashCode()}");
+
         }
 
         private bool PrepareConnAndTranForExecution()

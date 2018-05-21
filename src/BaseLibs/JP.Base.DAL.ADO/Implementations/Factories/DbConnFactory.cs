@@ -2,6 +2,7 @@
 using JP.Base.DAL.ADO.Implementations.Connections;
 using System;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace JP.Base.DAL.ADO.Implementations.Factories
 {
@@ -10,8 +11,24 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
     /// <para>Clase estática que representa una fabrica de conexiones a base de datos</para>
     /// <para>Es posible seleccionar entre: Oracle, SQL Server y OleDb</para>
     /// </summary>
-    public  class DbConnFactory : IDbConnFactory
+    public class DbConnFactory : IDbConnFactory
     {
+        private IDbAdoConnection currentConnection;
+
+        private string defaultedConnectionString;
+
+        private string defaultedDataProvider;
+
+        public DbConnFactory()
+        {
+        }
+
+        public DbConnFactory(string dataProvider = "", string connectionString = "")
+        {
+            defaultedDataProvider = dataProvider;
+            defaultedConnectionString = connectionString;
+        }
+
         /// <summary>
         /// Devuelve IDBConnection que representa la conexion seleccionada segun los parametros proveídos
         /// </summary>
@@ -20,15 +37,22 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
         /// Connection String utilizada para conectar con la base de datos especificada
         /// </param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        public  IDbAdoConnection GetConnection(string dataProvider = "", string connectionString = "")
+        public IDbAdoConnection GetConnection(string dataProvider = "", string connectionString = "")
         {
-            if (string.IsNullOrEmpty(dataProvider))
-                dataProvider = ConfigurationManager.AppSettings["DataProvider"];
+            var pDataProv = "";
+            if (string.IsNullOrEmpty(dataProvider) && string.IsNullOrEmpty(defaultedDataProvider))
+                pDataProv = ConfigurationManager.AppSettings["DataProvider"];
+            else
+                pDataProv = string.IsNullOrEmpty(dataProvider) ? defaultedDataProvider : dataProvider;
 
-            if (string.IsNullOrEmpty(connectionString))
-                connectionString = ConfigurationManager.AppSettings["ConnectionString"];
+            var pConnString = "";
 
-            return GetConnectionByProvider(dataProvider, connectionString);
+            if (string.IsNullOrEmpty(connectionString) && string.IsNullOrEmpty(defaultedConnectionString))
+                pConnString = ConfigurationManager.AppSettings["ConnectionString"];
+            else
+                pConnString = string.IsNullOrEmpty(connectionString) ? defaultedConnectionString : connectionString;
+
+            return GetConnectionByProvider(pDataProv, pConnString);
         }
 
         /// <summary>
@@ -40,18 +64,25 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
         /// Connection String utilizada para conectar con la base de datos especificada
         /// </param>
         /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        private  IDbAdoConnection GetConnectionByProvider(string DataProvider, string ConnString)
+        private IDbAdoConnection GetConnectionByProvider(string DataProvider, string ConnString)
         {
-            IDbAdoConnection IDBConn;
+            if (currentConnection == null || currentConnection.IsDisposed)
+            {
+                IDbAdoConnection dbconn;
 
-            if (DataProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase))
-                IDBConn = new Oracle9DbConnection(DataProvider, ConnString);
-            else if (DataProvider.Equals("System.Data.SqlClient", StringComparison.CurrentCultureIgnoreCase))
-                IDBConn = new SqlServerDbConnection(DataProvider, ConnString);
-            else
-                IDBConn = new OleDbConnection(DataProvider, ConnString);
+                if (DataProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase))
+                    dbconn = new Oracle9DbConnection(DataProvider, ConnString);
+                else if (DataProvider.Equals("System.Data.SqlClient", StringComparison.CurrentCultureIgnoreCase))
+                    dbconn = new SqlServerDbConnection(DataProvider, ConnString);
+                else
+                    dbconn = new OleDbConnection(DataProvider, ConnString);
 
-            return IDBConn;
+                Debug.WriteLine($"providing connection: {dbconn.ConnHash}");
+
+                currentConnection = dbconn;
+            }
+
+            return currentConnection;
         }
     }
 }

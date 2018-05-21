@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JP.Base.DAL.ADO.UnitOfWork</RootNamespace>
     <AssemblyName>JP.Base.DAL.ADO.UnitOfWork</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,7 +38,7 @@
     <Compile Include="Implementations\BaseUnitOfWorkAdo.cs" />
     <Compile Include="Implementations\ExecutionData.cs" />
     <Compile Include="Contracts\IBaseUnitOfWorkAdo.cs" />
-    <Compile Include="Contracts\IExecutionData.cs" />
+    <Compile Include="Contracts\ICommandExecutionData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
       <Project>{e33c27aa-cbef-42b0-adb3-160313fe5404}</Project>
       <Name>JP.Base.DAL.ADO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
+      <Project>{09AC9317-01BC-4881-A495-32AB0402A4DF}</Project>
+      <Name>JP.Base.DAL.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
       <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>

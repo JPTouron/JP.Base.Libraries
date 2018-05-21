@@ -4,7 +4,7 @@ using System.Data;
 
 namespace JP.Base.DAL.ADO.UnitOfWork.Contracts
 {
-    public interface IExecutionData
+    public interface ICommandExecutionData
     {
         /// <summary>
         /// Invoca al metodo abstracto Agregar_Parametro con los parametros especificados, y

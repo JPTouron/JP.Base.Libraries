@@ -7,6 +7,8 @@ namespace JP.Base.DAL.ADO.Contracts
 {
     public interface IDbAdoConnection : IDisposable
     {
+        string ConnHash { get; }
+
         bool IsDisposed { get; }
 
         /// <summary>
