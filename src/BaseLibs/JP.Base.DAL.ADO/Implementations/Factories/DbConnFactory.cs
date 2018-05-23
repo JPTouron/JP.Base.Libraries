@@ -18,18 +18,15 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
         private string defaultedConnectionString;
 
         private string defaultedDataProvider;
-
-        public DbConnFactory()
-        {
-            connectionsByProviders = new Dictionary<string, Func<string, string, IDbAdoConnection>>();
-
-            SetupProviderDictionary(ref connectionsByProviders);
-        }
+                
 
         public DbConnFactory(string dataProvider = "", string connectionString = "")
         {
             defaultedDataProvider = dataProvider;
             defaultedConnectionString = connectionString;
+            connectionsByProviders = new Dictionary<string, Func<string, string, IDbAdoConnection>>();
+
+            SetupProviderDictionary(ref connectionsByProviders);
         }
 
         public IDbAdoConnection GetConnection(string dataProvider = "", string connectionString = "")
@@ -62,6 +59,9 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
 
         private IDbAdoConnection GetConnectionByProvider(string dataProvider, string connString)
         {
+            if (dataProvider == null)
+                dataProvider = "";
+
             if (currentConnection == null || currentConnection.IsDisposed)
             {
                 if (connectionsByProviders.ContainsKey(dataProvider))
@@ -70,7 +70,7 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
                     Debug.WriteLine($"providing connection: {currentConnection.ConnHash}");
                 }
                 else
-                    currentConnection = new OleDbConnection(dataProvider, connString);
+                    currentConnection = new OleDbConnection("System.Data.OleDb", connString);
             }
 
             return currentConnection;

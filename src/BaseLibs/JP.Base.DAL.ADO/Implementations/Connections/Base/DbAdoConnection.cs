@@ -261,7 +261,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
                 if (transaction != null)
                 {
-                    if (transactionWasCommited)
+                    if (!transactionWasCommited)
                         transaction.Rollback();
 
                     transaction.Dispose();
@@ -347,7 +347,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             {
                 if (transaction != null)
                     transaction.Commit();
-
+                
                 if (closeConn)
                     Close(false);//cerrar la conn sin tocar la tran
             }
