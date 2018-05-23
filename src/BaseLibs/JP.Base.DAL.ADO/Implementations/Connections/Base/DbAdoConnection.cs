@@ -29,23 +29,11 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         /// Inicializa el objeto con los valores para el DataProvider y el ConnectionString desde el
         /// archivo Web.configo o App.config
         /// </summary>
-        public DbAdoConnection()
+        public DbAdoConnection() : this(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"])
         {
-            var dataProvider = ConfigurationManager.AppSettings["DataProvider"];
-            connstring = ConfigurationManager.AppSettings["ConnectionString"];
-            dbProviderFactory = DbProviderFactories.GetFactory(dataProvider);
+
         }
 
-        /// <summary>
-        /// Inicializa el objeto con los valores para el DataProvider y el ConnectionString definidos
-        /// en los parametros
-        /// </summary>
-        /// <param name="dataProvider">
-        /// Define el proveedor de datos de acuerdo al NameSpace del mismo. Ej: System.Data.SqlClient
-        /// </param>
-        /// <param name="connString">
-        /// El string que representa la cadena de conexion a la base de datos
-        /// </param>
         public DbAdoConnection(string dataProvider, string connString)
         {
             connstring = connString;
