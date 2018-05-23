@@ -1,18 +1,18 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.Implementations.Connections;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 
 namespace JP.Base.DAL.ADO.Implementations.Factories
 {
     /// <summary>
-    /// <para>v1.0.0 - 26-03-2010</para>
-    /// <para>Clase estática que representa una fabrica de conexiones a base de datos</para>
-    /// <para>Es posible seleccionar entre: Oracle, SQL Server y OleDb</para>
+    /// provides an implementation of the IDbAdoConnection based on the dataprovider set as parameter
     /// </summary>
     public class DbConnFactory : IDbConnFactory
     {
+        private IDictionary<string, Func<string, string, IDbAdoConnection>> connectionsByProviders;
         private IDbAdoConnection currentConnection;
 
         private string defaultedConnectionString;
@@ -21,6 +21,9 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
 
         public DbConnFactory()
         {
+            connectionsByProviders = new Dictionary<string, Func<string, string, IDbAdoConnection>>();
+
+            SetupProviderDictionary(ref connectionsByProviders);
         }
 
         public DbConnFactory(string dataProvider = "", string connectionString = "")
@@ -29,14 +32,6 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
             defaultedConnectionString = connectionString;
         }
 
-        /// <summary>
-        /// Devuelve IDBConnection que representa la conexion seleccionada segun los parametros proveídos
-        /// </summary>
-        /// <param name="dataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
-        /// <param name="ConnString">
-        /// Connection String utilizada para conectar con la base de datos especificada
-        /// </param>
-        /// <returns>IDBConnection que representa la conexion seleccionada</returns>
         public IDbAdoConnection GetConnection(string dataProvider = "", string connectionString = "")
         {
             var pDataProv = "";
@@ -56,30 +51,26 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
         }
 
         /// <summary>
-        /// Devuelve una instancia de un tipo de conexion a base de datos especifico, basado en los
-        /// parametros proveídos
+        /// when overridden we can add (or re-create) the dictionary that would pair dataproviders as string with a method to create IDbAdoConnection implementation
         /// </summary>
-        /// <param name="DataProvider">Namespace del Data Provider <example>System.Data.OracleClient</example></param>
-        /// <param name="ConnString">
-        /// Connection String utilizada para conectar con la base de datos especificada
-        /// </param>
-        /// <returns>IDBConnection que representa la conexion seleccionada</returns>
-        private IDbAdoConnection GetConnectionByProvider(string DataProvider, string ConnString)
+        protected virtual void SetupProviderDictionary(ref IDictionary<string, Func<string, string, IDbAdoConnection>> dbConnectionsByProviders)
+        {
+            dbConnectionsByProviders.Add("System.Data.OracleClient", (dataProvider, connString) => new Oracle9DbConnection(dataProvider, connString));
+            dbConnectionsByProviders.Add("System.Data.SqlClient", (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
+            dbConnectionsByProviders.Add("System.Data.OleDb", (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
+        }
+
+        private IDbAdoConnection GetConnectionByProvider(string dataProvider, string connString)
         {
             if (currentConnection == null || currentConnection.IsDisposed)
             {
-                IDbAdoConnection dbconn;
-
-                if (DataProvider.Equals("System.Data.OracleClient", StringComparison.CurrentCultureIgnoreCase))
-                    dbconn = new Oracle9DbConnection(DataProvider, ConnString);
-                else if (DataProvider.Equals("System.Data.SqlClient", StringComparison.CurrentCultureIgnoreCase))
-                    dbconn = new SqlServerDbConnection(DataProvider, ConnString);
+                if (connectionsByProviders.ContainsKey(dataProvider))
+                {
+                    currentConnection = connectionsByProviders[dataProvider].Invoke(dataProvider, connString);
+                    Debug.WriteLine($"providing connection: {currentConnection.ConnHash}");
+                }
                 else
-                    dbconn = new OleDbConnection(DataProvider, ConnString);
-
-                Debug.WriteLine($"providing connection: {dbconn.ConnHash}");
-
-                currentConnection = dbconn;
+                    currentConnection = new OleDbConnection(dataProvider, connString);
             }
 
             return currentConnection;
