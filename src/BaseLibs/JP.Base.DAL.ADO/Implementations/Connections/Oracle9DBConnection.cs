@@ -1,7 +1,7 @@
 ﻿using JP.Base.DAL.ADO.Implementations.Connections.Base;
+using Oracle.ManagedDataAccess.Client;
 using System.Configuration;
 using System.Data;
-using System.Data.OracleClient;
 
 namespace JP.Base.DAL.ADO.Implementations.Connections
 {
@@ -38,7 +38,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
         {
             DataSet DSReturn = new DataSet();
 
-            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_TABULAR"], OracleType.Cursor);
+            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_TABULAR"], OracleDbType.RefCursor);
             prm.Direction = ParameterDirection.Output;
             command.Parameters.Add(prm);
 
@@ -52,7 +52,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
 
         protected internal override object ExecuteScalar()
         {
-            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"], OracleType.Number);
+            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"], OracleDbType.Int32);
             prm.Direction = ParameterDirection.Output;
 
             command.Parameters.Add(prm);
