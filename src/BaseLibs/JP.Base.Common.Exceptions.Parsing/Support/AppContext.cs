@@ -2,7 +2,7 @@
 
 namespace JP.Base.Common.Exceptions.Parsing.Support
 {
-    internal static class AppContext
+    internal static class MyAppContext
     {
         public static string ApplicationPath
         {

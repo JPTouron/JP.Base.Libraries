@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace JP.Base.Errors.Logging.Support
 {
-    internal static class AppContext
+    internal static class MyAppContext
     {
         public static string ApplicationPath
         {

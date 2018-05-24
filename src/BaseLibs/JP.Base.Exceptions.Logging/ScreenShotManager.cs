@@ -66,7 +66,7 @@ namespace JP.Base.Errors.Logging
                 {
                     ticks = string.Format("[{0}]", DateTime.Now.Ticks.ToString());
 
-                    screenshotFullPath = Path.Combine(AppContext.ApplicationPath, string.Format("{0}[{1}]", screenshotFileName, ticks));
+                    screenshotFullPath = Path.Combine(MyAppContext.ApplicationPath, string.Format("{0}[{1}]", screenshotFileName, ticks));
 
                     if (Path.GetExtension(screenshotFullPath) != extension)
                         screenshotFullPath += extension;

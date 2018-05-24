@@ -111,7 +111,7 @@ namespace JP.Base.Common.Exceptions.Parsing
             builder.Append(Environment.NewLine);
 
             builder.Append("Application path:      ");
-            builder.Append(AppContext.ApplicationPath);
+            builder.Append(MyAppContext.ApplicationPath);
 
             builder.Append(Environment.NewLine);
             builder.Append("Application Domain:    ");

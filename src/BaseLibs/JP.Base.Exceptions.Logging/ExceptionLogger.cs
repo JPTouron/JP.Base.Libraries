@@ -479,7 +479,7 @@ namespace JP.Base.Errors.Logging
         {
             string result = (string.IsNullOrEmpty(LogFilePath) ? ConfigReader.LogFilePath : LogFilePath);
 
-            result = string.IsNullOrEmpty(result) ? AppContext.ApplicationStartupPath : result;
+            result = string.IsNullOrEmpty(result) ? MyAppContext.ApplicationStartupPath : result;
 
             return result;
         }
