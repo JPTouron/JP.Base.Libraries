@@ -53,7 +53,7 @@ namespace JP.Base.DAL.ADO.Tests
         [TestInitialize]
         public void Initialize()
         {
-            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\dbAccess.mdb;";
+            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\..\..\..\resources\dbAccess.mdb;";
 
             factory = new DbConnFactory("system.data.oledb", connstring);
         }
