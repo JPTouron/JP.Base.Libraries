@@ -1,6 +1,5 @@
 ﻿using JP.Base.DAL.ADO.Commands;
 using JP.Base.DAL.ADO.Contracts;
-using JP.Base.DAL.ADO.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -41,6 +40,13 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             dbProviderFactory = DbProviderFactories.GetFactory(dataProvider);
 
             Debug.WriteLine($"created AdoConnection:{dataProvider} - {connstring}");
+        }
+
+        ~DbAdoConnection()
+        {
+            Debug.WriteLine($"DbAdoConnection destructor");
+
+            Dispose(false);
         }
 
         public string ConnHash
@@ -141,6 +147,11 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             command.CommandTimeout = data.CommandTimeout;
 
             AddCommandParameter(data.Params);
+        }
+
+        public void CreateCommand(string commandText)
+        {
+            CreateCommand(new CommandData { CommandText = commandText });
         }
 
         public void Dispose()
@@ -269,20 +280,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             //unmanaged
         }
 
-        protected DataTable ReaderToTable(DbDataReader reader)
-        {
-            var result = new DataTable();
-            var adapter = new DataReaderAdapter();
-            result.Locale = CultureInfo.CurrentCulture;
-
-            adapter.Fill_From_Reader(result, reader);
-
-            reader.Close();
-            adapter.Dispose();
-
-            return result;
-        }
-
         private void CreateConnection()
         {
             Debug.WriteLine($"OnCreateConnection()");
@@ -331,13 +328,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
             isConnDisposed = true;
             Debug.WriteLine($"Disposed internal Connection {((DbConnection)sender).GetHashCode()}");
-        }
-
-        ~DbAdoConnection()
-        {
-            Debug.WriteLine($"DbAdoConnection destructor");
-
-            Dispose(false);
         }
     }
 }

@@ -92,11 +92,8 @@
     <Compile Include="Implementations\Connections\Base\DbAdoConnection.cs" />
     <Compile Include="Contracts\IDbAdoConnection.cs" />
     <Compile Include="Implementations\Connections\OleDbConnection.cs" />
-    <Compile Include="Implementations\Connections\Oracle9DbConnection.cs" />
+    <Compile Include="Implementations\Connections\OracleDbConnection.cs" />
     <Compile Include="Implementations\Connections\SqlServerDbConnection.cs" />
-    <Compile Include="Helpers\DataReaderAdapter.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Implementations\Factories\DbConnFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

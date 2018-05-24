@@ -49,7 +49,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
         {
             using (currentConnection = GetConnection())
             {
-                currentConnection.Open(true);
+                currentConnection.Open();
 
                 meth.Invoke();
             }
@@ -59,7 +59,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
         {
             using (currentConnection = GetConnection())
             {
-                currentConnection.Open(true);
+                currentConnection.Open();
 
                 return meth.Invoke();
             }
@@ -69,7 +69,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
         {
             using (currentConnection = GetConnection())
             {
-                currentConnection.Open(true);
+                currentConnection.Open();
 
                 return meth.Invoke(arg);
             }

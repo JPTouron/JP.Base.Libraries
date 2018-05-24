@@ -37,7 +37,16 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
         protected internal override DataTable ExecuteReader()
         {
             var reader = command.ExecuteReader();
-            var result = ReaderToTable(reader);
+            var result = new DataTable();
+
+            result.Load(reader);
+
+
+            if (reader != null)
+            {
+                reader.Close();
+                reader.Dispose();
+            }
 
             return result;
         }

@@ -46,7 +46,7 @@ namespace ADO.DAL.POC
 
         private IDbAdoConnection SetConnectionOleDb()
         {
-            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Captura_4Ado Pesadas Set.xls;Mode=ReadWrite;Extended Properties=""Excel 8.0;HDR=Yes;"";Persist Security Info=False";
+            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=XlFile.xls;Mode=ReadWrite;Extended Properties=""Excel 8.0;HDR=Yes;"";Persist Security Info=False";
 
 
             return new DbConnFactory().GetConnection("System.Data.OleDb", connstring);

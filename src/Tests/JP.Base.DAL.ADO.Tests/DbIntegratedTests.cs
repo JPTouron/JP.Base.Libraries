@@ -11,16 +11,55 @@ namespace JP.Base.DAL.ADO.Tests
     {
         private IDbConnFactory factory;
 
+        [TestMethod]
+        public void Connection_CanGetMoreThanOneDataTableOnOneOpenedConnection()
+        {
+            using (var conn = factory.GetConnection())
+            {
+                conn.Open();
+                conn.CreateCommand("select * from users");
+                var dt = conn.ExecuteReaderCommand();
+
+                conn.CreateCommand("select * from clients");
+
+                var dt1 = conn.ExecuteReaderCommand();
+
+                Assert.IsNotNull(dt);
+                Assert.IsNotNull(dt1);
+            }
+        }
+
+        [TestMethod]
+        public void Connection_GetsCreatedOnceAndCanBeClosedAndOpenedThroughout()
+        {
+            using (var conn = factory.GetConnection())
+            {
+                var hash = conn.ConnHash;
+                Assert.IsTrue(hash == "");
+
+                conn.Open();
+                hash = conn.ConnHash;
+
+                Assert.IsTrue(hash != "");
+
+                conn.Close();
+                Assert.IsTrue(hash == conn.ConnHash);
+
+                conn.Open();
+                Assert.IsTrue(hash == conn.ConnHash);
+            }
+        }
+
         [TestInitialize]
         public void Initialize()
         {
             var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\dbAccess.mdb;";
 
-            factory = new DbConnFactory("", connstring);
+            factory = new DbConnFactory("system.data.oledb", connstring);
         }
 
         [TestMethod]
-        public void TestTransactions()
+        public void Transactions_PerformInsertAndUpdateWithinCommitedTransactionAndRollbackOnSecondUpdate()
         {
             var count = -1;
             var id = -2;
@@ -37,7 +76,7 @@ namespace JP.Base.DAL.ADO.Tests
                 conn.CreateCommand(new CommandData { CommandText = "SELECT @@Identity" });
 
                 id = Convert.ToInt32(conn.ExecuteScalarCommand());
-                
+
                 conn.CreateCommand(new CommandData { CommandText = $"update clients set code='meh...' where id ={id}" });
                 conn.ExecuteNonQueryCommand();
 
@@ -59,20 +98,14 @@ namespace JP.Base.DAL.ADO.Tests
                 conn.CreateCommand(new CommandData { CommandText = $"select name from clients where id = {id}" });
                 name = conn.ExecuteScalarCommand().ToString();
 
-
-
                 conn.CreateCommand(new CommandData { CommandText = $"select * from clients where id = {id}" });
                 var dt = conn.ExecuteReaderCommand();
 
                 count = dt.Rows.Count;
-
-
             }
 
             Assert.IsTrue(count == 1);
             Assert.IsTrue(name == "namey test");
-
-
         }
     }
 }

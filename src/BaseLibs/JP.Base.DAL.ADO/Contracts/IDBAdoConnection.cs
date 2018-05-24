@@ -23,6 +23,8 @@ namespace JP.Base.DAL.ADO.Contracts
 
         void CreateCommand(CommandData data);
 
+        void CreateCommand(string commandText);
+
         int ExecuteNonQueryCommand();
 
         DataTable ExecuteReaderCommand();

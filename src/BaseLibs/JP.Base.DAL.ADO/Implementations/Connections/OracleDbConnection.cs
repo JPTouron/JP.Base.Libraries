@@ -5,14 +5,14 @@ using System.Data;
 
 namespace JP.Base.DAL.ADO.Implementations.Connections
 {
-    internal class Oracle9DbConnection : DbAdoConnection
+    internal class OracleDbConnection : DbAdoConnection
     {
-        public Oracle9DbConnection()
+        public OracleDbConnection()
             : base(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"])
         {
         }
 
-        public Oracle9DbConnection(string DataProvider, string ConnString)
+        public OracleDbConnection(string DataProvider, string ConnString)
             : base(DataProvider, ConnString)
         {
         }
@@ -71,7 +71,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             base.Dispose(disposing);
         }
 
-        ~Oracle9DbConnection()
+        ~OracleDbConnection()
         {
             Dispose(false);
         }

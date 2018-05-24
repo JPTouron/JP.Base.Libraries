@@ -52,9 +52,9 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
         /// </summary>
         protected virtual void SetupProviderDictionary(ref IDictionary<string, Func<string, string, IDbAdoConnection>> dbConnectionsByProviders)
         {
-            dbConnectionsByProviders.Add("System.Data.OracleClient", (dataProvider, connString) => new Oracle9DbConnection(dataProvider, connString));
-            dbConnectionsByProviders.Add("System.Data.SqlClient", (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
-            dbConnectionsByProviders.Add("System.Data.OleDb", (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
+            dbConnectionsByProviders.Add("System.Data.OracleClient".ToLower(), (dataProvider, connString) => new OracleDbConnection(dataProvider, connString));
+            dbConnectionsByProviders.Add("System.Data.SqlClient".ToLower(), (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
+            dbConnectionsByProviders.Add("System.Data.OleDb".ToLower(), (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
         }
 
         private IDbAdoConnection GetConnectionByProvider(string dataProvider, string connString)
@@ -64,7 +64,7 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
 
             if (currentConnection == null || currentConnection.IsDisposed)
             {
-                if (connectionsByProviders.ContainsKey(dataProvider))
+                if (connectionsByProviders.ContainsKey(dataProvider.ToLower()))
                 {
                     currentConnection = connectionsByProviders[dataProvider].Invoke(dataProvider, connString);
                     Debug.WriteLine($"providing connection: {currentConnection.ConnHash}");
