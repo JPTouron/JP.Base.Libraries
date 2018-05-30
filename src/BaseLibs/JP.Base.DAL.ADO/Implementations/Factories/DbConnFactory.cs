@@ -54,7 +54,7 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
         {
             dbConnectionsByProviders.Add("System.Data.OracleClient".ToLower(), (dataProvider, connString) => new OracleDbConnection(dataProvider, connString));
             dbConnectionsByProviders.Add("System.Data.SqlClient".ToLower(), (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
-            dbConnectionsByProviders.Add("System.Data.OleDb".ToLower(), (dataProvider, connString) => new SqlServerDbConnection(dataProvider, connString));
+            dbConnectionsByProviders.Add("System.Data.OleDb".ToLower(), (dataProvider, connString) => new OleDbConnection(dataProvider, connString));
         }
 
         private IDbAdoConnection GetConnectionByProvider(string dataProvider, string connString)
