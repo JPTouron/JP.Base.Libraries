@@ -10,9 +10,9 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
     public abstract class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity : class
     {
         private IDbConnFactory factory;
-        private IEntityDbMapper<TEntity> mapper;
+        private ICommandMapper<TEntity> mapper;
 
-        public GenericRepository(IEntityDbMapper<TEntity> mapper, IDbConnFactory factory)
+        public GenericRepository(ICommandMapper<TEntity> mapper, IDbConnFactory factory)
         {
             this.mapper = mapper;
             this.factory = factory;

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>JP.Base.DAL.ADO.Repositories.Implementation</RootNamespace>
     <AssemblyName>JP.Base.DAL.ADO.Repositories.Implementation</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -35,13 +35,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.CommandMapper\JP.Base.DAL.ADO.CommandMapper.csproj">
+      <Project>{06610113-2E17-4F67-BA82-25DEE667D44B}</Project>
+      <Name>JP.Base.DAL.ADO.CommandMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
       <Project>{F063181C-788F-4F0B-B73A-11D4AA080458}</Project>
       <Name>JP.Base.DAL.ADO.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.EntityDbMapper\JP.Base.DAL.ADO.EntityDbMapper.csproj">
-      <Project>{06610113-2E17-4F67-BA82-25DEE667D44B}</Project>
-      <Name>JP.Base.DAL.ADO.EntityDbMapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Repositories\JP.Base.DAL.ADO.Repositories.csproj">
       <Project>{44aad56f-c424-483d-a107-4161d68b5efd}</Project>

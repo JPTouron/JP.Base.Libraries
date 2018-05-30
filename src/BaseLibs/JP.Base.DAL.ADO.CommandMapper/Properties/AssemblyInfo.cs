@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JP.Base.DAL.ADO.EntityMapper")]
+[assembly: AssemblyTitle("JP.Base.DAL.ADO.CommandMapper")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JP.Base.DAL.ADO.EntityMapper")]
+[assembly: AssemblyProduct("JP.Base.DAL.ADO.CommandMapper")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

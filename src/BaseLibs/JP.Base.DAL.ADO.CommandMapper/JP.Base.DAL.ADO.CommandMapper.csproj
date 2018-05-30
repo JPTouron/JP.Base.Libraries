@@ -7,9 +7,9 @@
     <ProjectGuid>{06610113-2E17-4F67-BA82-25DEE667D44B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.DAL.ADO.EntityMapper</RootNamespace>
-    <AssemblyName>JP.Base.DAL.ADO.EntityMapper</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <RootNamespace>JP.Base.DAL.ADO.CommandMapper</RootNamespace>
+    <AssemblyName>JP.Base.DAL.ADO.CommandMapper</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -31,7 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="IEntityMapper.cs" />
+    <Compile Include="ICommandMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

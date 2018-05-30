@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Implementations.POC.Logic.ADO</RootNamespace>
     <AssemblyName>Implementations.POC.Logic.ADO</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -86,13 +86,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.CommandMapper\JP.Base.DAL.ADO.CommandMapper.csproj">
+      <Project>{06610113-2E17-4F67-BA82-25DEE667D44B}</Project>
+      <Name>JP.Base.DAL.ADO.CommandMapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
       <Project>{f063181c-788f-4f0b-b73a-11d4aa080458}</Project>
       <Name>JP.Base.DAL.ADO.Commands</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.EntityDbMapper\JP.Base.DAL.ADO.EntityDbMapper.csproj">
-      <Project>{06610113-2E17-4F67-BA82-25DEE667D44B}</Project>
-      <Name>JP.Base.DAL.ADO.EntityDbMapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Repositories\JP.Base.DAL.ADO.Repositories.csproj">
       <Project>{44aad56f-c424-483d-a107-4161d68b5efd}</Project>

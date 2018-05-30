@@ -20,7 +20,7 @@ namespace Implementations.POC.Logic.ADO
         IEnumerable<OperatorWithClient> GetJoinedData(int id);
     }
 
-    public class clientMapper : IEntityDbMapper<Client>
+    public class clientMapper : ICommandMapper<Client>
 
     {
         public CommandData GetDeleteCommand(object id)
@@ -68,7 +68,7 @@ namespace Implementations.POC.Logic.ADO
 
     public class ClientRepo : GenericRepository<Client>
     {
-        public ClientRepo(IEntityDbMapper<Client> mapper, IDbConnFactory factory) : base(mapper, factory)
+        public ClientRepo(ICommandMapper<Client> mapper, IDbConnFactory factory) : base(mapper, factory)
         {
         }
 
@@ -101,7 +101,7 @@ namespace Implementations.POC.Logic.ADO
 
     public class Custrepo : GenericRepository<OperatorWithClient>, ICustomGenericRepo
     {
-        public Custrepo(IEntityDbMapper<OperatorWithClient> mapper, IDbConnFactory factory) : base(mapper, factory)
+        public Custrepo(ICommandMapper<OperatorWithClient> mapper, IDbConnFactory factory) : base(mapper, factory)
         {
         }
 
@@ -161,7 +161,7 @@ namespace Implementations.POC.Logic.ADO
         }
     }
 
-    internal class customMapper : IEntityDbMapper<OperatorWithClient>
+    internal class customMapper : ICommandMapper<OperatorWithClient>
     {
         public CommandData GetDeleteCommand(object id)
         {

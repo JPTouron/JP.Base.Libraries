@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace JP.Base.DAL.ADO.EntityMapper
 {
-    public interface IEntityDbMapper<TEntity> where TEntity : class
+    public interface ICommandMapper<TEntity> where TEntity : class
     {
         CommandData GetDeleteCommand(TEntity model);
 
