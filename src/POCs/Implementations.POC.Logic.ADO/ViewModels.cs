@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Implementations.POC.Logic.ADO
 {
-    public class ClientVM : BaseViewModel<int>
+    public class ClientVM : BaseVersionViewModel<int>
     {
 
         public string Code { get; set; }

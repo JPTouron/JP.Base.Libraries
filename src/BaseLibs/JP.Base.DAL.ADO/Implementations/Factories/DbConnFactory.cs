@@ -66,7 +66,7 @@ namespace JP.Base.DAL.ADO.Implementations.Factories
             {
                 if (connectionsByProviders.ContainsKey(dataProvider.ToLower()))
                 {
-                    currentConnection = connectionsByProviders[dataProvider].Invoke(dataProvider, connString);
+                    currentConnection = connectionsByProviders[dataProvider.ToLower()].Invoke(dataProvider, connString);
                     Debug.WriteLine($"providing connection: {currentConnection.ConnHash}");
                 }
                 else

@@ -41,7 +41,7 @@ namespace ADO.DAL.POC
 
         private IDbAdoConnection SetConnection()
         {
-            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\DatabaseScripts\dbAccess.mdb;";
+            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\..\..\..\Resources\dbAccess.mdb;";
             return new DbConnFactory().GetConnection("System.Data.OleDb", connstring);
         }
     }

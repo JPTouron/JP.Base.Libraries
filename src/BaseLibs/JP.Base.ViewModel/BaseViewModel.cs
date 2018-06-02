@@ -4,6 +4,5 @@
     {
         public T Id { get; set; }
 
-        public byte[] Version { get; set; }
     }
 }
