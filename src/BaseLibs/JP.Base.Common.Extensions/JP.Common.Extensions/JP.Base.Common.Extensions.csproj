@@ -39,6 +39,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Attributes\AttributeExtensions.cs" />
     <Compile Include="EnumExtensions.cs" />
     <Compile Include="Linq\LinqExtensions.cs" />
     <Compile Include="Linq\ParameterReplacer.cs" />
