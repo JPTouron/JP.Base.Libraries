@@ -121,7 +121,7 @@ namespace Implementations.POC.Logic.ADO
             {
                 var data = uow.Execute(() =>
                 {
-                    var res = uow.GetGenericRepo<Client>().Get<Client, object>();
+                    var res = uow.GetGenericRepo<Client>().Get<Client, object>(x=>x.Code == "");
                     return ToViewModel(res.AsQueryable()).ToList();
                 });
 
