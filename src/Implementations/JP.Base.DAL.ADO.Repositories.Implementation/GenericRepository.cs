@@ -40,7 +40,7 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
             }
         }
 
-        public IEnumerable<TEntity> Get<TSource, TProperty>(Func<TEntity, TProperty> filter = null, System.Linq.Expressions.Expression<Func<TSource, TProperty>> orderBy = null, ListSortDirection order = 0, int pageStart = 0, int pageEnd = 0)
+        public IEnumerable<TEntity> Get(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
         {
             var cmd = mapper.GetSelectCommand(filter, orderBy, order, pageStart, pageEnd);
 

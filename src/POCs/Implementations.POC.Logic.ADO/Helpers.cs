@@ -49,12 +49,13 @@ namespace Implementations.POC.Logic.ADO
             };
         }
 
-        public CommandData GetSelectCommand<TSource, TProperty>(Func<Client, string> filter = null, System.Linq.Expressions.Expression<Func<TSource, TProperty>> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
+        public CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
         {
             return new CommandData
             {
                 CommandText = "select * from clients",
             };
+
         }
 
         public CommandData GetUpdateCommand(Client model)
@@ -188,7 +189,7 @@ namespace Implementations.POC.Logic.ADO
             };
         }
 
-        public CommandData GetSelectCommand<TSource, TProperty>(Func<OperatorWithClient, string> filter = null, System.Linq.Expressions.Expression<Func<TSource, TProperty>> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
+        public CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
         {
             throw new NotImplementedException();
         }

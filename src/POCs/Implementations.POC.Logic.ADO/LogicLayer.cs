@@ -73,7 +73,7 @@ namespace Implementations.POC.Logic.ADO
 
         protected override void ValidateId(int id)
         {
-         //mehh
+            //mehh
         }
 
         protected override void ValidateModel(object model)
@@ -121,7 +121,7 @@ namespace Implementations.POC.Logic.ADO
             {
                 var data = uow.Execute(() =>
                 {
-                    var res = uow.GetGenericRepo<Client>().Get<Client, object>(x=>x.Code == "");
+                    var res = uow.GetGenericRepo<Client>().Get();
                     return ToViewModel(res.AsQueryable()).ToList();
                 });
 

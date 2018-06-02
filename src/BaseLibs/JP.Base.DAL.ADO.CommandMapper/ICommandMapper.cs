@@ -13,7 +13,7 @@ namespace JP.Base.DAL.ADO.EntityMapper
 
         CommandData GetInsertCommand(TEntity model);
 
-        CommandData GetSelectCommand<TSource, TProperty>(Func<TEntity, TProperty> filter = null, Expression<Func<TSource, TProperty>> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0);
+        CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0);
 
         CommandData GetSelectCommand(object id);
 

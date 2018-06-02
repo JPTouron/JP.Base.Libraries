@@ -44,7 +44,7 @@ namespace JP.Base.Logic.ADO
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
             if (getCount)
-                totalCount = repo.Get<TModel, object>().Count();
+                totalCount = repo.Get().Count();
 
             var models = ToViewModel(searchQuery).ToList();
 
