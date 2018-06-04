@@ -44,7 +44,11 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
         {
             var cmd = mapper.GetSelectCommand(filter, orderBy, order, page, pageSize);
 
-            return ExecuteSelectCommand(cmd);
+            using (var conn = GetConnection())
+            {
+                conn.CreateCommand(cmd);
+                return ToEnumerable(conn.ExecuteReaderCommand());
+            }
         }
 
         public TEntity GetById(object id)
@@ -58,12 +62,7 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
             }
         }
 
-        public IEnumerable<TEntity> GetByParameters(IEnumerable<ParameterData> filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
-        {
-            var cmd = mapper.GetSelectCommand(filter, orderBy, order, page, pageSize);
 
-            return ExecuteSelectCommand(cmd);
-        }
 
         public void Insert(TEntity entity)
         {
@@ -91,14 +90,7 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
 
         protected abstract IEnumerable<TEntity> ToEnumerable(DataTable table);
 
-        private IEnumerable<TEntity> ExecuteSelectCommand(CommandData cmd)
-        {
-            using (var conn = GetConnection())
-            {
-                conn.CreateCommand(cmd);
-                return ToEnumerable(conn.ExecuteReaderCommand());
-            }
-        }
+
 
         private IDbAdoConnection GetConnection()
         {
