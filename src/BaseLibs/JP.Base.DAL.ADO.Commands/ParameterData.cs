@@ -10,7 +10,7 @@ namespace JP.Base.DAL.ADO.Commands
 
         public ParameterData(string name, object value, ParameterDirection direction, DbType type, int size)
         {
-            Name= name;
+            Name = name;
             Value = value;
             Direction = direction;
             Type = type;
@@ -27,14 +27,17 @@ namespace JP.Base.DAL.ADO.Commands
 
         public ParameterDirection Direction { get; set; }
 
-        public string Name{ get; set; }
+        /// <summary>
+        /// holds the name of the entity field linked to this parameter, this data is optional
+        /// </summary>
+        public string LinkedToField { get; set; }
+
+        public string Name { get; set; }
 
         public int Size { get; set; }
 
-        public DbType Type{ get; set; }
+        public DbType Type { get; set; }
 
         public object Value { get; set; }
-
-        
     }
 }
