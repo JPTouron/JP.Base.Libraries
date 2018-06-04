@@ -8,38 +8,33 @@ namespace JP.Base.DAL.ADO.Commands
         {
         }
 
-        public ParameterData(string Nombre, object Valor, ParameterDirection Direccion, DbType TipoParam, int ParamSize)
+        public ParameterData(string name, object value, ParameterDirection direction, DbType type, int size)
         {
-            Constructor(Nombre, Valor, Direccion, TipoParam, ParamSize);
+            Name= name;
+            Value = value;
+            Direction = direction;
+            Type = type;
+            Size = size;
         }
 
-        public ParameterData(string Nombre, object Valor, ParameterDirection Direccion, DbType TipoParam)
+        public ParameterData(string name, object value, ParameterDirection direction, DbType type) : this(name, value, direction, type, 0)
         {
-            Constructor(Nombre, Valor, Direccion, TipoParam, 0);
         }
 
-        public ParameterData(string Nombre, object Valor, DbType TipoParam)
+        public ParameterData(string name, object value, DbType type) : this(name, value, ParameterDirection.Input, type, 0)
         {
-            Constructor(Nombre, Valor, ParameterDirection.Input, TipoParam, 0);
         }
 
-        public ParameterDirection DireccionParametro { get; set; }
+        public ParameterDirection Direction { get; set; }
 
-        public string NombreParametro { get; set; }
+        public string Name{ get; set; }
 
         public int Size { get; set; }
 
-        public DbType Tipo { get; set; }
+        public DbType Type{ get; set; }
 
-        public object ValorParametro { get; set; }
+        public object Value { get; set; }
 
-        private void Constructor(string Nombre, object Valor, ParameterDirection Direccion, DbType TipoParam, int ParamSize)
-        {
-            NombreParametro = Nombre;
-            ValorParametro = Valor;
-            DireccionParametro = Direccion;
-            Tipo = TipoParam;
-            Size = ParamSize;
-        }
+        
     }
 }

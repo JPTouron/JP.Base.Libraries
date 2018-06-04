@@ -49,13 +49,17 @@ namespace Implementations.POC.Logic.ADO
             };
         }
 
+        public CommandData GetSelectCommand(IEnumerable<ParameterData> filter = null, IEnumerable<ParameterData> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
+        {
+            throw new NotImplementedException();
+        }
+
         public CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
         {
             return new CommandData
             {
                 CommandText = "select * from clients",
             };
-
         }
 
         public CommandData GetUpdateCommand(Client model)
@@ -189,7 +193,19 @@ namespace Implementations.POC.Logic.ADO
             };
         }
 
-        public CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
+        public CommandData GetSelectCommand(IEnumerable<ParameterData> filter = null, IEnumerable<ParameterData> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
+        {
+            return new CommandData
+            {
+                CommandText = $@"SELECT Clients.Id as ClientId, Clients.Name as ClientName, Clients.Code as ClientCode, Operators.Id, Operators.Document, Operators.FirstName,
+                                Operators.LastName, Operators.EmployeeNbr, Operators.IsActive
+                                FROM Clients INNER JOIN Operators ON Clients.Id = Operators.Id ",
+                 
+                                 
+            };
+        }
+
+        public CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
         {
             throw new NotImplementedException();
         }

@@ -1,4 +1,5 @@
-﻿using JP.Base.DAL.ADO.Contracts;
+﻿using JP.Base.DAL.ADO.Commands;
+using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.EntityMapper;
 using System;
 using System.Collections.Generic;
@@ -40,9 +41,9 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
             }
         }
 
-        public IEnumerable<TEntity> Get(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0)
+        public IEnumerable<TEntity> Get(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
         {
-            var cmd = mapper.GetSelectCommand(filter, orderBy, order, pageStart, pageEnd);
+            var cmd = mapper.GetSelectCommand(filter, orderBy, order, page, pageSize);
 
             using (var conn = GetConnection())
             {
@@ -60,6 +61,11 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
                 conn.CreateCommand(cmd);
                 return ToEntity(conn.ExecuteReaderCommand());
             }
+        }
+
+        public IEnumerable<TEntity> GetByParameters(IEnumerable<ParameterData> filter = null, IEnumerable<ParameterData> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
+        {
+            throw new NotImplementedException();
         }
 
         public void Insert(TEntity entity)

@@ -35,6 +35,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
+      <Project>{F063181C-788F-4F0B-B73A-11D4AA080458}</Project>
+      <Name>JP.Base.DAL.ADO.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
       <Project>{e33c27aa-cbef-42b0-adb3-160313fe5404}</Project>
       <Name>JP.Base.DAL.ADO</Name>

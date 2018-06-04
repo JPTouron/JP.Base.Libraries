@@ -61,16 +61,16 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
         public void AddCommandParameter(ParameterData paramData)
         {
-            if (paramData.ValorParametro == null)
+            if (paramData.Value == null)
             {
-                AddParameter(paramData.NombreParametro, DBNull.Value, paramData.DireccionParametro, paramData.Tipo, paramData.Size);
+                AddParameter(paramData.Name, DBNull.Value, paramData.Direction, paramData.Type, paramData.Size);
             }
             else
             {
-                AddParameter(paramData.NombreParametro, paramData.ValorParametro, paramData.DireccionParametro, paramData.Tipo, paramData.Size);
+                AddParameter(paramData.Name, paramData.Value, paramData.Direction, paramData.Type, paramData.Size);
 
                 var param = command.Parameters[command.Parameters.Count - 1];
-                var valueAsDate = Convert.ToDateTime(paramData.ValorParametro, CultureInfo.InvariantCulture);
+                var valueAsDate = Convert.ToDateTime(paramData.Value, CultureInfo.InvariantCulture);
 
                 if ((param.DbType == DbType.String || param.DbType == DbType.AnsiString) && string.IsNullOrEmpty(paramData.ToString()))
                     param.Value = DBNull.Value;

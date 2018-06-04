@@ -1,7 +1,6 @@
 ﻿using JP.Base.DAL.ADO.Commands;
-using System;
+using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq.Expressions;
 
 namespace JP.Base.DAL.ADO.EntityMapper
 {
@@ -13,7 +12,9 @@ namespace JP.Base.DAL.ADO.EntityMapper
 
         CommandData GetInsertCommand(TEntity model);
 
-        CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int pageStart = 0, int pageEnd = 0);
+        CommandData GetSelectCommand(string filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0);
+
+        CommandData GetSelectCommand(IEnumerable<ParameterData> filter = null, IEnumerable<ParameterData> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0);
 
         CommandData GetSelectCommand(object id);
 
