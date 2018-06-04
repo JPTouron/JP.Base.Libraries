@@ -49,7 +49,7 @@ namespace Implementations.POC.Logic.ADO
             };
         }
 
-        public CommandData GetSelectCommand(IEnumerable<ParameterData> filter = null, IEnumerable<ParameterData> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
+        public CommandData GetSelectCommand(IEnumerable<ParameterData> filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
         {
             throw new NotImplementedException();
         }
@@ -193,7 +193,7 @@ namespace Implementations.POC.Logic.ADO
             };
         }
 
-        public CommandData GetSelectCommand(IEnumerable<ParameterData> filter = null, IEnumerable<ParameterData> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
+        public CommandData GetSelectCommand(IEnumerable<ParameterData> filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
         {
             return new CommandData
             {

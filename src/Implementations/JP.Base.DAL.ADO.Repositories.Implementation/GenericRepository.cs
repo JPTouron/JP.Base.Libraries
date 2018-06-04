@@ -1,7 +1,6 @@
 ﻿using JP.Base.DAL.ADO.Commands;
 using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.EntityMapper;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -45,11 +44,7 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
         {
             var cmd = mapper.GetSelectCommand(filter, orderBy, order, page, pageSize);
 
-            using (var conn = GetConnection())
-            {
-                conn.CreateCommand(cmd);
-                return ToEnumerable(conn.ExecuteReaderCommand());
-            }
+            return ExecuteSelectCommand(cmd);
         }
 
         public TEntity GetById(object id)
@@ -63,9 +58,11 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
             }
         }
 
-        public IEnumerable<TEntity> GetByParameters(IEnumerable<ParameterData> filter = null, IEnumerable<ParameterData> orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
+        public IEnumerable<TEntity> GetByParameters(IEnumerable<ParameterData> filter = null, string orderBy = null, ListSortDirection order = ListSortDirection.Ascending, int page = 0, int pageSize = 0)
         {
-            throw new NotImplementedException();
+            var cmd = mapper.GetSelectCommand(filter, orderBy, order, page, pageSize);
+
+            return ExecuteSelectCommand(cmd);
         }
 
         public void Insert(TEntity entity)
@@ -93,6 +90,15 @@ namespace JP.Base.DAL.ADO.Repositories.Implementation
         protected abstract TEntity ToEntity(DataTable table);
 
         protected abstract IEnumerable<TEntity> ToEnumerable(DataTable table);
+
+        private IEnumerable<TEntity> ExecuteSelectCommand(CommandData cmd)
+        {
+            using (var conn = GetConnection())
+            {
+                conn.CreateCommand(cmd);
+                return ToEnumerable(conn.ExecuteReaderCommand());
+            }
+        }
 
         private IDbAdoConnection GetConnection()
         {
