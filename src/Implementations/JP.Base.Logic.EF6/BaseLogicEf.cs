@@ -6,6 +6,8 @@ using JP.Base.Logic.Implementations;
 using JP.Base.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using JP.Base.Logic.Search;
 
 namespace JP.Base.Logic.EF6
 {
@@ -39,6 +41,26 @@ namespace JP.Base.Logic.EF6
             var model = repo.GetById(id);
 
             return ToViewModel(model);
+        }
+
+
+        protected override SearchResults<TViewModel> GetList(SortAndFilterData sortAndFilter)
+        {
+            using (var unitOfWork = factory.CreateUoW())
+            {
+                var param = GetSearchParams(sortAndFilter, unitOfWork);
+                var search = GetSearchEngine(param);
+
+                var searchQuery = search.GetSearchQuery();
+                var totalCount = 0;
+
+                var res = unitOfWork.Execute(() =>
+                {
+                    return ExecuteSearchMethod(sortAndFilter.GetCount, unitOfWork, searchQuery, ref totalCount);
+                });
+
+                return new SearchResults<TViewModel> { Results = res, Count = totalCount };
+            }
         }
 
         protected override IEnumerable<TViewModel> ExecuteSearchMethod(bool getCount, IBaseUnitOfWorkEf unitOfWork, IQueryable<TModel> searchQuery, ref int totalCount)

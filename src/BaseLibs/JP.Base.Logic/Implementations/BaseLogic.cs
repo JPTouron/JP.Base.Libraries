@@ -218,24 +218,7 @@ namespace JP.Base.Logic.Implementations
         /// <param name="sortAndFilter">the entity containing sort and search criteria</param>
         /// <param name="getCount">determines whether we should return the amount of elements returned</param>
         /// <returns>a <seealso cref="SearchResults{T}"/> object containing the view models that matched the criteria and a count property if <paramref name="getCount"/> is true</returns>
-        protected SearchResults<TViewModel> GetList(SortAndFilterData sortAndFilter, bool getCount)
-        {
-            using (var unitOfWork = factory.CreateUoW())
-            {
-                var param = GetSearchParams(sortAndFilter, (TIUnitOfWork)unitOfWork);
-                var search = GetSearchEngine(param);
-
-                var searchQuery = search.GetSearchQuery();
-                var totalCount = 0;
-
-                var res = unitOfWork.Execute(() =>
-                {
-                    return ExecuteSearchMethod(getCount, (TIUnitOfWork)unitOfWork, searchQuery, ref totalCount);
-                });
-
-                return new SearchResults<TViewModel> { Results = res, Count = totalCount };
-            }
-        }
+        protected abstract SearchResults<TViewModel> GetList(SortAndFilterData sortAndFilter);        
 
         /// <summary>
         /// Returns a <seealso cref="SearchEngine{EntityType}"/> by calling <seealso cref="ISearchEngineFactory.CreateSearchEngine{TModel, TIdentity}(SearchParams)"/>

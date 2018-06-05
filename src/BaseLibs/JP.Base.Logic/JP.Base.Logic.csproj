@@ -47,13 +47,13 @@
       <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
-      <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
-      <Name>JP.Base.Logic.Search</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Implementations\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
       <Name>JP.Base.DAL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
+      <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
+      <Name>JP.Base.Logic.Search</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
       <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>

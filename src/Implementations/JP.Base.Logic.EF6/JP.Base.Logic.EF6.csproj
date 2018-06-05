@@ -57,6 +57,10 @@
       <Project>{8C805FBE-D496-44B1-A3AC-A3066FC34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
+      <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
+      <Name>JP.Base.Logic.Search</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
       <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
       <Name>JP.Base.Logic</Name>
