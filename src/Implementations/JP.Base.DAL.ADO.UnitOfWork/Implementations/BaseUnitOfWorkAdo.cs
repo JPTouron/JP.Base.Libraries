@@ -23,16 +23,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
             repos = new Dictionary<Type, object>();
         }
 
-        public ICommandExecutionData ExecutionData
-        {
-            get
-            {
-                if (currentConnection != null && !currentConnection.IsDisposed)
-                    return new ExecutionData(currentConnection);
-                else
-                    return null;
-            }
-        }
+       
 
         public bool IsDisposed
         {

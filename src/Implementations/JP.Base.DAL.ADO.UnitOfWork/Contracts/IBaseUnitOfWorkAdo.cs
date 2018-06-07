@@ -5,7 +5,7 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Contracts
 {
     public interface IBaseUnitOfWorkAdo : IBaseUnitOfWork
     {
-        ICommandExecutionData ExecutionData { get; }
+
 
         /// <summary>
         /// obtains a <see cref="IGenericRepository{TEntity}"/> to operate the underlying DbSet
