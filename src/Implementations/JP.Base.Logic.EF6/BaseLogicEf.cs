@@ -1,13 +1,11 @@
 ﻿using JP.Base.DAL.EF6.Model;
 using JP.Base.DAL.EF6.UnitOfWork;
 using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.Contracts;
 using JP.Base.Logic.Implementations;
-using JP.Base.ViewModel;
-using System.Collections.Generic;
-using System.Linq;
-using System;
 using JP.Base.Logic.Search;
+using JP.Base.Logic.Search.EF6;
+using JP.Base.ViewModel;
+using System.Linq;
 
 namespace JP.Base.Logic.EF6
 {
@@ -15,8 +13,11 @@ namespace JP.Base.Logic.EF6
         where TModel : BaseModelEf<TIdentity>
         where TViewModel : BaseViewModel<TIdentity>
     {
-        public BaseLogicEf(IUoWFactory<IBaseUnitOfWorkEf> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
+        private ISearchEngineFactory searchFac;
+
+        public BaseLogicEf(IUoWFactory<IBaseUnitOfWorkEf> factory, ISearchEngineFactory searchFac) : base(factory)
         {
+            this.searchFac = searchFac;
         }
 
         protected override void ExecuteCreateMethod(TModel model, IBaseUnitOfWorkEf unitOfWork)
@@ -43,36 +44,22 @@ namespace JP.Base.Logic.EF6
             return ToViewModel(model);
         }
 
-
-        protected override SearchResults<TViewModel> GetList(SortAndFilterData sortAndFilter)
+        protected override SearchResults<TViewModel> ExecuteGetList(SortAndFilterData sortAndFilter, IBaseUnitOfWorkEf unitOfWork)
         {
-            using (var unitOfWork = factory.CreateUoW())
-            {
-                var param = GetSearchParams(sortAndFilter, unitOfWork);
-                var search = GetSearchEngine(param);
+            var param = GetSearchParams(sortAndFilter, unitOfWork);
+            var search = GetSearchEngine(param);
 
-                var searchQuery = search.GetSearchQuery();
-                var totalCount = 0;
+            var searchQuery = search.GetSearchQuery();
+            var totalCount = 0;
 
-                var res = unitOfWork.Execute(() =>
-                {
-                    return ExecuteSearchMethod(sortAndFilter.GetCount, unitOfWork, searchQuery, ref totalCount);
-                });
-
-                return new SearchResults<TViewModel> { Results = res, Count = totalCount };
-            }
-        }
-
-        protected override IEnumerable<TViewModel> ExecuteSearchMethod(bool getCount, IBaseUnitOfWorkEf unitOfWork, IQueryable<TModel> searchQuery, ref int totalCount)
-        {
             var repo = unitOfWork.GetGenericRepo<TModel>();
 
-            if (getCount)
+            if (sortAndFilter.GetCount)
                 totalCount = repo.Get().Count();
 
             var models = ToViewModel(searchQuery).ToList();
 
-            return models;
+            return new SearchResults<TViewModel> { Results = models, Count = totalCount };
         }
 
         protected override TViewModel ExecuteUpdateMethod(TModel model, IBaseUnitOfWorkEf unitOfWork)
@@ -84,6 +71,15 @@ namespace JP.Base.Logic.EF6
             repo.Update((TModel)model);
 
             return ToViewModel(model);
+        }
+
+        /// <summary>
+        /// Returns a <seealso cref="SearchEngine{EntityType,TReturnType}"/> by calling <seealso cref="ISearchEngineFactory.CreateSearchEngine{TModel, TIdentity}(SearchParams)"/>
+        /// </summary>
+        /// <param name="param">the searching params</param>
+        protected virtual EfSearchEngine<TModel> GetSearchEngine(SearchParams param)
+        {
+            return searchFac.CreateSearchEngine<TModel, TIdentity>(param);
         }
     }
 }

@@ -1,20 +1,26 @@
 ﻿using JP.Base.DAL.ADO.UnitOfWork.Contracts;
 using JP.Base.DAL.Model;
 using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.Contracts;
 using JP.Base.Logic.Implementations;
+using JP.Base.Logic.Search.ADO;
 using JP.Base.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
+using JP.Base.Logic.Search;
+using System;
 
 namespace JP.Base.Logic.ADO
 {
     public abstract class BaseLogicAdo<TModel, TViewModel, TIdentity> : BaseLogic<TModel, TViewModel, IBaseUnitOfWorkAdo, TIdentity>
            where TModel : BaseModel<TIdentity>
            where TViewModel : BaseViewModel<TIdentity>
+
     {
-        public BaseLogicAdo(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
+        private ISearchEngineFactory searchFac;
+
+        public BaseLogicAdo(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory)
         {
+            this.searchFac = searchFac;
         }
 
         protected override void ExecuteCreateMethod(TModel model, IBaseUnitOfWorkAdo unitOfWork)
@@ -39,18 +45,28 @@ namespace JP.Base.Logic.ADO
             return ToViewModel(model);
         }
 
-        protected override IEnumerable<TViewModel> ExecuteSearchMethod(bool getCount, IBaseUnitOfWorkAdo unitOfWork, IQueryable<TModel> searchQuery, ref int totalCount)
+        protected override SearchResults<TViewModel> ExecuteGetList(SortAndFilterData sortAndFilter, IBaseUnitOfWorkAdo unitOfWork)
         {
-            var repo = unitOfWork.GetGenericRepo<TModel>();
+            var param = GetSearchParams(sortAndFilter, unitOfWork);
+            var search = GetSearchEngine(param);
 
-            if (getCount)
+            var repo = unitOfWork.GetGenericRepo<TModel>();
+            var totalCount = 0;
+
+            if (sortAndFilter. GetCount)
                 totalCount = repo.Get().Count();
 
-            var models = ToViewModel(searchQuery).ToList();
+            var searchCmd  = search.GetSearchQuery();
 
-            return models;
+            
+            var models = ToViewModel(searchCmd).ToList();
+
+
+            return new SearchResults<TViewModel> { Results = models, Count = totalCount };
+
         }
 
+     
         protected override TViewModel ExecuteUpdateMethod(TModel model, IBaseUnitOfWorkAdo unitOfWork)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
@@ -58,6 +74,15 @@ namespace JP.Base.Logic.ADO
             repo.Update((TModel)model);
 
             return ToViewModel(model);
+        }
+
+        /// <summary>
+        /// Returns a <seealso cref="SearchEngine{EntityType,TReturnType}"/> by calling <seealso cref="ISearchEngineFactory.CreateSearchEngine{TModel, TIdentity}(SearchParams)"/>
+        /// </summary>
+        /// <param name="param">the searching params</param>
+        protected virtual AdoSearchEngine<TModel> GetSearchEngine(SearchParams param)
+        {
+            return searchFac.CreateSearchEngine<TModel, TIdentity>(param);
         }
     }
 }

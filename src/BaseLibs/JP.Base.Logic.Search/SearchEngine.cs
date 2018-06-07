@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace JP.Base.Logic.Search.Implementations
+﻿namespace JP.Base.Logic.Search
 {
     public abstract class SearchEngine<EntityType, ReturnType>
         where EntityType : class
-        where ReturnType : IEnumerable<EntityType>
+        //where ReturnType
     {
         protected const string AscendingOrder = "asc";
         protected const string DescendingOrder = "desc";

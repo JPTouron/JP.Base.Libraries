@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using JP.Base.DAL.ADO.Commands;
 
-namespace JP.Base.Logic.Search.Implementations
+namespace JP.Base.Logic.Search.ADO
 {
-    public abstract class AdoSearchEngine<T> : SearchEngine<T, IEnumerable<T>> where T : class
+    public abstract class AdoSearchEngine<EntityType> : SearchEngine<EntityType, CommandData> where EntityType : class
 
     {
         public AdoSearchEngine(BaseSearchParams parameters) : base(parameters)
@@ -17,10 +17,6 @@ namespace JP.Base.Logic.Search.Implementations
             var sorterKey = string.Format("{0} {1}", sortField, sortOrder);
 
             return sorterKey;
-        }
-
-        protected override IEnumerable<T> InternalSortAndFilterEntities(string searchString, int skip, int take)
-        {
         }
     }
 }

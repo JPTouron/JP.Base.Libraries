@@ -3,7 +3,7 @@ using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Expressions;
 
-namespace JP.Base.Logic.Search.Implementations
+namespace JP.Base.Logic.Search.EF6
 {
     public abstract class EfSearchEngine<EntityType> : SearchEngine<EntityType, IQueryable<EntityType>> where EntityType : class
     {
@@ -13,7 +13,7 @@ namespace JP.Base.Logic.Search.Implementations
 
         protected virtual IQueryable<EntityType> ApplyOrderBy(IQueryable<EntityType> entities, string orderByKey)
         {
-            entities = entities.OrderBy(orderByKey);
+            entities = entities.OrderBy(orderByKey);// from System.Linq.Dynamic
             return entities;
         }
 
@@ -71,7 +71,5 @@ namespace JP.Base.Logic.Search.Implementations
 
             return elements;
         }
-
-      
     }
 }

@@ -32,26 +32,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Linq.Dynamic, Version=1.0.6132.35681, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Linq.Dynamic.1.0.7\lib\net40\System.Linq.Dynamic.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseSearchParams.cs" />
-    <Compile Include="Implementations\AdoSearchEngine.cs" />
-    <Compile Include="Implementations\EfSearchEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Implementations\SearchEngine.cs" />
+    <Compile Include="SearchEngine.cs" />
     <Compile Include="SearchResults.cs" />
     <Compile Include="SortAndFilterData.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Contracts\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName)==Release echo F|xcopy /F /R /Y "$(TargetDir)$(TargetName).dll"  "$(ProjectDir)..\..\..\published\$(TargetName).dll" 2&gt;nul 1&gt;nul

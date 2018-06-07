@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLogicEf.cs" />
+    <Compile Include="ISearchEngineFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +59,7 @@
       <Name>JP.Base.DAL.UnitOfWork</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
-      <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
+      <Project>{1d81e4ad-d068-4be5-bb0f-fa653dd16fd1}</Project>
       <Name>JP.Base.Logic.Search</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
@@ -80,6 +81,10 @@
     <ProjectReference Include="..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
       <Name>JP.Base.DAL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.Logic.Search.EF6\JP.Base.Logic.Search.EF6.csproj">
+      <Project>{E8CD9A35-19B4-43F7-A05D-B43D6ED436B8}</Project>
+      <Name>JP.Base.Logic.Search.EF6</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

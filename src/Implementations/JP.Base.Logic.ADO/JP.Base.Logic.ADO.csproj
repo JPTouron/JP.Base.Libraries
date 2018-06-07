@@ -42,9 +42,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseLogicAdo.cs" />
+    <Compile Include="ISearchEngineFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
+      <Project>{F063181C-788F-4F0B-B73A-11D4AA080458}</Project>
+      <Name>JP.Base.DAL.ADO.Commands</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Repositories\JP.Base.DAL.ADO.Repositories.csproj">
       <Project>{44aad56f-c424-483d-a107-4161d68b5efd}</Project>
       <Name>JP.Base.DAL.ADO.Repositories</Name>
@@ -56,6 +61,10 @@
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
       <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
+      <Project>{1d81e4ad-d068-4be5-bb0f-fa653dd16fd1}</Project>
+      <Name>JP.Base.Logic.Search</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
       <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
@@ -72,6 +81,10 @@
     <ProjectReference Include="..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
       <Name>JP.Base.DAL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.Logic.Search.ADO\JP.Base.Logic.Search.ADO.csproj">
+      <Project>{381D208D-E2A2-48C4-A286-C5108396E997}</Project>
+      <Name>JP.Base.Logic.Search.ADO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
