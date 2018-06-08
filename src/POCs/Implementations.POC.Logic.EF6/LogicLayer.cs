@@ -68,7 +68,7 @@ namespace Implementations.POC.Logic.EF6
             };
         }
 
-        protected override IEnumerable<EmployeeVM> ToViewModel(IQueryable<Employee> query)
+        protected override IEnumerable<EmployeeVM> ToViewModel(IEnumerable<Employee> query)
         {
             return query.Select(x => new EmployeeVM
             {
@@ -153,7 +153,7 @@ namespace Implementations.POC.Logic.EF6
             };
         }
 
-        protected override IEnumerable<EmployerVM> ToViewModel(IQueryable<Employer> query)
+        protected override IEnumerable<EmployerVM> ToViewModel(IEnumerable<Employer> query)
         {
             var data = query.Select(x => new EmployerVM
             {

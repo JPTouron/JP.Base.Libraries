@@ -274,10 +274,10 @@ namespace JP.Base.Logic.Implementations
         protected abstract TViewModel ToViewModel(TModel model);
 
         /// <summary>
-        /// when overridden transforms the <see cref="IQueryable{TModel}"/> model into a type of <see cref="IEnumerable{TViewModel}"/> by way of a mapping logic
+        /// when overridden transforms the <see cref="IEnumerable{T}"/> model into a type of <see cref="IEnumerable{TViewModel}"/> by way of a mapping logic
         /// </summary>
-        /// <param name="query">the query to be executed</param>
-        protected abstract IEnumerable<TViewModel> ToViewModel(IQueryable<TModel> query);
+        /// <param name="entities">the query to be executed</param>
+        protected abstract IEnumerable<TViewModel> ToViewModel(IEnumerable<TModel> entities);
 
         /// <summary>
         /// Executes logic to Update an entity into a db

@@ -7,8 +7,8 @@
     <ProjectGuid>{381D208D-E2A2-48C4-A286-C5108396E997}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>JP.Base.Libraries.Search.ADO</RootNamespace>
-    <AssemblyName>JP.Base.Libraries.Search.ADO</AssemblyName>
+    <RootNamespace>JP.Base.Logic.Search.ADO</RootNamespace>
+    <AssemblyName>JP.Base.Logic.Search.ADO</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="AdoSearchEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchEngineResults.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">

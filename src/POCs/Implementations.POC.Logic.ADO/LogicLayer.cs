@@ -47,7 +47,7 @@ namespace Implementations.POC.Logic.ADO
             throw new NotImplementedException();
         }
 
-        protected override IEnumerable<OperatorWithClientVM> ToViewModel(IQueryable<OperatorWithClient> query)
+        protected override IEnumerable<OperatorWithClientVM> ToViewModel(IEnumerable<OperatorWithClient> query)
         {
             throw new NotImplementedException();
         }
@@ -150,7 +150,7 @@ namespace Implementations.POC.Logic.ADO
             };
         }
 
-        protected override IEnumerable<ClientVM> ToViewModel(IQueryable<Client> query)
+        protected override IEnumerable<ClientVM> ToViewModel(IEnumerable<Client> query)
         {
             return query.Select(x => new ClientVM
             {

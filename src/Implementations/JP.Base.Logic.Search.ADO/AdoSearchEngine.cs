@@ -1,8 +1,6 @@
-﻿using JP.Base.DAL.ADO.Commands;
-
-namespace JP.Base.Logic.Search.ADO
+﻿namespace JP.Base.Logic.Search.ADO
 {
-    public abstract class AdoSearchEngine<EntityType> : SearchEngine<EntityType, CommandData> where EntityType : class
+    public abstract class AdoSearchEngine<EntityType> : SearchEngine<EntityType, SearchEngineResults> where EntityType : class
 
     {
         public AdoSearchEngine(BaseSearchParams parameters) : base(parameters)

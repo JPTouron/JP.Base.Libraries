@@ -2,12 +2,10 @@
 using JP.Base.DAL.Model;
 using JP.Base.DAL.UnitOfWork;
 using JP.Base.Logic.Implementations;
+using JP.Base.Logic.Search;
 using JP.Base.Logic.Search.ADO;
 using JP.Base.ViewModel;
-using System.Collections.Generic;
 using System.Linq;
-using JP.Base.Logic.Search;
-using System;
 
 namespace JP.Base.Logic.ADO
 {
@@ -48,25 +46,24 @@ namespace JP.Base.Logic.ADO
         protected override SearchResults<TViewModel> ExecuteGetList(SortAndFilterData sortAndFilter, IBaseUnitOfWorkAdo unitOfWork)
         {
             var param = GetSearchParams(sortAndFilter, unitOfWork);
-            var search = GetSearchEngine(param);
+            var engine = GetSearchEngine(param);
 
             var repo = unitOfWork.GetGenericRepo<TModel>();
+
+            var searchresults = engine.GetSearchQuery();
+
             var totalCount = 0;
 
-            if (sortAndFilter. GetCount)
+            if (sortAndFilter.GetCount)
                 totalCount = repo.Get().Count();
 
-            var searchCmd  = search.GetSearchQuery();
+            var entities = repo.Get(searchresults.Filter, searchresults.OrderBy, searchresults.Sort, searchresults.Page, searchresults.PageSize);
 
-            
-            var models = ToViewModel(searchCmd).ToList();
-
+            var models = ToViewModel(entities).ToList();
 
             return new SearchResults<TViewModel> { Results = models, Count = totalCount };
-
         }
 
-     
         protected override TViewModel ExecuteUpdateMethod(TModel model, IBaseUnitOfWorkAdo unitOfWork)
         {
             var repo = unitOfWork.GetGenericRepo<TModel>();
