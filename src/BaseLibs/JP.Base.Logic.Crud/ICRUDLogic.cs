@@ -1,6 +1,6 @@
 ﻿using JP.Base.Logic.Search;
 
-namespace JP.Base.Logic.Contracts
+namespace JP.Base.Logic.Crud
 {
     /// <summary>
     /// defines a generic interface for all the CRUD operations logic

@@ -130,6 +130,10 @@
       <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Crud\JP.Base.Logic.Crud.csproj">
+      <Project>{a13df7dc-746b-4558-b82f-8b6166b2aa00}</Project>
+      <Name>JP.Base.Logic.Crud</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
       <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
       <Name>JP.Base.Logic</Name>
@@ -154,9 +158,9 @@
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
       <Name>JP.Base.DAL.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.Logic.EF6\JP.Base.Logic.EF6.csproj">
-      <Project>{7c9faaf1-bbc5-4f18-ab8e-d61778179d25}</Project>
-      <Name>JP.Base.Logic.EF6</Name>
+    <ProjectReference Include="..\..\Implementations\JP.Base.Logic.Crud.EF6\JP.Base.Logic.Crud.EF6.csproj">
+      <Project>{7C9FAAF1-BBC5-4F18-AB8E-D61778179D25}</Project>
+      <Name>JP.Base.Logic.Crud.EF6</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

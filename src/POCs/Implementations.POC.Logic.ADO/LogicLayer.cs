@@ -1,90 +1,15 @@
 ﻿using JP.Base.DAL.ADO.UnitOfWork.Contracts;
 using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.ADO;
-using JP.Base.Logic.Contracts;
+using JP.Base.Logic.Crud.ADO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace Implementations.POC.Logic.ADO
 {
-
-    public class CustomLogic : BaseLogicAdo<OperatorWithClient, OperatorWithClientVM, int>
+    public class ClientLogic : BaseCrudLogicAdo<Client, ClientVM, int>
     {
-        public CustomLogic(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
-        {
-        }
 
-        protected override string DefaultSortField
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        protected override string EntityName
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public OperatorWithClientVM GetJoinedData(int id)
-        {
-
-            return base.GetEntityById(id);
-        }
-
-        protected override void PerformSpecificValidations(OperatorWithClientVM viewModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override OperatorWithClient ToModel(OperatorWithClientVM viewModel)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override IEnumerable<OperatorWithClientVM> ToViewModel(IEnumerable<OperatorWithClient> query)
-        {
-            throw new NotImplementedException();
-        }
-
-        protected override OperatorWithClientVM ToViewModel(OperatorWithClient model)
-        {
-
-            return new OperatorWithClientVM
-            {
-                Client = reuse.ToViewModel(model.Client),
-                Document = model.Document,
-                EmployeeNbr = model.EmployeeNbr,
-                FirstName = model.FirstName,
-                Id = model.Id,
-                IsActive = model.IsActive,
-                LastName = model.LastName
-
-
-
-            };
-
-        }
-
-        protected override void ValidateId(int id)
-        {
-            //mehh
-        }
-
-        protected override void ValidateModel(object model)
-        {
-            //mehh
-
-        }
-    }
-
-    public class ClientLogic : BaseLogicAdo<Client, ClientVM, int>
-    {
         public ClientLogic(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
         {
         }
@@ -176,9 +101,75 @@ namespace Implementations.POC.Logic.ADO
         }
     }
 
-    static class reuse
+    public class CustomLogic : BaseCrudLogicAdo<OperatorWithClient, OperatorWithClientVM, int>
     {
+        public CustomLogic(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
+        {
+        }
 
+        protected override string DefaultSortField
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        protected override string EntityName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public OperatorWithClientVM GetJoinedData(int id)
+        {
+            return base.GetEntityById(id);
+        }
+
+        protected override void PerformSpecificValidations(OperatorWithClientVM viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override OperatorWithClient ToModel(OperatorWithClientVM viewModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IEnumerable<OperatorWithClientVM> ToViewModel(IEnumerable<OperatorWithClient> query)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override OperatorWithClientVM ToViewModel(OperatorWithClient model)
+        {
+            return new OperatorWithClientVM
+            {
+                Client = reuse.ToViewModel(model.Client),
+                Document = model.Document,
+                EmployeeNbr = model.EmployeeNbr,
+                FirstName = model.FirstName,
+                Id = model.Id,
+                IsActive = model.IsActive,
+                LastName = model.LastName
+            };
+        }
+
+        protected override void ValidateId(int id)
+        {
+            //mehh
+        }
+
+        protected override void ValidateModel(object model)
+        {
+            //mehh
+        }
+    }
+
+    internal static class reuse
+    {
         public static ClientVM ToViewModel(Client model)
         {
             return new ClientVM

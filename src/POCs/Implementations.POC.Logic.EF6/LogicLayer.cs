@@ -1,14 +1,13 @@
 ﻿using JP.Base.DAL.EF6.UnitOfWork;
 using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.Contracts;
-using JP.Base.Logic.EF6;
+using JP.Base.Logic.Crud.EF6;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace Implementations.POC.Logic.EF6
 {
-    public class EmployeeLogic : BaseLogicEf<Employee, EmployeeVM, int>
+    public class EmployeeLogic : BaseCrudLogicEf<Employee, EmployeeVM, int>
     {
         public EmployeeLogic(IUoWFactory<IBaseUnitOfWorkEf> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
         {
@@ -30,6 +29,11 @@ namespace Implementations.POC.Logic.EF6
             }
         }
 
+        public void CreateEmployee(EmployeeVM employee)
+        {
+            Create(employee);
+        }
+
         public IEnumerable<EmployeeVM> GetList()
         {
             using (var uow = ((UoWFac)factory).CreateUoW())
@@ -42,11 +46,6 @@ namespace Implementations.POC.Logic.EF6
 
                 return data;
             }
-        }
-
-        public void CreateEmployee(EmployeeVM employee)
-        {
-            Create(employee);
         }
 
         protected override void PerformSpecificValidations(EmployeeVM viewModel)
@@ -109,15 +108,10 @@ namespace Implementations.POC.Logic.EF6
         }
     }
 
-    public class EmployerLogic : BaseLogicEf<Employer, EmployerVM, int>
+    public class EmployerLogic : BaseCrudLogicEf<Employer, EmployerVM, int>
     {
         public EmployerLogic(IUoWFactory<IBaseUnitOfWorkEf> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
         {
-        }
-
-        public void Create(EmployerVM employer)
-        {
-            base.Create(employer);
         }
 
         protected override string DefaultSortField
@@ -133,6 +127,25 @@ namespace Implementations.POC.Logic.EF6
             get
             {
                 return "Empleador";
+            }
+        }
+
+        public void Create(EmployerVM employer)
+        {
+            base.Create(employer);
+        }
+
+        public IEnumerable<EmployerVM> GetList()
+        {
+            using (var uow = ((UoWFac)factory).CreateUoW())
+            {
+                var data = uow.Execute(() =>
+               {
+                   var res = uow.GetGenericRepo<Employer>().Get(orderBy: x => x.OrderBy(y => y.Name));
+                   return ToViewModel(res).ToList();
+               });
+
+                return data;
             }
         }
 
@@ -187,20 +200,6 @@ namespace Implementations.POC.Logic.EF6
                 Version = model.Version,
                 Employees = model.Employees == null ? null : ToEmployeesList(model.Employees)
             };
-        }
-
-        public IEnumerable<EmployerVM> GetList()
-        {
-            using (var uow = ((UoWFac)factory).CreateUoW())
-            {
-                var data = uow.Execute(() =>
-               {
-                   var res = uow.GetGenericRepo<Employer>().Get(orderBy: x => x.OrderBy(y => y.Name));
-                   return ToViewModel(res).ToList();
-               });
-
-                return data;
-            }
         }
 
         protected override void ValidateId(int id)

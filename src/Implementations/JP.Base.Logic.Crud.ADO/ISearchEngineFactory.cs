@@ -1,8 +1,8 @@
 ﻿using JP.Base.DAL.Model;
-using JP.Base.Logic.Implementations;
+using JP.Base.Logic.Crud;
 using JP.Base.Logic.Search.ADO;
 
-namespace JP.Base.Logic.ADO
+namespace JP.Base.Logic.Crud.ADO
 {
     public interface ISearchEngineFactory
     {

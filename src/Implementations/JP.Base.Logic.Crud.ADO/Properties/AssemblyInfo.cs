@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JP.Base.Logic.EF6")]
+[assembly: AssemblyTitle("JP.Base.Logic.Crud.ADO")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JP.Base.Logic.EF6")]
+[assembly: AssemblyProduct("JP.Base.Logic.Crud.ADO")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7c9faaf1-bbc5-4f18-ab8e-d61778179d25")]
+[assembly: Guid("c1518b77-35ad-4adc-a803-cd36ef340beb")]
 
 // Version information for an assembly consists of the following four values:
 //

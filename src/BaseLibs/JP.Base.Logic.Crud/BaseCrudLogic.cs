@@ -6,9 +6,8 @@ using JP.Base.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
 
-namespace JP.Base.Logic.Implementations
+namespace JP.Base.Logic.Crud
 {
     public enum LogicAction
     {
@@ -31,17 +30,16 @@ namespace JP.Base.Logic.Implementations
     /// </summary>
     /// <typeparam name="TModel">The model that the business logic should handle</typeparam>
     /// <typeparam name="TViewModel">The view model that's related to the UI and relate to the <see cref="TModel"/> object</typeparam>
-    public abstract class BaseLogic<TModel, TViewModel, TIUnitOfWork, TIdentity>
+
+    public abstract class BaseCrudLogic<TModel, TViewModel, TIUnitOfWork, TIdentity> : BaseLogic<TIUnitOfWork>
         where TModel : BaseModel<TIdentity>
         where TViewModel : BaseViewModel<TIdentity>
         where TIUnitOfWork : IBaseUnitOfWork
     {
         protected LogicAction currentAction;
-        protected IUoWFactory<TIUnitOfWork> factory;
 
-        public BaseLogic(IUoWFactory<TIUnitOfWork> factory)
+        public BaseCrudLogic(IUoWFactory<TIUnitOfWork> factory) : base(factory)
         {
-            this.factory = factory;
         }
 
         /// <summary>
@@ -153,8 +151,19 @@ namespace JP.Base.Logic.Implementations
         /// <param name="unitOfWork">the <seealso cref="IBaseUnitOfWork"/> object that performs the actual query against the database</param>
         protected abstract TViewModel ExecuteGetById(TIdentity id, TIUnitOfWork unitOfWork);
 
-        
-        
+        /// <summary>
+        /// Performs the actual search query onto the database
+        /// </summary>
+        /// <param name="getCount">indicates whether we get the count of elements returned by the search query.
+        /// <para>
+        /// NOTE: be aware that setting this parameter as true may incurr into some overhead
+        /// </para>
+        /// </param>
+        /// <param name="unitOfWork">the <seealso  cref="IBaseUnitOfWork"/> that performs the actual query against the db</param>
+        /// <param name="searchQuery">the query that will be executed against the database</param>
+        /// <param name="totalCount">when <paramref name="getCount"/> is true then this parameter returns the obtained count for the records that matched searching criteria</param>
+        /// <returns></returns>
+        protected abstract SearchResults<TViewModel> ExecuteGetList(SortAndFilterData sortAndFilter, TIUnitOfWork unitOfWork);
 
         /// <summary>
         /// Executes the actual update into the database
@@ -204,8 +213,8 @@ namespace JP.Base.Logic.Implementations
         /// <param name="sortAndFilter">the entity containing sort and search criteria</param>
         /// <param name="getCount">determines whether we should return the amount of elements returned</param>
         /// <returns>a <seealso cref="SearchResults{T}"/> object containing the view models that matched the criteria and a count property if <paramref name="getCount"/> is true</returns>
-        protected SearchResults<TViewModel> GetList(SortAndFilterData sortAndFilter) {
-
+        protected SearchResults<TViewModel> GetList(SortAndFilterData sortAndFilter)
+        {
             currentAction = LogicAction.Get;
 
             SearchResults<TViewModel> result = null;
@@ -222,20 +231,6 @@ namespace JP.Base.Logic.Implementations
 
             return result;
         }
-        /// <summary>
-        /// Performs the actual search query onto the database
-        /// </summary>
-        /// <param name="getCount">indicates whether we get the count of elements returned by the search query.
-        /// <para>
-        /// NOTE: be aware that setting this parameter as true may incurr into some overhead
-        /// </para>
-        /// </param>
-        /// <param name="unitOfWork">the <seealso  cref="IBaseUnitOfWork"/> that performs the actual query against the db</param>
-        /// <param name="searchQuery">the query that will be executed against the database</param>
-        /// <param name="totalCount">when <paramref name="getCount"/> is true then this parameter returns the obtained count for the records that matched searching criteria</param>
-        /// <returns></returns>
-        protected abstract SearchResults<TViewModel> ExecuteGetList(SortAndFilterData sortAndFilter,TIUnitOfWork unitOfWork);
-
 
         /// <summary>
         /// Returns the <see cref="SearchParams"/> object that contains basic sort and filtering data

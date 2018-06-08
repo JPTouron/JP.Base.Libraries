@@ -1,22 +1,22 @@
 ﻿using JP.Base.DAL.ADO.UnitOfWork.Contracts;
 using JP.Base.DAL.Model;
 using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.Implementations;
+using JP.Base.Logic.Crud;
 using JP.Base.Logic.Search;
 using JP.Base.Logic.Search.ADO;
 using JP.Base.ViewModel;
 using System.Linq;
 
-namespace JP.Base.Logic.ADO
+namespace JP.Base.Logic.Crud.ADO
 {
-    public abstract class BaseLogicAdo<TModel, TViewModel, TIdentity> : BaseLogic<TModel, TViewModel, IBaseUnitOfWorkAdo, TIdentity>
+    public abstract class BaseCrudLogicAdo<TModel, TViewModel, TIdentity> : BaseCrudLogic<TModel, TViewModel, IBaseUnitOfWorkAdo, TIdentity>
            where TModel : BaseModel<TIdentity>
            where TViewModel : BaseViewModel<TIdentity>
 
     {
         private ISearchEngineFactory searchFac;
 
-        public BaseLogicAdo(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory)
+        public BaseCrudLogicAdo(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory)
         {
             this.searchFac = searchFac;
         }

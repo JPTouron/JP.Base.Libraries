@@ -1,21 +1,21 @@
 ﻿using JP.Base.DAL.EF6.Model;
 using JP.Base.DAL.EF6.UnitOfWork;
 using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.Implementations;
+using JP.Base.Logic.Crud;
 using JP.Base.Logic.Search;
 using JP.Base.Logic.Search.EF6;
 using JP.Base.ViewModel;
 using System.Linq;
 
-namespace JP.Base.Logic.EF6
+namespace JP.Base.Logic.Crud.EF6
 {
-    public abstract class BaseLogicEf<TModel, TViewModel, TIdentity> : BaseLogic<TModel, TViewModel, IBaseUnitOfWorkEf, TIdentity>
+    public abstract class BaseCrudLogicEf<TModel, TViewModel, TIdentity> : BaseCrudLogic<TModel, TViewModel, IBaseUnitOfWorkEf, TIdentity>
         where TModel : BaseModelEf<TIdentity>
         where TViewModel : BaseViewModel<TIdentity>
     {
         private ISearchEngineFactory searchFac;
 
-        public BaseLogicEf(IUoWFactory<IBaseUnitOfWorkEf> factory, ISearchEngineFactory searchFac) : base(factory)
+        public BaseCrudLogicEf(IUoWFactory<IBaseUnitOfWorkEf> factory, ISearchEngineFactory searchFac) : base(factory)
         {
             this.searchFac = searchFac;
         }
