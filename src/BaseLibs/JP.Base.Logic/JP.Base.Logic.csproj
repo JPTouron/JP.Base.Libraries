@@ -32,13 +32,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="BaseLogic.cs" />
-    <Compile Include="ExtensibleCRUDMeths.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
       <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+      <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
+      <Name>JP.Base.DAL.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
