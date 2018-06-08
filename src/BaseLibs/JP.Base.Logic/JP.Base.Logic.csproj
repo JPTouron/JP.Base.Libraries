@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="Contracts\ICRUDLogic.cs" />
     <Compile Include="Implementations\BaseLogic.cs" />
+    <Compile Include="Implementations\CompositeBaseLogic.cs" />
     <Compile Include="Implementations\SearchParams.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
