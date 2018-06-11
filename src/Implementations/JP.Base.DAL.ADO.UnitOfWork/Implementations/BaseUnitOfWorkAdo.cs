@@ -11,19 +11,13 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
         protected IDbAdoConnection currentConnection;
         protected IDictionary<Type, object> repos;
 
-        //private string connectionString = "";
-        //private string dataProvider;
         private IDbConnFactory factory;
 
         public BaseUnitOfWorkAdo(IDbConnFactory factory)
         {
-            //this.dataProvider = dataProvider;
-            //this.connectionString = connectionString;
             this.factory = factory;
             repos = new Dictionary<Type, object>();
         }
-
-       
 
         public bool IsDisposed
         {
@@ -41,8 +35,14 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
             using (currentConnection = GetConnection())
             {
                 currentConnection.Open();
+                currentConnection.BeginTransaction();
 
                 meth.Invoke();
+
+                if (saveChanges)
+                    currentConnection.CommitTransaction();
+                else
+                    currentConnection.RollbackTansacton();
             }
         }
 
