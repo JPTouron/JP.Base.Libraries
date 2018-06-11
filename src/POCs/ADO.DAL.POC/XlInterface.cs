@@ -37,7 +37,7 @@ namespace ADO.DAL.POC
             using (var conn = SetConnectionOleDb())
             {
                 conn.Open();
-                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = $"insert into [Hoja1$] VALUES (1,'{DateTime.Now.Date.ToShortDateString()}','{DateTime.Now.ToShortTimeString()}',13,'009',12,10,9)"});
+                conn.CreateCommand(new JP.Base.DAL.ADO.Commands.CommandData { CommandText = $"insert into [Hoja1$] VALUES (1,'{DateTime.Now.Date.ToShortDateString()}','{DateTime.Now.ToShortTimeString()}',13,'009',12,10,9)" });
                 //conn.Agregar_Parametro_A_Comando(new ParameterData {  });
 
                 conn.ExecuteNonQueryCommand();
@@ -47,7 +47,6 @@ namespace ADO.DAL.POC
         private IDbAdoConnection SetConnectionOleDb()
         {
             var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=XlFile.xls;Mode=ReadWrite;Extended Properties=""Excel 8.0;HDR=Yes;"";Persist Security Info=False";
-
 
             return new DbConnFactory().GetConnection("System.Data.OleDb", connstring);
         }

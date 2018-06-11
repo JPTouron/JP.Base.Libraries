@@ -1,4 +1,4 @@
-﻿using JP.Base.DAL.ADO.UnitOfWork.Contracts;
+﻿using JP.Base.DAL.ADO.UnitOfWork;
 using JP.Base.DAL.UnitOfWork;
 using JP.Base.Logic.Crud.ADO;
 using System;
@@ -9,7 +9,6 @@ namespace Implementations.POC.Logic.ADO
 {
     public class ClientLogic : BaseCrudLogicAdo<Client, ClientVM, int>
     {
-
         public ClientLogic(IUoWFactory<IBaseUnitOfWorkAdo> factory, ISearchEngineFactory searchFac) : base(factory, searchFac)
         {
         }
