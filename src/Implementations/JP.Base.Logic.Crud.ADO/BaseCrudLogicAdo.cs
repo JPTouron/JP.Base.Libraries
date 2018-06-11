@@ -1,7 +1,6 @@
-﻿using JP.Base.DAL.ADO.UnitOfWork.Contracts;
+﻿using JP.Base.DAL.ADO.UnitOfWork;
 using JP.Base.DAL.Model;
 using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.Crud;
 using JP.Base.Logic.Search;
 using JP.Base.Logic.Search.ADO;
 using JP.Base.ViewModel;

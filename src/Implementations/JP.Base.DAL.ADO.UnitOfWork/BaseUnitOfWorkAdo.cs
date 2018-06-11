@@ -1,10 +1,9 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.Repositories;
-using JP.Base.DAL.ADO.UnitOfWork.Contracts;
 using System;
 using System.Collections.Generic;
 
-namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
+namespace JP.Base.DAL.ADO.UnitOfWork
 {
     public class BaseUnitOfWorkAdo : IBaseUnitOfWorkAdo
     {
@@ -69,6 +68,12 @@ namespace JP.Base.DAL.ADO.UnitOfWork.Implementations
         public IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class
         {
             var repo = repos[typeof(TModel)] as IGenericRepository<TModel>;
+            return repo;
+        }
+
+        public TRepo GetSpecificRepo<TRepo>() where TRepo : class
+        {
+            var repo = repos[typeof(TRepo)] as TRepo;
             return repo;
         }
 
