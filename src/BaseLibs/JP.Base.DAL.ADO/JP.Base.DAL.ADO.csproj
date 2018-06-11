@@ -88,6 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDbConnectionExecutables.cs" />
     <Compile Include="Contracts\IDbConnFactory.cs" />
     <Compile Include="Implementations\Connections\Base\DbAdoConnection.cs" />
     <Compile Include="Contracts\IDbAdoConnection.cs" />

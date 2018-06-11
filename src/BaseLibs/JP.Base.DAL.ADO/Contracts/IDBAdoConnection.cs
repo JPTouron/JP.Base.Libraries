@@ -1,38 +1,13 @@
-﻿using JP.Base.DAL.ADO.Commands;
-using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System;
 
 namespace JP.Base.DAL.ADO.Contracts
 {
-    public interface IDbAdoConnection : IDisposable
+    public interface IDbAdoConnection : IDbConnectionExecutables, IDisposable
     {
         string ConnHash { get; }
 
         bool IsDisposed { get; }
 
-        void AddCommandParameter(ParameterData paramData);
-
-        void AddCommandParameter(IEnumerable<ParameterData> param);
-
-        void BeginTransaction();
-
-        void Close();
-
-        void CommitTransaction();
-
-        void CreateCommand(CommandData data);
-
-        void CreateCommand(string commandText);
-
-        int ExecuteNonQueryCommand();
-
-        DataTable ExecuteReaderCommand();
-
-        object ExecuteScalarCommand();
-
         bool Open();
-
-        void RollbackTansacton();
     }
 }
