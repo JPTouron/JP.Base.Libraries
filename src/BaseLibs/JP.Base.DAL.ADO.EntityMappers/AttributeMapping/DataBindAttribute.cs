@@ -11,6 +11,7 @@ namespace JP.Base.DAL.ADO.EntityMappers.AttributeMapping
             ColumnName = columnName;
             Type = type;
         }
+
         public string ColumnName
         {
             get; set;

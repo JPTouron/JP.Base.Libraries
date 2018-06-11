@@ -41,7 +41,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
 
             result.Load(reader);
 
-
             if (reader != null)
             {
                 reader.Close();
