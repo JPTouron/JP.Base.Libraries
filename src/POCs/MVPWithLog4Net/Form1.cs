@@ -1,4 +1,4 @@
-﻿using JP.Base.MVP.Implementation;
+﻿using JP.Base.Implementations.MVP;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,7 +78,7 @@ namespace MVPWithLog4Net
             }
             catch (Exception ex)
             {
-                presenter.HandleError(ex,true,false);
+                presenter.HandleError(ex, true, false);
             }
         }
 

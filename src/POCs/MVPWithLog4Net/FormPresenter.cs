@@ -1,4 +1,4 @@
-﻿using JP.Base.MVP.Implementation.Presenters.Base;
+﻿using JP.Base.Implementations.MVP.Presenters.Base;
 using log4net;
 using System;
 

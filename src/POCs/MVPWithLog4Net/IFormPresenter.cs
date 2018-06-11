@@ -1,4 +1,4 @@
-﻿using JP.Base.MVP.Implementation.Contracts.Presenters.Base;
+﻿using JP.Base.Implementations.MVP.Contracts.Presenters.Base;
 
 namespace MVPWithLog4Net
 {

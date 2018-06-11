@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C1518B77-35AD-4ADC-A803-CD36EF340BEB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JP.Base.Implementations.Logic.Crud.ADO</RootNamespace>
+    <AssemblyName>JP.Base.Implementations.Logic.Crud.ADO</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseCrudLogicAdo.cs" />
+    <Compile Include="ISearchEngineFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
+      <Project>{F063181C-788F-4F0B-B73A-11D4AA080458}</Project>
+      <Name>JP.Base.DAL.ADO.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Repositories\JP.Base.DAL.ADO.Repositories.csproj">
+      <Project>{44aad56f-c424-483d-a107-4161d68b5efd}</Project>
+      <Name>JP.Base.DAL.ADO.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
+      <Project>{09ac9317-01bc-4881-a495-32ab0402a4df}</Project>
+      <Name>JP.Base.DAL.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
+      <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
+      <Name>JP.Base.DAL.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Crud\JP.Base.Logic.Crud.csproj">
+      <Project>{A13DF7DC-746B-4558-B82F-8B6166B2AA00}</Project>
+      <Name>JP.Base.Logic.Crud</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
+      <Project>{1d81e4ad-d068-4be5-bb0f-fa653dd16fd1}</Project>
+      <Name>JP.Base.Logic.Search</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
+      <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
+      <Name>JP.Base.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
+      <Project>{83ad9b2e-a3bb-49d9-9302-a3b961a59181}</Project>
+      <Name>JP.Base.ViewModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.Implementations.DAL.ADO.UnitOfWork\JP.Base.Implementations.DAL.ADO.UnitOfWork.csproj">
+      <Project>{260078af-579d-426f-a4b7-cf07e16c4390}</Project>
+      <Name>JP.Base.Implementations.DAL.ADO.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
+      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
+      <Name>JP.Base.Implementations.DAL.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.Implementations.Logic.Search.ADO\JP.Base.Implementations.Logic.Search.ADO.csproj">
+      <Project>{381D208D-E2A2-48C4-A286-C5108396E997}</Project>
+      <Name>JP.Base.Implementations.Logic.Search.ADO</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

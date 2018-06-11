@@ -81,9 +81,9 @@
       <Project>{3CE5D2DF-8BD1-4E16-9285-6C4AB690F00C}</Project>
       <Name>JP.Base.MVP</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.MVP.Implementation\JP.Base.MVP.Implementation.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.MVP\JP.Base.Implementations.MVP.csproj">
       <Project>{5368297E-8B07-43DC-8B38-0FE6076FF7F5}</Project>
-      <Name>JP.Base.MVP.Implementation</Name>
+      <Name>JP.Base.Implementations.MVP</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -40,9 +40,9 @@
     <Compile Include="SearchParams.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
       <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
-      <Name>JP.Base.DAL.Model</Name>
+      <Name>JP.Base.Implementations.DAL.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.Common.Extensions\JP.Common.Extensions\JP.Base.Common.Extensions.csproj">
       <Project>{8774DA41-B1E4-44B5-AEB9-F02F43C115EE}</Project>

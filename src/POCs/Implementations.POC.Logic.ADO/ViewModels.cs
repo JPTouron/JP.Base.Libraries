@@ -2,7 +2,7 @@
 
 namespace Implementations.POC.Logic.ADO
 {
-    public class ClientVM : BaseVersionViewModel<int>
+    public class ClientVM : BaseViewModelConcurrent<int>
     {
         public string Code { get; set; }
         public string Name { get; set; }

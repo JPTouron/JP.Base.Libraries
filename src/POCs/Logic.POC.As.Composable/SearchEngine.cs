@@ -1,14 +1,10 @@
-﻿using JP.Base.Logic.Search.ADO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using JP.Base.Implementations.Logic.Search.ADO;
 using JP.Base.Logic.Search;
+using System;
 
 namespace Logic.POC.As.Composable
 {
-    class SearchEngine : AdoSearchEngine<Operator>
+    internal class SearchEngine : AdoSearchEngine<Operator>
     {
         public SearchEngine(BaseSearchParams parameters) : base(parameters)
         {

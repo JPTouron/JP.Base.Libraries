@@ -1,9 +1,9 @@
-﻿using JP.Base.DAL.EF6.Model;
-using JP.Base.DAL.Model;
+﻿using JP.Base.Implementations.DAL.Model.Concurrent;
+using JP.Base.Implementations.DAL.Model;
 
 namespace Implementations.POC.Logic.ADO
 {
-    public class Client : BaseModelEf<int>
+    public class Client : BaseModelConcurrent<int>
 
     {
         public string Code { get; set; }

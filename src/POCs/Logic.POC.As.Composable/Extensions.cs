@@ -1,8 +1,8 @@
 ﻿//using JP.Base.DAL.ADO.Repositories;
-//using JP.Base.DAL.Model;
+//using JP.Base.Implementations.DAL.Model;
 //using JP.Base.Logic.Crud;
 //using JP.Base.Logic.Search;
-//using JP.Base.Logic.Search.ADO;
+//using JP.Base.Implementations.Logic.Search.ADO;
 //using System;
 //using System.Collections.Generic;
 //using System.Linq;

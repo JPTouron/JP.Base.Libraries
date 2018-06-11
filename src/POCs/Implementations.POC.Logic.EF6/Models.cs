@@ -1,9 +1,9 @@
-﻿using JP.Base.DAL.EF6.Model;
+﻿using JP.Base.Implementations.DAL.Model.Concurrent;
 using System.Collections.Generic;
 
 namespace Implementations.POC.Logic.EF6
 {
-    public class Employee: BaseModelEf<int>
+    public class Employee : BaseModelConcurrent<int>
     {
         public int Age { get; set; }
         public Employer Employer { get; set; }
@@ -12,7 +12,7 @@ namespace Implementations.POC.Logic.EF6
         public string Name { get; set; }
     }
 
-    public class Employer:BaseModelEf<int>
+    public class Employer : BaseModelConcurrent<int>
     {
         public string Area { get; set; }
         public ICollection<Employee> Employees { get; set; }

@@ -1,7 +1,7 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.Implementations.Factories;
-using JP.Base.DAL.ADO.UnitOfWork;
 using JP.Base.DAL.UnitOfWork;
+using JP.Base.Implementations.DAL.ADO.UnitOfWork;
 
 namespace Logic.POC.As.Composable
 {

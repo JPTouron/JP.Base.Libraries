@@ -4,7 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace JP.Base.DAL.EF6.Repositories.Contracts
+namespace JP.Base.Implementations.DAL.EF6.Repositories.Contracts
 {
     /// <summary>
     /// defines base actions to perform in a repository

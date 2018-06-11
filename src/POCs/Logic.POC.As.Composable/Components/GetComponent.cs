@@ -1,4 +1,4 @@
-﻿using JP.Base.DAL.Model;
+﻿using JP.Base.Implementations.DAL.Model;
 
 namespace Logic.POC.As.Composable.Components
 {

@@ -1,5 +1,5 @@
-﻿using JP.Base.DAL.Model;
-using JP.Base.DAL.UnitOfWork;
+﻿using JP.Base.DAL.UnitOfWork;
+using JP.Base.Implementations.DAL.Model;
 using JP.Base.Logic;
 using System;
 

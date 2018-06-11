@@ -122,25 +122,25 @@
       <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
       <Name>JP.Base.ViewModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.ADO.Repositories.Implementation\JP.Base.DAL.ADO.Repositories.Implementation.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.ADO.Repositories\JP.Base.Implementations.DAL.ADO.Repositories.csproj">
       <Project>{0D46A999-CAAB-4B28-8B00-907AD75288AF}</Project>
-      <Name>JP.Base.DAL.ADO.Repositories.Implementation</Name>
+      <Name>JP.Base.Implementations.DAL.ADO.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.ADO.UnitOfWork\JP.Base.DAL.ADO.UnitOfWork.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.ADO.UnitOfWork\JP.Base.Implementations.DAL.ADO.UnitOfWork.csproj">
       <Project>{260078AF-579D-426F-A4B7-CF07E16C4390}</Project>
-      <Name>JP.Base.DAL.ADO.UnitOfWork</Name>
+      <Name>JP.Base.Implementations.DAL.ADO.UnitOfWork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.EF6.Model\JP.Base.DAL.EF6.Model.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model.Concurrent\JP.Base.Implementations.DAL.Model.Concurrent.csproj">
       <Project>{FBDE0B0D-2B83-42B3-A4BE-058C880BDF26}</Project>
-      <Name>JP.Base.DAL.EF6.Model</Name>
+      <Name>JP.Base.Implementations.DAL.Model.Concurrent</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
-      <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
-      <Name>JP.Base.DAL.Model</Name>
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
+      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
+      <Name>JP.Base.Implementations.DAL.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.Logic.Crud.ADO\JP.Base.Logic.Crud.ADO.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.Logic.Crud.ADO\JP.Base.Implementations.Logic.Crud.ADO.csproj">
       <Project>{C1518B77-35AD-4ADC-A803-CD36EF340BEB}</Project>
-      <Name>JP.Base.Logic.Crud.ADO</Name>
+      <Name>JP.Base.Implementations.Logic.Crud.ADO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

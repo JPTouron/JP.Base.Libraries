@@ -1,6 +1,6 @@
-﻿using JP.Base.DAL.ADO.UnitOfWork;
-using JP.Base.DAL.UnitOfWork;
-using JP.Base.Logic.Crud.ADO;
+﻿using JP.Base.DAL.UnitOfWork;
+using JP.Base.Implementations.DAL.ADO.UnitOfWork;
+using JP.Base.Implementations.Logic.Crud.ADO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

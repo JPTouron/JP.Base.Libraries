@@ -35,11 +35,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -119,15 +119,15 @@
       <Name>JP.Base.DAL.EF6.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.EF6\JP.Base.DAL.EF6.csproj">
-      <Project>{e0c708f5-dcc8-4098-abbd-2dd9d2766f1b}</Project>
+      <Project>{E0C708F5-DCC8-4098-ABBD-2DD9D2766F1B}</Project>
       <Name>JP.Base.DAL.EF6</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
-      <Project>{09AC9317-01BC-4881-A495-32AB0402A4DF}</Project>
+      <Project>{09ac9317-01bc-4881-a495-32ab0402a4df}</Project>
       <Name>JP.Base.DAL.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
-      <Project>{8c805fbe-d496-44b1-a3ac-a3066fc34204}</Project>
+      <Project>{8C805FBE-D496-44B1-A3AC-A3066FC34204}</Project>
       <Name>JP.Base.DAL.UnitOfWork</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Crud\JP.Base.Logic.Crud.csproj">
@@ -135,32 +135,32 @@
       <Name>JP.Base.Logic.Crud</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
-      <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
+      <Project>{435554b2-0c51-4256-95de-2b139f1b6204}</Project>
       <Name>JP.Base.Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
       <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
       <Name>JP.Base.ViewModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.EF6.Model\JP.Base.DAL.EF6.Model.csproj">
-      <Project>{FBDE0B0D-2B83-42B3-A4BE-058C880BDF26}</Project>
-      <Name>JP.Base.DAL.EF6.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.EF6.Repositories.Implementation\JP.Base.DAL.EF6.Repositories.Implementation.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.EF6.Repositories\JP.Base.Implementations.DAL.EF6.Repositories.csproj">
       <Project>{C6E56885-9222-430F-9F94-CA968E223E59}</Project>
-      <Name>JP.Base.DAL.EF6.Repositories.Implementation</Name>
+      <Name>JP.Base.Implementations.DAL.EF6.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.EF6.UnitOfWork\JP.Base.DAL.EF6.UnitOfWork.csproj">
-      <Project>{279390da-1ec1-44a1-83cf-f4fd76ac055b}</Project>
-      <Name>JP.Base.DAL.EF6.UnitOfWork</Name>
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.EF6.UnitOfWork\JP.Base.Implementations.DAL.EF6.UnitOfWork.csproj">
+      <Project>{279390DA-1EC1-44A1-83CF-F4FD76AC055B}</Project>
+      <Name>JP.Base.Implementations.DAL.EF6.UnitOfWork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model.Concurrent\JP.Base.Implementations.DAL.Model.Concurrent.csproj">
+      <Project>{FBDE0B0D-2B83-42B3-A4BE-058C880BDF26}</Project>
+      <Name>JP.Base.Implementations.DAL.Model.Concurrent</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
-      <Name>JP.Base.DAL.Model</Name>
+      <Name>JP.Base.Implementations.DAL.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.Logic.Crud.EF6\JP.Base.Logic.Crud.EF6.csproj">
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.Logic.Crud.EF6\JP.Base.Implementations.Logic.Crud.EF6.csproj">
       <Project>{7C9FAAF1-BBC5-4F18-AB8E-D61778179D25}</Project>
-      <Name>JP.Base.Logic.Crud.EF6</Name>
+      <Name>JP.Base.Implementations.Logic.Crud.EF6</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
