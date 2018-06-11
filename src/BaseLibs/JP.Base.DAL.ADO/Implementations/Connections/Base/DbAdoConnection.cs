@@ -27,7 +27,8 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         protected DbConnection conn = null;
         protected DbProviderFactory dbProviderFactory = null;
         protected DbTransaction transaction = null;
-        private string connstring = string.Empty;
+        private string connString = string.Empty;
+        private string dataProvider;
         private bool isConnDisposed;
 
         public DbAdoConnection() : this(ConfigurationManager.AppSettings["DataProvider"], ConfigurationManager.AppSettings["ConnectionString"])
@@ -36,17 +37,9 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
         public DbAdoConnection(string dataProvider, string connString)
         {
-            connstring = connString;
-            dbProviderFactory = DbProviderFactories.GetFactory(dataProvider);
-
-            Debug.WriteLine($"created AdoConnection:{dataProvider} - {connstring}");
-        }
-
-        ~DbAdoConnection()
-        {
-            Debug.WriteLine($"DbAdoConnection destructor");
-
-            Dispose(false);
+            this.connString = connString;
+            this.dataProvider = dataProvider;
+            Debug.WriteLine($"created AdoConnection:{dataProvider} - {this.connString}");
         }
 
         public string ConnHash
@@ -284,8 +277,9 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         {
             Debug.WriteLine($"OnCreateConnection()");
 
+            SetDbProviderFactory();
             conn = dbProviderFactory.CreateConnection();
-            conn.ConnectionString = connstring;
+            conn.ConnectionString = connString;
             conn.Disposed += OnConnDisposed;
             isConnDisposed = false; // reset this var's value
             Debug.WriteLine($"Created Connection{ConnHash}");
@@ -328,6 +322,19 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
             isConnDisposed = true;
             Debug.WriteLine($"Disposed internal Connection {((DbConnection)sender).GetHashCode()}");
+        }
+
+        private void SetDbProviderFactory()
+        {
+            if (dbProviderFactory == null)
+                dbProviderFactory = DbProviderFactories.GetFactory(dataProvider);
+        }
+
+        ~DbAdoConnection()
+        {
+            Debug.WriteLine($"DbAdoConnection destructor");
+
+            Dispose(false);
         }
     }
 }
