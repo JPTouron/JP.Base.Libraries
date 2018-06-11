@@ -94,6 +94,12 @@ namespace JP.Base.DAL.EF6.UnitOfWork
             return repos[typeof(TModel)] as IGenericRepository<TModel>;
         }
 
+        public TRepo GetSpecificRepo<TRepo>() where TRepo : class
+        {
+            CheckIfDisposed();
+            return repos[typeof(TRepo)] as TRepo;
+        }
+
         /// <summary>
         /// verifies the <see cref="IsDisposed"/> property, and if true then it throws <see cref="InvalidOperationException"/>
         /// </summary>

@@ -13,5 +13,8 @@ namespace JP.Base.DAL.EF6.UnitOfWork
         /// </summary>
         /// <typeparam name="TModel">The model the repository handles</typeparam>
         IGenericRepository<TModel> GetGenericRepo<TModel>() where TModel : class;
+
+        TRepo GetSpecificRepo<TRepo>() where TRepo : class;
+
     }
 }
