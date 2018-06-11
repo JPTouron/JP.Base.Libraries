@@ -7,9 +7,9 @@ using System.Reflection;
 
 namespace JP.Base.DAL.ADO.EntityMappers.AttributeMapping
 {
-    public class EntityMapper
+    public static class EntityMapper
     {
-        public IEnumerable<T> MapEntities<T>(DbDataReader dataReader) where T : class, new()
+        public static IEnumerable<T> MapEntities<T>(this DbDataReader dataReader) where T : class, new()
         {
             if (dataReader.HasRows)
             {
@@ -40,7 +40,7 @@ namespace JP.Base.DAL.ADO.EntityMappers.AttributeMapping
                 yield return null;
         }
 
-        public IEnumerable<T> MapEntities<T>(DataTable table) where T : class, new()
+        public static IEnumerable<T> MapEntities<T>(this DataTable table) where T : class, new()
         {
             if (table != null && table.Rows.Count > 0)
             {
@@ -56,7 +56,21 @@ namespace JP.Base.DAL.ADO.EntityMappers.AttributeMapping
                 yield return null;
         }
 
-        public T MapEntity<T>(DataRow dataRow) where T : class, new()
+        public static T MapEntity<T>(this DataTable table) where T : class, new()
+        {
+            if (table != null && table.Rows.Count > 0)
+            {
+                var row = table.Rows[0];
+                {
+                    var item = MapEntity<T>(row);
+                    return item;
+                }
+            }
+            else
+                return null;
+        }
+
+        public static T MapEntity<T>(this DataRow dataRow) where T : class, new()
         {
             T item = new T();
 
@@ -67,7 +81,15 @@ namespace JP.Base.DAL.ADO.EntityMappers.AttributeMapping
                     var objectProperty = GetTargetProperty<T>(column.ColumnName);
                     if (objectProperty != null)
                     {
+                        Type propertyType = objectProperty.PropertyType;
+
+                        var targetType = IsNullableType(propertyType) ? Nullable.GetUnderlyingType(propertyType) : propertyType;
+
                         var dataValue = dataRow[column.ColumnName];
+
+                        if (!DBNull.Value.Equals(dataValue))
+                            dataValue = Convert.ChangeType(dataValue, targetType);
+
                         objectProperty.SetValue(item, DBNull.Value.Equals(dataValue) ? null : dataValue);
                     }
                 }
@@ -76,13 +98,27 @@ namespace JP.Base.DAL.ADO.EntityMappers.AttributeMapping
             return item;
         }
 
-        private PropertyInfo GetTargetProperty<T>(string name)
+        private static PropertyInfo GetTargetProperty<T>(string name)
         {
-            return typeof(T).GetProperties()
+            //first try to get the prop with bindble attrib on it...
+
+            var boundProperty = typeof(T).GetProperties()
                             .Where(p => p.GetCustomAttributes(typeof(DataBindAttribute), true)
                                 .Where(a => ((DataBindAttribute)a).ColumnName == name)
                                 .Any()
                                 ).FirstOrDefault();
+
+            //if unsuccessfull try to match by exact name
+            if (boundProperty == null)
+                boundProperty = typeof(T).GetProperties()
+                                .FirstOrDefault(p => p.Name == name);
+
+            return boundProperty;
+        }
+
+        private static bool IsNullableType(Type type)
+        {
+            return type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>));
         }
     }
 }
