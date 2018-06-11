@@ -1,27 +1,27 @@
 ﻿using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.Implementations.Factories;
-using JP.Base.DAL.ADO.UnitOfWork.Implementations;
+using JP.Base.DAL.ADO.UnitOfWork;
 using JP.Base.DAL.UnitOfWork;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.POC.As.Composable
 {
-
-
-
     public class Uow : BaseUnitOfWorkAdo
     {
-
-//        DbConnFactory
-
-
         public Uow(IDbConnFactory factory) : base(factory)
         {
+            repos.Add(typeof(OperatorRepo), new OperatorRepo(factory.GetConnection()));
+        }
+    }
 
+    public class UoWFac : IUoWFactory<Uow>
+    {
+        public Uow CreateUoW()
+        {
+            var connstring = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=..\..\..\..\..\resources\dbAccess.mdb;";
+            var f = new DbConnFactory("System.Data.OleDb", connstring);
+
+            var u = new Uow(f);
+            return u;
         }
     }
 }

@@ -1,24 +1,21 @@
 ﻿using JP.Base.DAL.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Logic.POC.As.Composable
 {
-    public class Model:BaseModel<int>
+    public class Operator : BaseModel<int>
     {
-
-        public string Name { get; set; }
-        public int Age{ get; set; }
-
-        public Position Position { get; set; }
-
+        public User Client { get; set; }
+        public string Document { get; set; }
+        public int EmployeeNbr { get; set; }
+        public string FirstName { get; set; }
+        public bool IsActive { get; set; }
+        public string LastName { get; set; }
     }
 
-    public class Position:BaseModel<int>
+    public class User : BaseModel<int>
+
     {
-        public string Description { get; set; }
+        public int Role { get; set; }
+        public string UserName { get; set; }
     }
 }

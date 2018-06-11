@@ -8,7 +8,7 @@ using JP.Base.Logic.Search;
 
 namespace Logic.POC.As.Composable
 {
-    class SearchEngine : AdoSearchEngine<Model>
+    class SearchEngine : AdoSearchEngine<Operator>
     {
         public SearchEngine(BaseSearchParams parameters) : base(parameters)
         {
