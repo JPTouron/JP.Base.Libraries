@@ -55,7 +55,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repos.cs" />
-    <Compile Include="SearchEngine.cs" />
     <Compile Include="StandardLogic.cs" />
     <Compile Include="Uow.cs" />
     <Compile Include="Components\UpdateComponent.cs" />
@@ -93,10 +92,6 @@
       <Project>{A13DF7DC-746B-4558-B82F-8B6166B2AA00}</Project>
       <Name>JP.Base.Logic.Crud</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Search\JP.Base.Logic.Search.csproj">
-      <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
-      <Name>JP.Base.Logic.Search</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
       <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
       <Name>JP.Base.Logic</Name>
@@ -108,10 +103,6 @@
     <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
       <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
       <Name>JP.Base.Implementations.DAL.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.Logic.Search.ADO\JP.Base.Implementations.Logic.Search.ADO.csproj">
-      <Project>{381D208D-E2A2-48C4-A286-C5108396E997}</Project>
-      <Name>JP.Base.Implementations.Logic.Search.ADO</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
