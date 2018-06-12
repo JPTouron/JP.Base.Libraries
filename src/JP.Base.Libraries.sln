@@ -620,10 +620,11 @@ Global
 		UpdateAssemblyVersion = True
 		UpdateAssemblyFileVersion = True
 		UpdateAssemblyInfoVersion = True
+		ShouldCreateLogs = True
 		AdvancedSettingsExpanded = True
-		AssemblyVersionSettings = None.None.IncrementOnDemand.Increment
-		AssemblyFileVersionSettings = None.None.IncrementOnDemand.Increment
-		AssemblyInfoVersionSettings = None.None.IncrementOnDemand.Increment
+		AssemblyVersionSettings = None.None.IncrementOnDemand.IncrementOnDemand
+		AssemblyFileVersionSettings = None.None.IncrementOnDemand.IncrementOnDemand
+		AssemblyInfoVersionSettings = None.None.IncrementOnDemand.IncrementOnDemand
 		UpdatePackageVersion = False
 		AssemblyInfoVersionType = SettingsVersion
 		InheritWinAppVersionFrom = None
