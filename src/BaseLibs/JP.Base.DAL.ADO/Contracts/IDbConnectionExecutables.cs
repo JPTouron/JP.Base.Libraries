@@ -27,7 +27,7 @@ namespace JP.Base.DAL.ADO.Contracts
 
         DataTable ExecuteReaderCommand();
 
-        object ExecuteScalarCommand();
+        T ExecuteScalarCommand<T>();
 
         void RollbackTansacton();
     }

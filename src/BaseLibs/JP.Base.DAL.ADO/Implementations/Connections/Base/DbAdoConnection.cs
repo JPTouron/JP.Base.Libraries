@@ -163,17 +163,20 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
         public int ExecuteNonQueryCommand()
         {
-            return (int)ExecuteCommand(CommandReturnType.NonQuery);
+            SetTransactionToCommand();
+            return ExecuteNonQuery();
         }
 
         public DataTable ExecuteReaderCommand()
         {
-            return (DataTable)ExecuteCommand(CommandReturnType.Reader);
+            SetTransactionToCommand();
+            return ExecuteReader();
         }
 
-        public object ExecuteScalarCommand()
+        public T ExecuteScalarCommand<T>()
         {
-            return ExecuteCommand(CommandReturnType.Scalar);
+            SetTransactionToCommand();
+            return ExecuteScalar<T>();
         }
 
         public bool Open()
@@ -233,7 +236,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
 
         protected internal abstract DataTable ExecuteReader();
 
-        protected internal abstract object ExecuteScalar();
+        protected internal abstract T ExecuteScalar<T>();
 
         protected virtual void Dispose(bool disposing)
         {
@@ -285,37 +288,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
             Debug.WriteLine($"Created Connection{ConnHash}");
         }
 
-        private object DoExecuteCommand(CommandReturnType returnType)
-        {
-            object retVal = null;
-            switch (returnType)
-            {
-                case CommandReturnType.Scalar:
-                    retVal = ExecuteScalar();
-                    break;
-
-                case CommandReturnType.Reader:
-                    retVal = ExecuteReader();
-                    break;
-
-                case CommandReturnType.NonQuery:
-                    retVal = ExecuteNonQuery();
-                    break;
-            }
-            return retVal;
-        }
-
-        private object ExecuteCommand(CommandReturnType returnType)
-        {
-            if (transaction != null)
-                command.Transaction = transaction;
-
-            //closeConn = PrepareConnAndTranForExecution();
-            var retVal = DoExecuteCommand(returnType);
-
-            return retVal;
-        }
-
         private void OnConnDisposed(object sender, EventArgs e)
         {
             Debug.WriteLine($"OnConnDisposed()");
@@ -328,6 +300,12 @@ namespace JP.Base.DAL.ADO.Implementations.Connections.Base
         {
             if (dbProviderFactory == null)
                 dbProviderFactory = DbProviderFactories.GetFactory(dataProvider);
+        }
+
+        private void SetTransactionToCommand()
+        {
+            if (transaction != null)
+                command.Transaction = transaction;
         }
 
         ~DbAdoConnection()

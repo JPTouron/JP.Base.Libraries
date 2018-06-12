@@ -38,7 +38,7 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
         {
             DataSet DSReturn = new DataSet();
 
-            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_TABULAR"], OracleDbType.RefCursor);
+            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["CursorNameTabularReturn"], OracleDbType.RefCursor);
             prm.Direction = ParameterDirection.Output;
             command.Parameters.Add(prm);
 
@@ -50,15 +50,15 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             return DSReturn.Tables[0];
         }
 
-        protected internal override object ExecuteScalar()
+        protected internal override T ExecuteScalar<T>()
         {
-            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"], OracleDbType.Int32);
+            OracleParameter prm = new OracleParameter(ConfigurationManager.AppSettings["CursorNameScalarReturn"], OracleDbType.Int32);
             prm.Direction = ParameterDirection.Output;
 
             command.Parameters.Add(prm);
             command.ExecuteScalar();
 
-            var result = command.Parameters[ConfigurationManager.AppSettings["NOMBRE_CURSOR_RETORNO_ESCALAR"]].Value;
+            var result = (T)command.Parameters[ConfigurationManager.AppSettings["CursorNameScalarReturn"]].Value;
 
             return result;
         }

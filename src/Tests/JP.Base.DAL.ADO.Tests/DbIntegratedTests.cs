@@ -2,7 +2,6 @@
 using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.Implementations.Factories;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 
 namespace JP.Base.DAL.ADO.Tests
 {
@@ -71,11 +70,11 @@ namespace JP.Base.DAL.ADO.Tests
                 conn.BeginTransaction();
 
                 conn.CreateCommand(new CommandData { CommandText = "insert into clients (name, code) values ('namey test', 'codey testy')" });
-                conn.ExecuteScalarCommand();
+                conn.ExecuteScalarCommand<object>();
 
                 conn.CreateCommand(new CommandData { CommandText = "SELECT @@Identity" });
 
-                id = Convert.ToInt32(conn.ExecuteScalarCommand());
+                id = conn.ExecuteScalarCommand<int>();
 
                 conn.CreateCommand(new CommandData { CommandText = $"update clients set code='meh...' where id ={id}" });
                 conn.ExecuteNonQueryCommand();
@@ -86,7 +85,7 @@ namespace JP.Base.DAL.ADO.Tests
                 conn.Open();
 
                 conn.CreateCommand(new CommandData { CommandText = $"select name from clients where id = {id}" });
-                name = conn.ExecuteScalarCommand().ToString();
+                name = conn.ExecuteScalarCommand<string>();
 
                 conn.BeginTransaction();
 
@@ -96,7 +95,7 @@ namespace JP.Base.DAL.ADO.Tests
                 conn.RollbackTansacton();
 
                 conn.CreateCommand(new CommandData { CommandText = $"select name from clients where id = {id}" });
-                name = conn.ExecuteScalarCommand().ToString();
+                name = conn.ExecuteScalarCommand<string>();
 
                 conn.CreateCommand(new CommandData { CommandText = $"select * from clients where id = {id}" });
                 var dt = conn.ExecuteReaderCommand();
