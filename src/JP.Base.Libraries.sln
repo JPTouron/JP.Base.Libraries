@@ -615,4 +615,17 @@ Global
 		{83AD9B2E-A3BB-49D9-9302-A3B961A59181} = {06440465-74C8-42B9-9187-C8F3ADD9E635}
 		{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA} = {648EE63C-D790-4FA5-927D-DD3A3EC06469}
 	EndGlobalSection
+	GlobalSection(AutomaticVersions) = postSolution
+		PrimaryVersionType = AssemblyVersionAttribute
+		UpdateAssemblyVersion = True
+		UpdateAssemblyFileVersion = True
+		UpdateAssemblyInfoVersion = True
+		AdvancedSettingsExpanded = True
+		AssemblyVersionSettings = None.None.IncrementOnDemand.Increment
+		AssemblyFileVersionSettings = None.None.IncrementOnDemand.Increment
+		AssemblyInfoVersionSettings = None.None.IncrementOnDemand.Increment
+		UpdatePackageVersion = False
+		AssemblyInfoVersionType = SettingsVersion
+		InheritWinAppVersionFrom = None
+	EndGlobalSection
 EndGlobal
