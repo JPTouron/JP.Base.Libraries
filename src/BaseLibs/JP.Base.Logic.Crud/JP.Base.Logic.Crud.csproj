@@ -35,7 +35,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseCrudLogic.cs" />
-    <Compile Include="ICRUDLogic.cs" />
+    <Compile Include="IBaseCrudLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchParams.cs" />
   </ItemGroup>

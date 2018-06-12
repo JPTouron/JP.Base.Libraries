@@ -5,7 +5,7 @@ namespace JP.Base.Logic.Crud
     /// <summary>
     /// defines a generic interface for all the CRUD operations logic
     /// </summary>
-    public interface ICRUDLogic<CreateType, EditType, DeleteType, ListType>
+    public interface IBaseCrudLogic<CreateType, EditType, DeleteType, ListType>
         where CreateType : class
         where EditType : class
         where DeleteType : class
