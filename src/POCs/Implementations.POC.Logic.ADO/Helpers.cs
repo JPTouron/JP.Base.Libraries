@@ -3,10 +3,9 @@ using JP.Base.DAL.ADO.Contracts;
 using JP.Base.DAL.ADO.EntityMapper;
 using JP.Base.DAL.ADO.Implementations.Factories;
 using JP.Base.DAL.ADO.Repositories;
-using JP.Base.DAL.ADO.Repositories.Implementation;
-using JP.Base.DAL.ADO.UnitOfWork.Contracts;
-using JP.Base.DAL.ADO.UnitOfWork.Implementations;
 using JP.Base.DAL.UnitOfWork;
+using JP.Base.Implementations.DAL.ADO.Repositories;
+using JP.Base.Implementations.DAL.ADO.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -73,7 +72,7 @@ namespace Implementations.POC.Logic.ADO
 
     public class ClientRepo : GenericRepository<Client>
     {
-        public ClientRepo(ICommandMapper<Client> mapper, IDbConnFactory factory) : base(mapper, factory)
+        public ClientRepo(ICommandMapper<Client> mapper, IDbConnectionExecutables conn) : base(mapper, conn)
         {
         }
 
@@ -106,7 +105,7 @@ namespace Implementations.POC.Logic.ADO
 
     public class Custrepo : GenericRepository<OperatorWithClient>, ICustomGenericRepo
     {
-        public Custrepo(ICommandMapper<OperatorWithClient> mapper, IDbConnFactory factory) : base(mapper, factory)
+        public Custrepo(ICommandMapper<OperatorWithClient> mapper, IDbConnectionExecutables conn) : base(mapper, conn)
         {
         }
 
@@ -147,8 +146,8 @@ namespace Implementations.POC.Logic.ADO
     {
         public UoW(IDbConnFactory factory) : base(factory)
         {
-            var r = new ClientRepo(new clientMapper(), factory);
-            var r2 = new Custrepo(new customMapper(), factory);
+            var r = new ClientRepo(new clientMapper(), factory.GetConnection());
+            var r2 = new Custrepo(new customMapper(), factory.GetConnection());
             base.repos.Add(typeof(Client), r);
             base.repos.Add(typeof(OperatorWithClient), r2);
         }
@@ -200,8 +199,6 @@ namespace Implementations.POC.Logic.ADO
                 CommandText = $@"SELECT Clients.Id as ClientId, Clients.Name as ClientName, Clients.Code as ClientCode, Operators.Id, Operators.Document, Operators.FirstName,
                                 Operators.LastName, Operators.EmployeeNbr, Operators.IsActive
                                 FROM Clients INNER JOIN Operators ON Clients.Id = Operators.Id ",
-                 
-                                 
             };
         }
 

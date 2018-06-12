@@ -41,7 +41,6 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
 
             result.Load(reader);
 
-
             if (reader != null)
             {
                 reader.Close();
@@ -51,9 +50,9 @@ namespace JP.Base.DAL.ADO.Implementations.Connections
             return result;
         }
 
-        protected internal override object ExecuteScalar()
+        protected internal override T ExecuteScalar<T>()
         {
-            var result = command.ExecuteScalar();//ejecutar el comando
+            var result = (T)command.ExecuteScalar();//ejecutar el comando
 
             return result;
         }

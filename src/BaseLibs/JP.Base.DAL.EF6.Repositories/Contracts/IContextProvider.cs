@@ -1,6 +1,6 @@
 ﻿using JP.Base.DAL.EF6.Contracts;
 
-namespace JP.Base.DAL.EF6.Repositories.Contracts
+namespace JP.Base.Implementations.DAL.EF6.Repositories.Contracts
 {
     /// <summary>
     /// represents a factory contract that enables the providing of a <see cref="IDbContext"/> that represents an implementation of <seealso cref="System.Data.Entity.DbContext"/>

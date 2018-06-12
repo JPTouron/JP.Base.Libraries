@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E8F6E0C2-A317-469A-9385-30A41A902B9D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Logic.POC.As.Composable</RootNamespace>
+    <AssemblyName>Logic.POC.As.Composable</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.7.0.0\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\GetComponent.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="ComposableLogic.cs" />
+    <Compile Include="Model.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repos.cs" />
+    <Compile Include="StandardLogic.cs" />
+    <Compile Include="Uow.cs" />
+    <Compile Include="Components\UpdateComponent.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Commands\JP.Base.DAL.ADO.Commands.csproj">
+      <Project>{F063181C-788F-4F0B-B73A-11D4AA080458}</Project>
+      <Name>JP.Base.DAL.ADO.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.EntityMappers\JP.Base.DAL.ADO.EntityMappers.csproj">
+      <Project>{27976CFF-64A7-411B-B286-DB01AB9BBD79}</Project>
+      <Name>JP.Base.DAL.ADO.EntityMappers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO.Repositories\JP.Base.DAL.ADO.Repositories.csproj">
+      <Project>{44AAD56F-C424-483D-A107-4161D68B5EFD}</Project>
+      <Name>JP.Base.DAL.ADO.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.ADO\JP.Base.DAL.ADO.csproj">
+      <Project>{E33C27AA-CBEF-42B0-ADB3-160313FE5404}</Project>
+      <Name>JP.Base.DAL.ADO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
+      <Project>{09AC9317-01BC-4881-A495-32AB0402A4DF}</Project>
+      <Name>JP.Base.DAL.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
+      <Project>{8C805FBE-D496-44B1-A3AC-A3066FC34204}</Project>
+      <Name>JP.Base.DAL.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.Crud\JP.Base.Logic.Crud.csproj">
+      <Project>{A13DF7DC-746B-4558-B82F-8B6166B2AA00}</Project>
+      <Name>JP.Base.Logic.Crud</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
+      <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
+      <Name>JP.Base.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.ADO.UnitOfWork\JP.Base.Implementations.DAL.ADO.UnitOfWork.csproj">
+      <Project>{260078AF-579D-426F-A4B7-CF07E16C4390}</Project>
+      <Name>JP.Base.Implementations.DAL.ADO.UnitOfWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
+      <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
+      <Name>JP.Base.Implementations.DAL.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

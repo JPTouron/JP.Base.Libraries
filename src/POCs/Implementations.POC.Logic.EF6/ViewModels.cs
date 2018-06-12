@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Implementations.POC.Logic.EF6
 {
-    public class EmployeeVM : BaseVersionViewModel<int>
+    public class EmployeeVM : BaseViewModelConcurrent<int>
     {
         public int Age { get; set; }
 
@@ -14,7 +14,7 @@ namespace Implementations.POC.Logic.EF6
         public string Name { get; set; }
     }
 
-    public class EmployerVM : BaseVersionViewModel<int>
+    public class EmployerVM : BaseViewModelConcurrent<int>
     {
         public string Area { get; set; }
         public IEnumerable<EmployeeVM> Employees { get; set; }

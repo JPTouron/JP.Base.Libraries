@@ -1,4 +1,4 @@
-﻿using JP.Base.MVP.Implementation.Winforms.Implementation.Views.Controls.Base;
+﻿using JP.Base.Implementations.MVP.Winforms.Implementation;
 
 namespace ImplementingUserControls
 {

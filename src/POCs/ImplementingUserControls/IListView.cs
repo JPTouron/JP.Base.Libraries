@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using JP.Base.Implementations.MVP;
+using JP.Base.Implementations.MVP.Contracts.Views.Base;
+using JP.Base.Implementations.MVP.Views.Base;
 using JP.Base.Logic.Search;
-using JP.Base.MVP.Implementation;
-using JP.Base.MVP.Implementation.Contracts.Views.Base;
-using JP.Base.MVP.Implementation.Views.Base;
+using System.Linq;
 
 namespace ImplementingUserControls
 {

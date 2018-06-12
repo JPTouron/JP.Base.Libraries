@@ -1,8 +1,8 @@
 ﻿using JP.Base.DAL.EF6.Contracts;
-using JP.Base.DAL.EF6.Repositories.Contracts;
-using JP.Base.DAL.EF6.Repositories.Implementation;
-using JP.Base.DAL.EF6.UnitOfWork;
 using JP.Base.DAL.UnitOfWork;
+using JP.Base.Implementations.DAL.EF6.Repositories.Contracts;
+using JP.Base.Implementations.DAL.EF6.Repositories.Implementation;
+using JP.Base.Implementations.DAL.EF6.UnitOfWork;
 
 namespace Implementations.POC.Logic.EF6
 {
