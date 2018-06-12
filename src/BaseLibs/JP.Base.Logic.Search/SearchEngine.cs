@@ -2,7 +2,6 @@
 {
     public abstract class SearchEngine<EntityType, ReturnType>
         where EntityType : class
-        //where ReturnType
     {
         protected const string AscendingOrder = "asc";
         protected const string DescendingOrder = "desc";
