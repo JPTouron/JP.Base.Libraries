@@ -1,10 +1,10 @@
-﻿using JP.Base.DAL.UnitOfWork;
+﻿using JP.Base.DAL.Model;
+using JP.Base.DAL.UnitOfWork;
 using JP.Base.Implementations.DAL.ADO.UnitOfWork;
-using JP.Base.Implementations.DAL.Model;
 using JP.Base.Implementations.Logic.Search.ADO;
 using JP.Base.Logic.Crud;
 using JP.Base.Logic.Search;
-using JP.Base.ViewModel;
+using JP.Base.Logic.ViewModel;
 using System.Linq;
 
 namespace JP.Base.Implementations.Logic.Crud.ADO

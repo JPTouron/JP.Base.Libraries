@@ -1,8 +1,8 @@
 ﻿using JP.Base.Common.Extensions;
-using JP.Base.Implementations.DAL.Model;
+using JP.Base.DAL.Model;
 using JP.Base.DAL.UnitOfWork;
 using JP.Base.Logic.Search;
-using JP.Base.ViewModel;
+using JP.Base.Logic.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

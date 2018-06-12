@@ -1,4 +1,4 @@
-﻿using JP.Base.ViewModel;
+﻿using JP.Base.Logic.ViewModel;
 
 namespace Implementations.POC.Logic.ADO
 {

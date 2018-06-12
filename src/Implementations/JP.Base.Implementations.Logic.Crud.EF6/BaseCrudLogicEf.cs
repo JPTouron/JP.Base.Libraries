@@ -1,10 +1,10 @@
-﻿using JP.Base.DAL.UnitOfWork;
+﻿using JP.Base.DAL.Model.Concurrent;
+using JP.Base.DAL.UnitOfWork;
 using JP.Base.Implementations.DAL.EF6.UnitOfWork;
-using JP.Base.Implementations.DAL.Model.Concurrent;
 using JP.Base.Implementations.Logic.Search.EF6;
 using JP.Base.Logic.Crud;
 using JP.Base.Logic.Search;
-using JP.Base.ViewModel;
+using JP.Base.Logic.ViewModel;
 using System.Linq;
 
 namespace JP.Base.Implementations.Logic.Crud.EF6

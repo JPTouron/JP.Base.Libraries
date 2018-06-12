@@ -1,4 +1,4 @@
-﻿using JP.Base.Implementations.DAL.Model.Concurrent;
+﻿using JP.Base.DAL.Model.Concurrent;
 using System.Collections.Generic;
 
 namespace Implementations.POC.Logic.EF6

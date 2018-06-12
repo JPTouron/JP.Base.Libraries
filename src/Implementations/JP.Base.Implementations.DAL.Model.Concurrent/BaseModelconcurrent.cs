@@ -1,7 +1,6 @@
-﻿using JP.Base.Implementations.DAL.Model;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace JP.Base.Implementations.DAL.Model.Concurrent
+namespace JP.Base.DAL.Model.Concurrent
 {
     /// <summary>
     /// this class represents a base clas from which to build a model for EF6

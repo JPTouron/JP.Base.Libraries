@@ -64,10 +64,6 @@
       <Project>{279390DA-1EC1-44A1-83CF-F4FD76AC055B}</Project>
       <Name>JP.Base.Implementations.DAL.EF6.UnitOfWork</Name>
     </ProjectReference>
-    <ProjectReference Include="..\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
-      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
-      <Name>JP.Base.Implementations.DAL.Model</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

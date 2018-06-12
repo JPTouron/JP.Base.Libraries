@@ -1,4 +1,4 @@
-﻿namespace JP.Base.ViewModel
+﻿namespace JP.Base.Logic.ViewModel
 {
     public class BaseViewModel<T>
     {

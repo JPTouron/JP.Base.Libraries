@@ -54,6 +54,10 @@
       <Project>{44aad56f-c424-483d-a107-4161d68b5efd}</Project>
       <Name>JP.Base.DAL.ADO.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+      <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
+      <Name>JP.Base.DAL.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
       <Project>{09ac9317-01bc-4881-a495-32ab0402a4df}</Project>
       <Name>JP.Base.DAL.Repositories</Name>
@@ -70,21 +74,17 @@
       <Project>{1d81e4ad-d068-4be5-bb0f-fa653dd16fd1}</Project>
       <Name>JP.Base.Logic.Search</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.ViewModel\JP.Base.Logic.ViewModel.csproj">
+      <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
+      <Name>JP.Base.Logic.ViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
       <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
       <Name>JP.Base.Logic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
-      <Project>{83ad9b2e-a3bb-49d9-9302-a3b961a59181}</Project>
-      <Name>JP.Base.ViewModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JP.Base.Implementations.DAL.ADO.UnitOfWork\JP.Base.Implementations.DAL.ADO.UnitOfWork.csproj">
       <Project>{260078af-579d-426f-a4b7-cf07e16c4390}</Project>
       <Name>JP.Base.Implementations.DAL.ADO.UnitOfWork</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
-      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
-      <Name>JP.Base.Implementations.DAL.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.Implementations.Logic.Search.ADO\JP.Base.Implementations.Logic.Search.ADO.csproj">
       <Project>{381D208D-E2A2-48C4-A286-C5108396E997}</Project>

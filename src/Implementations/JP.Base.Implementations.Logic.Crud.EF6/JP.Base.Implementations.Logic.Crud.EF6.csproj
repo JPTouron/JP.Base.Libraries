@@ -50,6 +50,10 @@
       <Project>{21cdc162-fd9b-4a9b-9e70-a5d0aa27bb4c}</Project>
       <Name>JP.Base.DAL.EF6.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
+      <Name>JP.Base.DAL.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Repositories\JP.Base.DAL.Repositories.csproj">
       <Project>{09ac9317-01bc-4881-a495-32ab0402a4df}</Project>
       <Name>JP.Base.DAL.Repositories</Name>
@@ -66,13 +70,13 @@
       <Project>{1d81e4ad-d068-4be5-bb0f-fa653dd16fd1}</Project>
       <Name>JP.Base.Logic.Search</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic.ViewModel\JP.Base.Logic.ViewModel.csproj">
+      <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
+      <Name>JP.Base.Logic.ViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\BaseLibs\JP.Base.Logic\JP.Base.Logic.csproj">
       <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
       <Name>JP.Base.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\BaseLibs\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
-      <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
-      <Name>JP.Base.ViewModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.Implementations.DAL.EF6.UnitOfWork\JP.Base.Implementations.DAL.EF6.UnitOfWork.csproj">
       <Project>{279390DA-1EC1-44A1-83CF-F4FD76AC055B}</Project>
@@ -81,10 +85,6 @@
     <ProjectReference Include="..\JP.Base.Implementations.DAL.Model.Concurrent\JP.Base.Implementations.DAL.Model.Concurrent.csproj">
       <Project>{fbde0b0d-2b83-42b3-a4be-058c880bdf26}</Project>
       <Name>JP.Base.Implementations.DAL.Model.Concurrent</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
-      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
-      <Name>JP.Base.Implementations.DAL.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.Implementations.Logic.Search.EF6\JP.Base.Implementations.Logic.Search.EF6.csproj">
       <Project>{E8CD9A35-19B4-43F7-A05D-B43D6ED436B8}</Project>

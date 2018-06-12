@@ -38,9 +38,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
+    <ProjectReference Include="..\..\BaseLibs\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
       <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
-      <Name>JP.Base.Implementations.DAL.Model</Name>
+      <Name>JP.Base.DAL.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

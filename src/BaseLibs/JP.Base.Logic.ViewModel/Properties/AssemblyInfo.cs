@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("JP.Base.Implementations.DAL.Model")]
+[assembly: AssemblyTitle("JP.Base.Logic.ViewModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("JP.Base.Implementations.DAL.Model")]
+[assembly: AssemblyProduct("JP.Base.Logic.ViewModel")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a5e1cfa2-1a9a-488c-8780-50e16d2feafa")]
+[assembly: Guid("83ad9b2e-a3bb-49d9-9302-a3b961a59181")]
 
 // Version information for an assembly consists of the following four values:
 //

@@ -1,5 +1,5 @@
-﻿using JP.Base.Implementations.DAL.Model.Concurrent;
-using JP.Base.Implementations.DAL.Model;
+﻿using JP.Base.DAL.Model;
+using JP.Base.DAL.Model.Concurrent;
 
 namespace Implementations.POC.Logic.ADO
 {

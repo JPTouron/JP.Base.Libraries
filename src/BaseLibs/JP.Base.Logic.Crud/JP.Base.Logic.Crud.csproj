@@ -40,13 +40,13 @@
     <Compile Include="SearchParams.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Implementations\JP.Base.Implementations.DAL.Model\JP.Base.Implementations.DAL.Model.csproj">
-      <Project>{A5E1CFA2-1A9A-488C-8780-50E16D2FEAFA}</Project>
-      <Name>JP.Base.Implementations.DAL.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\JP.Base.Common.Extensions\JP.Common.Extensions\JP.Base.Common.Extensions.csproj">
       <Project>{8774DA41-B1E4-44B5-AEB9-F02F43C115EE}</Project>
       <Name>JP.Base.Common.Extensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JP.Base.DAL.Model\JP.Base.DAL.Model.csproj">
+      <Project>{a5e1cfa2-1a9a-488c-8780-50e16d2feafa}</Project>
+      <Name>JP.Base.DAL.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\JP.Base.DAL.UnitOfWork\JP.Base.DAL.UnitOfWork.csproj">
       <Project>{8C805FBE-D496-44B1-A3AC-A3066FC34204}</Project>
@@ -56,13 +56,13 @@
       <Project>{1D81E4AD-D068-4BE5-BB0F-FA653DD16FD1}</Project>
       <Name>JP.Base.Logic.Search</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JP.Base.Logic.ViewModel\JP.Base.Logic.ViewModel.csproj">
+      <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
+      <Name>JP.Base.Logic.ViewModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\JP.Base.Logic\JP.Base.Logic.csproj">
       <Project>{435554B2-0C51-4256-95DE-2B139F1B6204}</Project>
       <Name>JP.Base.Logic</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\JP.Base.ViewModel\JP.Base.ViewModel.csproj">
-      <Project>{83AD9B2E-A3BB-49D9-9302-A3B961A59181}</Project>
-      <Name>JP.Base.ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,6 +1,6 @@
-﻿using JP.Base.Implementations.DAL.Model;
-using JP.Base.Logic.Crud;
+﻿using JP.Base.DAL.Model;
 using JP.Base.Implementations.Logic.Search.EF6;
+using JP.Base.Logic.Crud;
 
 namespace JP.Base.Implementations.Logic.Crud.EF6
 {

@@ -1,4 +1,4 @@
-﻿using JP.Base.ViewModel;
+﻿using JP.Base.Logic.ViewModel;
 using System.Collections.Generic;
 
 namespace Implementations.POC.Logic.EF6

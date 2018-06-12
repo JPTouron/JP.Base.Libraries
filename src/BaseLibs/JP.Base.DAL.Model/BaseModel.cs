@@ -1,4 +1,4 @@
-﻿namespace JP.Base.Implementations.DAL.Model
+﻿namespace JP.Base.DAL.Model
 {
     /// <summary>
     /// this class represents a base clas from which to build a model for EF6
